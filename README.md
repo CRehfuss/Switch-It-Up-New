@@ -1,2 +1,3 @@
-# Switch-It-Up-New
-Round two of switch it up
+# Switch-It-Up
+Project for our engr 100 game
+IT WORKS
