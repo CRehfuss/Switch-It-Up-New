@@ -77,15 +77,20 @@ class Player(pygame.sprite.Sprite):
         return self.lives
     
     #Checks if the dragon is colliding with the wall
-    def getCollision(self, wall2):
+    def getCollision(self, wall2, directionMoving):
         global x_Dragon
         global y_Dragon
         
-        if pygame.sprite.collide_rect(self, wall2):
-            
-            x_Dragon = random.randrange(700 - self.rect.width)
-            
-            y_Dragon = random.randrange(500 - self.rect.height)
+     #   if pygame.sprite.collide_rect(self, wall2):
+#            if(directionMoving == up):
+#                y_Dragon-=1
+#            if(directionMoving == down):
+#                y_Dragon +=1
+#            if(directionMoving == left):
+#                x_Dragon +=1
+#            if(directionMoving == right):
+#                y_Dragon -=1
+
             
     def moveDown(self):
         global y_Dragon
@@ -125,7 +130,7 @@ class Player(pygame.sprite.Sprite):
         screen.blit(self.image, self)
         
 
-dragon = Player((255,255,255), 128, 114, "Dragons.png", [x_Dragon, y_Dragon], 0)
+dragon = Player((255,255,255), 72, 64, "Dragons.png", [x_Dragon, y_Dragon], 0)
 screen.blit(dragon.image, dragon)
 
 
@@ -154,12 +159,16 @@ while state != 1:
 
     if keypressed[dragon.upkey]:
         dragon.moveUp()
+ #       dragon.getCollision(wall,up)
     if keypressed[dragon.downkey]:
         dragon.moveDown()
+ #       dragon.getCollision(wall,down)
     if keypressed[dragon.leftkey]:
         dragon.moveLeft()
+ #       dragon.getCollision(wall,left)
     if keypressed[dragon.rightkey]:
         dragon.moveRight()
+ #       dragon.getCollision(wall,right)
 
     for event in pygame.event.get():
         if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
