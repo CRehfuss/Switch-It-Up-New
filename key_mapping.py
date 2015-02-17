@@ -9,6 +9,7 @@ from pygame.locals import *
 
 
 
+
 arrowkeys = [K_UP, K_DOWN, K_LEFT, K_RIGHT]
 allalphabetkeys = [K_a, K_b, K_c, K_d, K_e, K_f, K_g, K_h, K_i, K_j, K_k, K_l, K_m, K_n, K_o, K_p,K_q, K_r, K_s, K_t, K_u,
                 K_v, K_w, K_x, K_y, K_z]
@@ -45,3 +46,7 @@ def getKeys(difficulty):
         right = allalphabetkeys[3]
 
     return up, down, left, right #this is mapped out North south east west
+
+
+
+

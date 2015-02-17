@@ -2,9 +2,12 @@
 #Main file
 
 
-import pygame, random
+import random, key_mapping, show_keys
+import pygame
 from pygame.locals import *
-from Alpha_Release import key_mapping
+from show_keys import *
+
+
 
 pygame.init()
 
@@ -32,7 +35,7 @@ def AnimationImages(width, height, filename): #defining a function have to do it
 #The Implementation of Player class should follow
 class Player(pygame.sprite.Sprite):
     
-    def __init__(self, color, width, height, filename, location):
+    def __init__(self, color, width, height, filename, location, difficulty):
         # call parent class constructor
         pygame.sprite.Sprite.__init__(self)
         
@@ -58,8 +61,12 @@ class Player(pygame.sprite.Sprite):
        
         self.rect.x = 0
         self.rect.y = 0
-        
-        self.upkey, self.downkey, self.leftkey, self.rightkey = key_mapping.getKeys(0)
+
+        #setting the difficulty of key mapping for this avatar
+        self.difficulty = difficulty
+
+
+        self.upkey, self.downkey, self.leftkey, self.rightkey = key_mapping.getKeys(difficulty)
         
         # sets the lives to three
         self.lives = 3
@@ -116,7 +123,7 @@ class Player(pygame.sprite.Sprite):
         screen.blit(self.image, self)
         
 
-dragon = Player((255,255,255), 128, 114,"Dragons.png", [x_Dragon, y_Dragon])
+dragon = Player((255,255,255), 128, 114, "Dragons.png", [x_Dragon, y_Dragon], 0)
 screen.blit(dragon.image, dragon)
 
 
@@ -139,7 +146,7 @@ while state != 1:
 
 
     pygame.display.update()
-    
+    badkeycount = 0
 
     keypressed = pygame.key.get_pressed()
 
@@ -156,7 +163,14 @@ while state != 1:
         if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
             state = 1
 
-        
-        
-        
-                
+        if event.type == KEYDOWN and (event.key != dragon.upkey):
+                badkeycount += 1
+        if event.type == KEYDOWN and event.key != dragon.downkey:
+                badkeycount += 1
+        if event.type == KEYDOWN and event.key != dragon.leftkey:
+                badkeycount += 1
+        if event.type == KEYDOWN and event.key != dragon.rightkey:
+                badkeycount += 1
+        if badkeycount > 20:
+            #prompt the correct keys (How is yet to be established)
+             show_keys.showKeys(dragon)

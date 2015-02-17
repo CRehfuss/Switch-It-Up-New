@@ -2,10 +2,12 @@
 #Main file
 
 
-import pygame, random
+import random
 
+import pygame
 from pygame.locals import *
-from Alpha_Release import key_mapping
+
+import key_mapping
 
 
 pygame.init()
