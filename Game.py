@@ -1,7 +1,7 @@
 #Switch it Up
 #Main file
 
-#Hey Claire see if this shows up!
+#This is a message from Claire's computer
 
 
 import random, key_mapping, show_keys
