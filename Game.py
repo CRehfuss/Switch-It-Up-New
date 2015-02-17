@@ -4,10 +4,10 @@
 #This is a message from Claire's computer
 
 
-import random, key_mapping, show_keys
+import random, key_mapping
 import pygame
 from pygame.locals import *
-from show_keys import *
+
 
 
 
@@ -32,6 +32,37 @@ def AnimationImages(width, height, filename): #defining a function have to do it
         images.append(fullImage.subsurface((i*width, 0, width ,height)))
         
     return images
+
+
+def showKeys(avatar, screens):
+
+
+    keylist = avatar.upkey, avatar.downkey, avatar.leftkey, avatar.rightkey
+    keystr = []
+    for key in keylist:
+
+        if(key == K_UP):
+            keystr.append("up")
+        if(key == K_DOWN):
+            keystr.append("down")
+        if(key == K_LEFT):
+            keystr.append("left")
+        if(key == K_RIGHT):
+            keystr.append("right")
+
+
+    upstring = "Resources/keys/" + keystr[0] + ".jpg"
+    downstring = "Resources/keys/" + keystr[1] + ".jpg"
+    leftstring = "Resources/keys/" + keystr[2] + ".jpg"
+    rightstring = "Resources/keys/" + keystr[3] + ".jpg"
+
+
+    screens.blit(pygame.image.load(upstring).convert_alpha(), (20, 0))
+    screens.blit(pygame.image.load(downstring).convert_alpha(), (20, 40))
+    screens.blit(pygame.image.load(leftstring).convert_alpha(), (0, 20))
+    screens.blit(pygame.image.load(rightstring).convert_alpha(), (40, 20))
+
+
 
 
 #The Implementation of Player class should follow
@@ -130,7 +161,8 @@ class Player(pygame.sprite.Sprite):
         screen.blit(self.image, self)
         
 
-dragon = Player((255,255,255), 72, 64, "Dragons.png", [x_Dragon, y_Dragon], 0)
+
+dragon = Player((255,255,255), 72, 64, "Resources/Dragons.png", [x_Dragon, y_Dragon], 1)
 screen.blit(dragon.image, dragon)
 
 
@@ -142,7 +174,7 @@ while state != 1:
     #Just a white screen
     screen.fill([255,255,255])
      # create the dragon image
-
+    showKeys(dragon, screen)
     dragon.rect.x = x_Dragon
     dragon.rect.y = y_Dragon
 
@@ -184,4 +216,4 @@ while state != 1:
                 badkeycount += 1
         if badkeycount > 20:
             #prompt the correct keys (How is yet to be established)
-             show_keys.showKeys(dragon)
+             showKeys(dragon, screen)
