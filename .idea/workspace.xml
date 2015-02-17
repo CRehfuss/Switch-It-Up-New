@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4269e78a-b749-4aa2-957c-7029dbe15023" name="Default" comment="" />
+    <list default="true" id="4269e78a-b749-4aa2-957c-7029dbe15023" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Resources/keys/right.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Resources/keys/up.jpg" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Switch-It-Up-New\Alpha_Release\.idea\.name" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Switch-It-Up-New\Alpha_Release\.idea\Alpha_Release.iml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Switch-It-Up-New\Alpha_Release\.idea\encodings.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Switch-It-Up-New\Alpha_Release\.idea\misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Switch-It-Up-New\Alpha_Release\.idea\modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Switch-It-Up-New\Alpha_Release\.idea\scopes\scope_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Switch-It-Up-New\Alpha_Release\.idea\shelf\Uncommitted_changes_before_update_operation_at_2_12_2015_2_17_PM_[Default].patch" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Switch-It-Up-New\Alpha_Release\.idea\vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Switch-It-Up-New\Alpha_Release\.idea\workspace.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Switch-It-Up-New\Alpha_Release\Game.py" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Tyler\Switch-It-Up-New\Alpha_Release\__init__.py" afterPath="" />
+      <change type="MOVED" beforePath="C:\Users\Tyler\Switch-It-Up-New\Dragons.png" afterPath="$PROJECT_DIR$/Resources/Dragons.png" />
+      <change type="MOVED" beforePath="C:\Users\Tyler\Switch-It-Up-New\skybackground.png" afterPath="$PROJECT_DIR$/Resources/skybackground.png" />
+      <change type="MOVED" beforePath="C:\Users\Tyler\Switch-It-Up-New\titlescreen.png" afterPath="$PROJECT_DIR$/Resources/titlescreen.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Game.py" afterPath="$PROJECT_DIR$/Game.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/show_keys.py" afterPath="$PROJECT_DIR$/show_keys.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="Switch-It-Up-New.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,34 +47,29 @@
       <file leaf-file-name="Game.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Game.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="3.4805448" vertical-offset="965" max-vertical-offset="3094">
-              <caret line="162" column="53" selection-start-line="162" selection-start-column="53" selection-end-line="162" selection-end-column="53" />
+            <state vertical-scroll-proportion="4.4124513" vertical-offset="401" max-vertical-offset="3621">
+              <caret line="157" column="33" selection-start-line="157" selection-start-column="33" selection-end-line="157" selection-end-column="33" />
               <folding>
-                <element signature="e#27#64#0" expanded="true" />
+                <element signature="e#27#53#0" expanded="true" />
               </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="down.jpg" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Resources/keys/down.jpg">
+          <provider selected="true" editor-type-id="images">
+            <state />
           </provider>
         </entry>
       </file>
       <file leaf-file-name="key_mapping.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/key_mapping.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="207" max-vertical-offset="986">
-              <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="986">
+              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding>
                 <element signature="e#338#359#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="show_keys.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/show_keys.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
-              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#27#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -72,8 +87,8 @@
         <option value="$PROJECT_DIR$/Alpha_Release/key_mapping.py" />
         <option value="$PROJECT_DIR$/Alpha_Release/Game.py" />
         <option value="$PROJECT_DIR$/key_mapping.py" />
-        <option value="$PROJECT_DIR$/Game.py" />
         <option value="$PROJECT_DIR$/show_keys.py" />
+        <option value="$PROJECT_DIR$/Game.py" />
       </list>
     </option>
   </component>
@@ -135,7 +150,25 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Alpha_Release" />
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Switch-It-Up-New" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Switch-It-Up-New" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="keys" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -148,8 +181,18 @@
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
   </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings />
+    </option>
+  </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Tyler\Switch-It-Up-New\Resources" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Tyler\Switch-It-Up-New\Resources\keys" />
+      <recent name="C:\Users\Tyler\Switch-It-Up-New\Resources" />
       <recent name="C:\Users\Tyler\Switch-It-Up-New" />
     </key>
   </component>
@@ -416,7 +459,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="3043">
           <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
           <folding>
-            <element signature="e#27#64#0" expanded="true" />
+            <element signature="e#27#53#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -431,57 +474,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Alpha_Release/Game.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2720">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#27#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Dragons.png">
+    <entry file="file://$PROJECT_DIR$/Resources/Dragons.png">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Alpha_Release/Game.py">
+    <entry file="file://$PROJECT_DIR$/show_keys.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.9027238" vertical-offset="2240" max-vertical-offset="2754">
-          <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="8" />
-          <folding>
-            <element signature="e#27#40#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.13229571" vertical-offset="0" max-vertical-offset="514">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="17" selection-end-column="38" />
+          <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/K_UP.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/workspace/Resources/right.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/key_mapping.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="207" max-vertical-offset="986">
-          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="986">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding>
             <element signature="e#338#359#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/show_keys.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
-        </state>
+    <entry file="file://$PROJECT_DIR$/Resources/keys/down.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Game.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.4805448" vertical-offset="965" max-vertical-offset="3094">
-          <caret line="162" column="53" selection-start-line="162" selection-start-column="53" selection-end-line="162" selection-end-column="53" />
+        <state vertical-scroll-proportion="4.4124513" vertical-offset="401" max-vertical-offset="3621">
+          <caret line="157" column="33" selection-start-line="157" selection-start-column="33" selection-end-line="157" selection-end-column="33" />
           <folding>
-            <element signature="e#27#64#0" expanded="true" />
+            <element signature="e#27#53#0" expanded="true" />
           </folding>
         </state>
       </provider>
