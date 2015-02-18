@@ -105,31 +105,35 @@ class Player(pygame.sprite.Sprite):
         return self.lives
     
     #Checks if the dragon is colliding with the wall
-    def getCollision(self, wall2):
+    def getCollision(self, wall_1,direction):
         global x_Dragon
         global y_Dragon
         
-        if pygame.sprite.collide_rect(self, wall2):
-            
-            x_Dragon = random.randrange(700 - self.rect.width)
-            
-            y_Dragon = random.randrange(500 - self.rect.height)
-            
+        if pygame.sprite.collide_rect(self, wall_1):
+            if(direction==up):
+                y_Dragon-=1
+            if(direction == down):
+                y_Dragon += 1
+            if(direction == right):
+                x_Dragon -= 1
+            if(direction == left):
+                x_Dragon += 1
+                
     def moveDown(self):
         global y_Dragon
-        y_Dragon += .5
+        y_Dragon += 1
     
     def moveUp(self):
         global y_Dragon
-        y_Dragon -= .5
+        y_Dragon -= 1
     
     def moveLeft(self):
         global x_Dragon
-        x_Dragon -= .5
+        x_Dragon -= 1
         
     def moveRight(self):
         global x_Dragon
-        x_Dragon += .5
+        x_Dragon += 1
 
      #Fourth discussion   
     def updateAnimation (self, totalTime):
@@ -153,7 +157,8 @@ class Player(pygame.sprite.Sprite):
         screen.blit(self.image, self)
         
 
-dragon = Player((255,255,255), 72, 64, "Resources/Dragons.png", [x_Dragon, y_Dragon], 1)
+
+dragon = Player((255,255,255), 72, 64, "Resources/Dragons.png", [x_Dragon, y_Dragon], 0)
 screen.blit(dragon.image, dragon)
 
 
@@ -180,14 +185,19 @@ while state != 1:
 
     keypressed = pygame.key.get_pressed()
 
+#This should work once we put the wall class in
     if keypressed[dragon.upkey]:
         dragon.moveUp()
+        dragon.getCollision(wall_1, up)
     if keypressed[dragon.downkey]:
         dragon.moveDown()
+        dragon.getCollision(wall_1, down)
     if keypressed[dragon.leftkey]:
         dragon.moveLeft()
+        dragon.getCollision(wall_1, left)
     if keypressed[dragon.rightkey]:
         dragon.moveRight()
+        dragon.getCollision(wall_1, right)
 
     for event in pygame.event.get():
         if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
