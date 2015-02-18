@@ -14,7 +14,7 @@ screen = pygame.display.set_mode([700,500])
 pygame.display.set_caption("Switch It Up")
 
 x_Dragon = 35
-y_Dragon = 350
+y_Dragon = 370
 
 
 #Animates images from discussion 4
@@ -111,13 +111,13 @@ class Player(pygame.sprite.Sprite):
         
         if pygame.sprite.collide_rect(self, wall_1):
             if(direction=="up"):
-                y_Dragon-=1
+                y_Dragon += 5
             if(direction == "down"):
-                y_Dragon += 1
+                y_Dragon -= 5
             if(direction == "right"):
-                x_Dragon -= 1
+               x_Dragon -= 5
             if(direction == "left"):
-                x_Dragon += 1
+               x_Dragon += 5
                 
     def moveDown(self):
         global y_Dragon
@@ -250,7 +250,7 @@ for var in wall_3:
     wall_list_3.add(wall)
 mazes.append(wall_list_3)
 
-dragon = Player((255,255,255), 72, 64, "Resources/Dragons.png", [x_Dragon, y_Dragon], 0)
+dragon = Player((255,255,255), 36, 32, "Resources/Dragons.png", [x_Dragon, y_Dragon], 0)
 screen.blit(dragon.image, dragon)
 
 
@@ -279,21 +279,26 @@ while state != 1:
 
 #This should work once we put the wall class in
     if keypressed[dragon.upkey]:
+        for objects in mazes[room]:
+            dragon.getCollision(objects, "up")
         dragon.moveUp()
-        #for objects in mazes[room]:
-         #   dragon.getCollision(objects, "up")
+
     if keypressed[dragon.downkey]:
+        for objects in mazes[room]:
+            dragon.getCollision(objects, "down")
         dragon.moveDown()
-        #for objects in mazes[room]:
-        #    dragon.getCollision(objects, "down")
+
     if keypressed[dragon.leftkey]:
+        for objects in mazes[room]:
+            dragon.getCollision(objects, "left")
         dragon.moveLeft()
-        #for objects in mazes[room]:
-          #  dragon.getCollision(objects, "left")
+
     if keypressed[dragon.rightkey]:
+        for objects in mazes[room]:
+            dragon.getCollision(objects, "right")
         dragon.moveRight()
-        #for objects in mazes[room]:
-         #   dragon.getCollision(objects, "right")
+
+            
     for event in pygame.event.get():
         if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
             state = 1
