@@ -188,16 +188,16 @@ while state != 1:
 #This should work once we put the wall class in
     if keypressed[dragon.upkey]:
         dragon.moveUp()
-        dragon.getCollision(wall_1, up)
+ #       dragon.getCollision(wall_1, up)
     if keypressed[dragon.downkey]:
         dragon.moveDown()
-        dragon.getCollision(wall_1, down)
+ #       dragon.getCollision(wall_1, down)
     if keypressed[dragon.leftkey]:
         dragon.moveLeft()
-        dragon.getCollision(wall_1, left)
+ #       dragon.getCollision(wall_1, left)
     if keypressed[dragon.rightkey]:
         dragon.moveRight()
-        dragon.getCollision(wall_1, right)
+ #       dragon.getCollision(wall_1, right)
 
     for event in pygame.event.get():
         if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
