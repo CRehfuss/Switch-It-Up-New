@@ -174,180 +174,185 @@ class Walls(pygame.sprite.Sprite):
 mazes = []
 # implementation inspired by simpson college CS
 
-wall_list_1 = pygame.sprite.Group()
-wall_1 = [[30, 30, 5, 410], #left
-        [30, 440, 640, 5], #bottom
-        [30, 30, 640, 5], #top
-        [670, 30, 5, 415 ], #right
-        [30, 330, 570, 5],
-        [266, 387, 300, 5],
-        [600, 85, 5, 250],
-        [95, 82, 510,5],
-        [95, 82, 5, 200],
-        [95, 280, 440, 5],
-        [530, 135, 5, 150],
-        [160, 135, 370, 5],
-        [160, 135, 5, 70],
-        [160, 200, 300, 5]
-        # end of maze at 194,172~
-        ]
-        # add each part of wall to a list
-for var in wall_1:
-    wall = Walls(var[0], var[1], var[2], var[3])
-    wall_list_1.add(wall)
-mazes.append(wall_list_1)
-wall_list_2 = pygame.sprite.Group()
-wall_2 = [[30, 30, 5, 410], #left
-        [30, 440, 640, 5], #bottom
-        [30, 30, 640, 5], #top
-        [670, 30, 5, 415 ], #right
-        [30, 385, 490, 5],
-        [600, 385, 70, 5],
-        [30, 385, 490, 5],
-        [515, 215, 5, 175],
-        [515, 300, 80, 5],
-        [250, 215, 270, 5],
-        [385, 120, 5, 100],
-        [590, 120, 5, 100],
-        [515, 120, 80, 5],
-        [515, 30, 5, 95],
-        [150, 120, 100, 5],
-        [150, 120, 5, 180],
-        [150, 300, 300, 5],
-        [30, 120, 60, 5],
-        [90, 120, 5, 184],
-        [90, 300, 60, 5],
-        #end maze at 64,150
+def PlayGame():
 
-        ]
-        # add each part of wall to a list
-for var in wall_2:
-    wall = Walls(var[0], var[1], var[2], var[3])
-    wall_list_2.add(wall)
-mazes.append(wall_list_2)
-wall_list_3 = pygame.sprite.Group()
-wall_3 = [[30, 30, 5, 410], #left
-        [30, 440, 640, 5], #bottom
-        [30, 30, 640, 5], #top
-        [670, 30, 5, 415 ], #right
-        [90, 385, 5, 60],
-        [30, 330, 130, 5],
-        [160, 330, 5, 50],
-        [245, 90, 5, 350],
-        [95, 90, 150, 5],
-        [95, 90, 5, 150],
-        [95, 240, 60, 5],
-        [350, 90, 5, 280],
-        [350, 90, 225, 5],
-        [350, 370, 230, 5],
-        [575, 90, 5, 68],
-        [575, 310, 5, 60],
-        [300, 90, 5, 284],
-        [420, 145, 5, 165],
-        [420, 240, 255, 5],
-        [420, 305, 160, 5],
-        [420, 190, 90, 5],
-        #end at 551,343
-        ]
-        # add each part of wall to a list
-for var in wall_3:
-    wall = Walls(var[0], var[1], var[2], var[3])
-    wall_list_3.add(wall)
-mazes.append(wall_list_3)
+    global x_Dragon
+    global y_Dragon
 
+    wall_list_1 = pygame.sprite.Group()
+    wall_1 = [[30, 30, 5, 410], #left
+            [30, 440, 640, 5], #bottom
+            [30, 30, 640, 5], #top
+            [670, 30, 5, 415 ], #right
+            [30, 330, 570, 5],
+            [266, 387, 300, 5],
+            [600, 85, 5, 250],
+            [95, 82, 510,5],
+            [95, 82, 5, 200],
+            [95, 280, 440, 5],
+            [530, 135, 5, 150],
+            [160, 135, 370, 5],
+            [160, 135, 5, 70],
+            [160, 200, 300, 5]
+            # end of maze at 194,172~
+            ]
+            # add each part of wall to a list
+    for var in wall_1:
+        wall = Walls(var[0], var[1], var[2], var[3])
+        wall_list_1.add(wall)
+    mazes.append(wall_list_1)
+    wall_list_2 = pygame.sprite.Group()
+    wall_2 = [[30, 30, 5, 410], #left
+            [30, 440, 640, 5], #bottom
+            [30, 30, 640, 5], #top
+            [670, 30, 5, 415 ], #right
+            [30, 385, 490, 5],
+            [600, 385, 70, 5],
+            [30, 385, 490, 5],
+            [515, 215, 5, 175],
+            [515, 300, 80, 5],
+            [250, 215, 270, 5],
+            [385, 120, 5, 100],
+            [590, 120, 5, 100],
+            [515, 120, 80, 5],
+            [515, 30, 5, 95],
+            [150, 120, 100, 5],
+            [150, 120, 5, 180],
+            [150, 300, 300, 5],
+            [30, 120, 60, 5],
+            [90, 120, 5, 184],
+            [90, 300, 60, 5],
+            #end maze at 64,150
 
-dragon = Player((255,255,255), 36, 32, "Resources/Dragons.png", [x_Dragon, y_Dragon], 0)
-
-screen.blit(dragon.image, dragon)
-
-
-room = 0
-GameOver = 0
-state = 0
-while state != 1:
-    
-    #Just a white screen
-    screen.fill([255,255,255])
-     # create the dragon image
-    showKeys(dragon, screen)
-    dragon.rect.x = x_Dragon
-    dragon.rect.y = y_Dragon
-
-    timer = pygame.time.get_ticks()  
-    
-    dragon.updateAnimation(timer)
-
-    mazes[room].draw(screen)
-
-    pygame.display.update()
-    badkeycount = 0
-
-    keypressed = pygame.key.get_pressed()
-
-#This should work once we put the wall class in
-    if keypressed[dragon.upkey]:
-        for objects in mazes[room]:
-            dragon.getCollision(objects, "up")
-        dragon.moveUp()
-
-    if keypressed[dragon.downkey]:
-        for objects in mazes[room]:
-            dragon.getCollision(objects, "down")
-        dragon.moveDown()
-
-    if keypressed[dragon.leftkey]:
-        for objects in mazes[room]:
-            dragon.getCollision(objects, "left")
-        dragon.moveLeft()
-
-    if keypressed[dragon.rightkey]:
-        for objects in mazes[room]:
-            dragon.getCollision(objects, "right")
-        dragon.moveRight()
-
-        #for objects in mazes[room]:
-         #   dragon.getCollision(objects, "right")
+            ]
+            # add each part of wall to a list
+    for var in wall_2:
+        wall = Walls(var[0], var[1], var[2], var[3])
+        wall_list_2.add(wall)
+    mazes.append(wall_list_2)
+    wall_list_3 = pygame.sprite.Group()
+    wall_3 = [[30, 30, 5, 410], #left
+            [30, 440, 640, 5], #bottom
+            [30, 30, 640, 5], #top
+            [670, 30, 5, 415 ], #right
+            [90, 385, 5, 60],
+            [30, 330, 130, 5],
+            [160, 330, 5, 50],
+            [245, 90, 5, 350],
+            [95, 90, 150, 5],
+            [95, 90, 5, 150],
+            [95, 240, 60, 5],
+            [350, 90, 5, 280],
+            [350, 90, 225, 5],
+            [350, 370, 230, 5],
+            [575, 90, 5, 68],
+            [575, 310, 5, 60],
+            [300, 90, 5, 284],
+            [420, 145, 5, 165],
+            [420, 240, 255, 5],
+            [420, 305, 160, 5],
+            [420, 190, 90, 5],
+            #end at 551,343
+            ]
+            # add each part of wall to a list
+    for var in wall_3:
+        wall = Walls(var[0], var[1], var[2], var[3])
+        wall_list_3.add(wall)
+    mazes.append(wall_list_3)
 
 
-    #Stops the Player from running off the screen
-    if x_Dragon > screenwidth - dragon.width:
-        x_Dragon = screenwidth - dragon.width
+    dragon = Player((255,255,255), 36, 32, "Resources/Dragons.png", [x_Dragon, y_Dragon], 0)
 
-    if x_Dragon < 0:
-        x_Dragon = 0
-
-    if y_Dragon > screenheight - dragon.height:
-        y_Dragon = screenheight - dragon.height
-
-    if y_Dragon < 0:
-        y_Dragon = 0
+    screen.blit(dragon.image, dragon)
 
 
-    for event in pygame.event.get():
-        if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
-            state = 1
+    room = 0
+    GameOver = 0
+    state = 0
+    while state != 1:
 
-        if event.type == KEYDOWN and (event.key != dragon.upkey):
-                badkeycount += 1
-                if badkeycount > 20:
+        #Just a white screen
+        screen.fill([255,255,255])
+         # create the dragon image
+        showKeys(dragon, screen)
+        dragon.rect.x = x_Dragon
+        dragon.rect.y = y_Dragon
 
-                    showKeys(dragon, screen)
+        timer = pygame.time.get_ticks()
 
-        if event.type == KEYDOWN and event.key != dragon.downkey:
-                badkeycount += 1
-                if badkeycount > 20:
+        dragon.updateAnimation(timer)
 
-                 showKeys(dragon, screen)
+        mazes[room].draw(screen)
 
-        if event.type == KEYDOWN and event.key != dragon.leftkey:
-                badkeycount += 1
-                if badkeycount > 20:
+        pygame.display.update()
+        badkeycount = 0
 
-                 showKeys(dragon, screen)
+        keypressed = pygame.key.get_pressed()
 
-        if event.type == KEYDOWN and event.key != dragon.rightkey:
-                badkeycount += 1
+    #This should work once we put the wall class in
+        if keypressed[dragon.upkey]:
+            for objects in mazes[room]:
+                dragon.getCollision(objects, "up")
+            dragon.moveUp()
 
-                if badkeycount > 20:
+        if keypressed[dragon.downkey]:
+            for objects in mazes[room]:
+                dragon.getCollision(objects, "down")
+            dragon.moveDown()
 
-                  showKeys(dragon, screen)
+        if keypressed[dragon.leftkey]:
+            for objects in mazes[room]:
+                dragon.getCollision(objects, "left")
+            dragon.moveLeft()
+
+        if keypressed[dragon.rightkey]:
+            for objects in mazes[room]:
+                dragon.getCollision(objects, "right")
+            dragon.moveRight()
+
+            #for objects in mazes[room]:
+             #   dragon.getCollision(objects, "right")
+
+
+        #Stops the Player from running off the screen
+        if x_Dragon > screenwidth - dragon.width:
+            x_Dragon = screenwidth - dragon.width
+
+        if x_Dragon < 0:
+            x_Dragon = 0
+
+        if y_Dragon > screenheight - dragon.height:
+            y_Dragon = screenheight - dragon.height
+
+        if y_Dragon < 0:
+            y_Dragon = 0
+
+
+        for event in pygame.event.get():
+            if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
+                state = 1
+
+            if event.type == KEYDOWN and (event.key != dragon.upkey):
+                    badkeycount += 1
+                    if badkeycount > 20:
+
+                        showKeys(dragon, screen)
+
+            if event.type == KEYDOWN and event.key != dragon.downkey:
+                    badkeycount += 1
+                    if badkeycount > 20:
+
+                     showKeys(dragon, screen)
+
+            if event.type == KEYDOWN and event.key != dragon.leftkey:
+                    badkeycount += 1
+                    if badkeycount > 20:
+
+                     showKeys(dragon, screen)
+
+            if event.type == KEYDOWN and event.key != dragon.rightkey:
+                    badkeycount += 1
+
+                    if badkeycount > 20:
+
+                      showKeys(dragon, screen)

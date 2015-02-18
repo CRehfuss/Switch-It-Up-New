@@ -1,6 +1,6 @@
 __author__ = 'danielleconnolly'
 
-import pygame, random, InstructionScreen
+import pygame, random, InstructionScreen, Game, key_mapping
 from pygame.locals import *
 #from Game import *
 
@@ -23,6 +23,7 @@ while state != 1:
     pygame.display.update()
     if pygame.mouse.get_pressed()[0] and startBtn.rect.collidepoint(pygame.mouse.get_pos()):
         print "start button"
+        Game.PlayGame()
     if pygame.mouse.get_pressed()[0] and instructBtn.rect.collidepoint(pygame.mouse.get_pos()):
         print "instruction button"
         InstructionScreen.Instructions()
