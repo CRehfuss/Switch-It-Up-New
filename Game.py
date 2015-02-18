@@ -301,8 +301,8 @@ while state != 1:
         dragon.moveLeft()
 
     if keypressed[dragon.rightkey]:
-#        for objects in mazes[room]:
-#            dragon.getCollision(objects, "right")
+        for objects in mazes[room]:
+            dragon.getCollision(objects, "right")
         dragon.moveRight()
 
         #for objects in mazes[room]:
