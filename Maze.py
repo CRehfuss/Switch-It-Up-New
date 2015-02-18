@@ -1,3 +1,8 @@
+import pygame, random
+from pygame.locals import *
+
+
+
 class Walls(pygame.sprite.Sprite):
     def __init__(self, x_wall, y_wall, x_width, y_length):
         
@@ -90,3 +95,10 @@ for var in wall_3:
     wall = Walls(var[0], var[1], var[2], var[3])
     wall_list_3.add(wall)
 mazes.append(wall_list_3)
+
+def mazeRoom(room_number):
+    return mazes[room_number]
+
+
+
+
