@@ -284,18 +284,18 @@ while state != 1:
 
 #This should work once we put the wall class in
     if keypressed[dragon.upkey]:
- #       for objects in mazes[room]:
- #           dragon.getCollision(objects, "up")
+        for objects in mazes[room]:
+            dragon.getCollision(objects, "up")
         dragon.moveUp()
 
     if keypressed[dragon.downkey]:
- #       for objects in mazes[room]:
- #           dragon.getCollision(objects, "down")
+        for objects in mazes[room]:
+            dragon.getCollision(objects, "down")
         dragon.moveDown()
 
     if keypressed[dragon.leftkey]:
-#        for objects in mazes[room]:
-#            dragon.getCollision(objects, "left")
+        for objects in mazes[room]:
+            dragon.getCollision(objects, "left")
         dragon.moveLeft()
 
     if keypressed[dragon.rightkey]:
