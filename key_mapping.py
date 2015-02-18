@@ -26,17 +26,37 @@ def getKeys(difficulty):
         right = K_RIGHT
 
     if difficulty == 1:
+        up = K_DOWN
+        down = K_UP
+        left = K_LEFT
+        right = K_RIGHT
+
+    if difficulty == 2:
+        up = K_UP
+        down = K_DOWN
+        left = K_RIGHT
+        right = K_LEFT
+
+    if difficulty == 3:
+        up = K_w
+        down = K_s
+        left = K_a
+        right = K_d
+
+    if difficulty == 4:
+        up = K_w
+        down = K_DOWN
+        left = K_a
+        right = K_RIGHT
+
+    if difficulty == 5:
         random.shuffle(arrowkeys)
         up = arrowkeys[0]
         down = arrowkeys[1]
         left = arrowkeys[2]
         right = arrowkeys[3]
 
-    if difficulty == 2:
-        up = K_w
-        down = K_s
-        left = K_a
-        right = K_d
+
 
     if difficulty == 10:
         random.shuffle(allalphabetkeys)
