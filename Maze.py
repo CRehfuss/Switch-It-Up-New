@@ -96,9 +96,22 @@ for var in wall_3:
     wall_list_3.add(wall)
 mazes.append(wall_list_3)
 
+<<<<<<< Updated upstream
 def mazeRoom(room_number):
     return mazes[room_number]
 
 
 
+=======
+state = 0
+room = 0 # sets mazes to draw
+while state != 1:
+    
+    #Just a white screen
+    screen.fill([255,255,255])
+    # create the dragon image
+    mazes[room].draw(screen)
+    for objects in mazes[room]:
+        dragon.getCollision(objects)
+>>>>>>> Stashed changes
 
