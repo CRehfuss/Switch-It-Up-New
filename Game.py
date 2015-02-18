@@ -1,7 +1,5 @@
 #Main file
 
-#This is a message from Claire's computer
-
 
 import random, key_mapping
 import pygame
