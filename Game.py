@@ -256,7 +256,7 @@ for var in wall_3:
 mazes.append(wall_list_3)
 
 
-dragon = Player((255,255,255), 72, 64, "Resources/Dragons.png", [x_Dragon, y_Dragon], 1)
+dragon = Player((255,255,255), 36, 32, "Resources/Dragons.png", [x_Dragon, y_Dragon], 0)
 
 screen.blit(dragon.image, dragon)
 
