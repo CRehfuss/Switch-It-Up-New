@@ -10,7 +10,10 @@ from pygame.locals import *
 
 pygame.init()
 
-screen = pygame.display.set_mode([700,500])
+screenwidth = 700
+screenheight = 500
+
+screen = pygame.display.set_mode([screenwidth,screenheight])
 pygame.display.set_caption("Switch It Up")
 
 x_Dragon = 35
@@ -68,6 +71,8 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, color, width, height, filename, location, difficulty):
         # call parent class constructor
         pygame.sprite.Sprite.__init__(self)
+        self.width = width
+        self.height = height
         
         # load the image, converting the pixel format for optimization
         self.all_images = AnimationImages(width,height,filename)
@@ -121,19 +126,19 @@ class Player(pygame.sprite.Sprite):
                 
     def moveDown(self):
         global y_Dragon
-        y_Dragon += 1
+        y_Dragon += .35
     
     def moveUp(self):
         global y_Dragon
-        y_Dragon -= 1
+        y_Dragon -= .35
     
     def moveLeft(self):
         global x_Dragon
-        x_Dragon -= 1
+        x_Dragon -= .35
         
     def moveRight(self):
         global x_Dragon
-        x_Dragon += 1
+        x_Dragon += .35
 
      #Fourth discussion   
     def updateAnimation (self, totalTime):
@@ -294,6 +299,22 @@ while state != 1:
         dragon.moveRight()
         #for objects in mazes[room]:
          #   dragon.getCollision(objects, "right")
+
+
+    #Stops the Player from running off the screen
+    if x_Dragon > screenwidth - dragon.width:
+        x_Dragon = screenwidth - dragon.width
+
+    if x_Dragon < 0:
+        x_Dragon = 0
+
+    if y_Dragon > screenheight - dragon.height:
+        y_Dragon = screenheight - dragon.height
+
+    if y_Dragon < 0:
+        y_Dragon = 0
+
+
     for event in pygame.event.get():
         if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
             state = 1
