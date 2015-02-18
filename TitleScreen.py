@@ -1,6 +1,6 @@
 __author__ = 'danielleconnolly'
 
-import pygame, random, Maze
+import pygame, random, InstructionScreen
 from pygame.locals import *
 #from Game import *
 
@@ -15,14 +15,17 @@ class Button(pygame.sprite.Sprite):
 
 
 startBtn = Button((55, 275))
+instructBtn = Button((260, 275))
 state = 0
 
 while state != 1:
     screen.blit(background, [0,0])
     pygame.display.update()
     if pygame.mouse.get_pressed()[0] and startBtn.rect.collidepoint(pygame.mouse.get_pos()):
-        print "clicked the start button"
-        Maze.WallScreen()
+        print "start button"
+    if pygame.mouse.get_pressed()[0] and instructBtn.rect.collidepoint(pygame.mouse.get_pos()):
+        print "instruction button"
+        InstructionScreen.Instructions()
     for event in pygame.event.get():
         if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
             state = 1
