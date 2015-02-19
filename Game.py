@@ -20,6 +20,8 @@ x_Dragon = 35
 y_Dragon = 370
 state = 0
 
+
+
 #Animates images from discussion 4
 def AnimationImages(width, height, filename): #defining a function have to do it before
     # images array will be filled with each frame of an animation
@@ -113,7 +115,7 @@ class Player(pygame.sprite.Sprite):
     def getCollision(self, wall_1, direction):
         global x_Dragon
         global y_Dragon
-        
+
         if pygame.sprite.collide_rect(self, wall_1):
             if(direction=="up"):
                 y_Dragon += 5
@@ -126,19 +128,20 @@ class Player(pygame.sprite.Sprite):
                 
     def moveDown(self):
         global y_Dragon
-        y_Dragon += 7
+        y_Dragon += 3
     
     def moveUp(self):
         global y_Dragon
-        y_Dragon -= 7
-    
+        y_Dragon -= 3
+
     def moveLeft(self):
         global x_Dragon
-        x_Dragon -= 7
+        x_Dragon -= 3
         
     def moveRight(self):
         global x_Dragon
-        x_Dragon += 7
+        x_Dragon += 3
+        
 
      #Fourth discussion   
     def updateAnimation (self, totalTime):
@@ -325,7 +328,7 @@ def PlayGame(x_Start, y_Start):
         if keypressed[dragon.upkey]:
             for objects in mazes[room]:
                 dragon.getCollision(objects, "up")
-            dragon.moveUp()
+            dragon.moveUp()                
             endCake.getCollision(dragon)
 
         if keypressed[dragon.downkey]:
@@ -341,10 +344,10 @@ def PlayGame(x_Start, y_Start):
             endCake.getCollision(dragon)
 
         if keypressed[dragon.rightkey]:
-            for objects in mazes[room]:
-                dragon.getCollision(objects, "right")
-            dragon.moveRight()
-            endCake.getCollision(dragon)
+           for objects in mazes[room]:
+               dragon.getCollision(objects, "right")
+           endCake.getCollision(dragon)
+           dragon.moveRight()          
 
             #for objects in mazes[room]:
              #   dragon.getCollision(objects, "right")
