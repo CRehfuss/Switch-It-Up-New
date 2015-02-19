@@ -126,19 +126,19 @@ class Player(pygame.sprite.Sprite):
                 
     def moveDown(self):
         global y_Dragon
-        y_Dragon += .35
+        y_Dragon += .5
     
     def moveUp(self):
         global y_Dragon
-        y_Dragon -= .35
+        y_Dragon -= .5
     
     def moveLeft(self):
         global x_Dragon
-        x_Dragon -= .35
+        x_Dragon -= .5
         
     def moveRight(self):
         global x_Dragon
-        x_Dragon += .35
+        x_Dragon += .5
 
      #Fourth discussion   
     def updateAnimation (self, totalTime):
@@ -160,8 +160,31 @@ class Player(pygame.sprite.Sprite):
         
         #draws animation changes to the screen
         screen.blit(self.image, self)
-        
 
+class EndMarker(pygame.sprite.Sprite):      
+    
+    def __init__(self, color, filename, location):
+        # call parent class constructor
+        pygame.sprite.Sprite.__init__(self)
+        
+        # load the image, converting the pixel format for optimization
+        self.image = pygame.image.load(filename).convert_alpha()
+        # make 'color' transparent on the image
+        self.image.set_colorkey(color) 
+        # resize image to 20x20 px
+        self.image = pygame.transform.scale(self.image, (20,20))
+        
+        # set the rectangle defined for this image for collision detection
+        self.rect = self.image.get_rect()
+        # position the image
+        self.rect.x = location[0]
+        self.rect.y = location[1]
+        
+    def getCollision(self, theDragon):
+        if pygame.sprite.collide_rect(self, theDragon):
+            print "you won the game!"
+        
+        
 class Walls(pygame.sprite.Sprite):
     def __init__(self, x_wall, y_wall, x_width, y_length):
         
@@ -173,6 +196,7 @@ class Walls(pygame.sprite.Sprite):
         self.rect.y = y_wall
 mazes = []
 # implementation inspired by simpson college CS
+
 
 def PlayGame():
 
@@ -262,8 +286,9 @@ def PlayGame():
 
 
     dragon = Player((255,255,255), 36, 32, "Resources/Dragons.png", [x_Dragon, y_Dragon], 0)
-
+    endCake = EndMarker((225,255,255), "Resources/Cake.png",  (194,172))
     screen.blit(dragon.image, dragon)
+    screen.blit(endCake.image, endCake)
 
 
     room = 0
@@ -294,21 +319,25 @@ def PlayGame():
             for objects in mazes[room]:
                 dragon.getCollision(objects, "up")
             dragon.moveUp()
+            endCake.getCollision(dragon)
 
         if keypressed[dragon.downkey]:
             for objects in mazes[room]:
                 dragon.getCollision(objects, "down")
             dragon.moveDown()
+            endCake.getCollision(dragon)
 
         if keypressed[dragon.leftkey]:
             for objects in mazes[room]:
                 dragon.getCollision(objects, "left")
             dragon.moveLeft()
+            endCake.getCollision(dragon)
 
         if keypressed[dragon.rightkey]:
             for objects in mazes[room]:
                 dragon.getCollision(objects, "right")
             dragon.moveRight()
+            endCake.getCollision(dragon)
 
             #for objects in mazes[room]:
              #   dragon.getCollision(objects, "right")
