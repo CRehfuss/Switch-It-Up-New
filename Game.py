@@ -19,6 +19,7 @@ pygame.display.set_caption("Switch It Up")
 x_Dragon = 35
 y_Dragon = 370
 state = 0
+coll = 0
 
 
 
@@ -115,32 +116,45 @@ class Player(pygame.sprite.Sprite):
     def getCollision(self, wall_1, direction):
         global x_Dragon
         global y_Dragon
-
+        global coll
         if pygame.sprite.collide_rect(self, wall_1):
             if(direction=="up"):
-                y_Dragon += 5
+                y_Dragon += 4
+                coll = 1
             if(direction == "down"):
-                y_Dragon -= 5
+                y_Dragon -= 4
+                coll = 1
             if(direction == "right"):
-               x_Dragon -= 5
+               x_Dragon -= 4
+               coll = 1
             if(direction == "left"):
-               x_Dragon += 5
+               x_Dragon += 4
+               coll = 1
                 
     def moveDown(self):
         global y_Dragon
-        y_Dragon += 3
+        global coll
+        if(coll == 0):
+            y_Dragon += 2
     
     def moveUp(self):
         global y_Dragon
-        y_Dragon -= 3
+        global coll
+        if(coll == 0):
+            y_Dragon -= 2
+        
 
     def moveLeft(self):
         global x_Dragon
-        x_Dragon -= 3
+        global coll
+        if(coll == 0):
+            x_Dragon -= 2
         
     def moveRight(self):
         global x_Dragon
-        x_Dragon += 3
+        global coll
+        if(coll == 0):
+            x_Dragon += 2
         
 
      #Fourth discussion   
@@ -207,7 +221,7 @@ def PlayGame(x_Start, y_Start):
 
     global x_Dragon
     global y_Dragon
-
+    global coll
     x_Dragon = x_Start
     y_Dragon = y_Start
 
@@ -330,24 +344,28 @@ def PlayGame(x_Start, y_Start):
                 dragon.getCollision(objects, "up")
             dragon.moveUp()                
             endCake.getCollision(dragon)
+            coll = 0
 
         if keypressed[dragon.downkey]:
             for objects in mazes[room]:
                 dragon.getCollision(objects, "down")
             dragon.moveDown()
             endCake.getCollision(dragon)
+            coll = 0
 
         if keypressed[dragon.leftkey]:
             for objects in mazes[room]:
                 dragon.getCollision(objects, "left")
             dragon.moveLeft()
             endCake.getCollision(dragon)
+            coll = 0
 
         if keypressed[dragon.rightkey]:
            for objects in mazes[room]:
                dragon.getCollision(objects, "right")
            endCake.getCollision(dragon)
-           dragon.moveRight()          
+           dragon.moveRight()
+           coll = 0    
 
             #for objects in mazes[room]:
              #   dragon.getCollision(objects, "right")
