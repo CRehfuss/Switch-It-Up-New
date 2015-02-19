@@ -1,7 +1,7 @@
 #Main file
 
 
-import random, key_mapping
+import random, key_mapping, EndScreen
 import pygame
 from pygame.locals import *
 
@@ -18,7 +18,7 @@ pygame.display.set_caption("Switch It Up")
 
 x_Dragon = 35
 y_Dragon = 370
-
+state = 0
 
 #Animates images from discussion 4
 def AnimationImages(width, height, filename): #defining a function have to do it before
@@ -126,19 +126,19 @@ class Player(pygame.sprite.Sprite):
                 
     def moveDown(self):
         global y_Dragon
-        y_Dragon += .5
+        y_Dragon += 7
     
     def moveUp(self):
         global y_Dragon
-        y_Dragon -= .5
+        y_Dragon -= 7
     
     def moveLeft(self):
         global x_Dragon
-        x_Dragon -= .5
+        x_Dragon -= 7
         
     def moveRight(self):
         global x_Dragon
-        x_Dragon += .5
+        x_Dragon += 7
 
      #Fourth discussion   
     def updateAnimation (self, totalTime):
@@ -182,7 +182,9 @@ class EndMarker(pygame.sprite.Sprite):
         
     def getCollision(self, theDragon):
         if pygame.sprite.collide_rect(self, theDragon):
-            print "you won the game!"
+            global state
+            state = 1
+            EndScreen.YouWin()
         
         
 class Walls(pygame.sprite.Sprite):
@@ -198,10 +200,13 @@ mazes = []
 # implementation inspired by simpson college CS
 
 
-def PlayGame():
+def PlayGame(x_Start, y_Start):
 
     global x_Dragon
     global y_Dragon
+
+    x_Dragon = x_Start
+    y_Dragon = y_Start
 
     wall_list_1 = pygame.sprite.Group()
     wall_1 = [[30, 30, 5, 410], #left
@@ -293,6 +298,7 @@ def PlayGame():
 
     room = 0
     GameOver = 0
+    global state
     state = 0
     while state != 1:
 
@@ -300,6 +306,7 @@ def PlayGame():
         screen.fill([255,255,255])
          # create the dragon image
         showKeys(dragon, screen)
+        screen.blit(endCake.image, endCake)
         dragon.rect.x = x_Dragon
         dragon.rect.y = y_Dragon
 

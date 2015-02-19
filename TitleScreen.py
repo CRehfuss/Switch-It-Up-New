@@ -23,7 +23,8 @@ while state != 1:
     pygame.display.update()
     if pygame.mouse.get_pressed()[0] and startBtn.rect.collidepoint(pygame.mouse.get_pos()):
         print "start button"
-        Game.PlayGame()
+        Game.PlayGame(35, 370)
+        state = 1
     if pygame.mouse.get_pressed()[0] and instructBtn.rect.collidepoint(pygame.mouse.get_pos()):
         print "instruction button"
         InstructionScreen.Instructions()
