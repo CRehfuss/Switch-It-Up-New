@@ -20,35 +20,35 @@ def getKeys(difficulty):
 
 
     if difficulty == 0:
-        up = K_UP
-        down = K_DOWN
-        left = K_LEFT
-        right = K_RIGHT
+        up = pygame.K_UP
+        down = pygame.K_DOWN
+        left = pygame.K_LEFT
+        right = pygame.K_RIGHT
 
     if difficulty == 1:
-        up = K_DOWN
-        down = K_UP
-        left = K_LEFT
-        right = K_RIGHT
+        up = pygame.K_DOWN
+        down = pygame.K_UP
+        left = pygame.K_LEFT
+        right = pygame.K_RIGHT
 
     if difficulty == 2:
-        up = K_UP
-        down = K_DOWN
-        left = K_RIGHT
-        right = K_LEFT
+        up = pygame.K_UP
+        down = pygame.K_DOWN
+        left = pygame.K_RIGHT
+        right = pygame.K_LEFT
 
     if difficulty == 3:
-        up = K_w
-        down = K_s
-        left = K_a
-        right = K_d
+        up = pygame.K_w
+        down = pygame.K_s
+        left = pygame.K_a
+        right = pygame.K_d
 
 
     if difficulty == 4:
-        up = K_w
-        down = K_DOWN
-        left = K_a
-        right = K_LEFT
+        up = pygame.K_w
+        down = pygame.K_DOWN
+        left = pygame.K_a
+        right = pygame.K_LEFT
 
 
     if difficulty == 5:

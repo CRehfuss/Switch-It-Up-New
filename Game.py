@@ -18,6 +18,7 @@ pygame.display.set_caption("Switch It Up")
 
 x_Dragon = 35
 y_Dragon = 370
+gamespeed = 1
 state = 0
 coll = 0
 
@@ -111,72 +112,68 @@ class Player(pygame.sprite.Sprite):
     
     def getNumLives(self):
         return self.lives
-    
-    #Checks if the dragon is colliding with the wall
-    def getCollision(self, wall_1, direction):
-        global x_Dragon
-        global y_Dragon
-        global coll
-        if pygame.sprite.collide_rect(self, wall_1):
-            if(direction=="up"):
-                y_Dragon += 4
-                coll = 1
-            if(direction == "down"):
-                y_Dragon -= 4
-                coll = 1
-            if(direction == "right"):
-               x_Dragon -= 4
-               coll = 1
-            if(direction == "left"):
-               x_Dragon += 4
-               coll = 1
-                
-    def moveDown(self):
-        global y_Dragon
-        global coll
-        if(coll == 0):
-            y_Dragon += 2
-    
-    def moveUp(self):
-        global y_Dragon
-        global coll
-        if(coll == 0):
-            y_Dragon -= 2
-        
 
-    def moveLeft(self):
-        global x_Dragon
-        global coll
-        if(coll == 0):
-            x_Dragon -= 2
-        
-    def moveRight(self):
-        global x_Dragon
-        global coll
-        if(coll == 0):
-            x_Dragon += 2
-        
 
-     #Fourth discussion   
+
+
+    #tests if 3 points on the box will hit a wall depending on what direction the player wants to move
+    def canMove(self, direction, maze):
+
+        global x_Dragon
+        global y_Dragon
+        global gamespeed
+        #check the four corners of the rect depending on which direction the player wants to move
+        #returns FALSE if player cannot move in that direction
+        if (direction == "up") & isWall(maze, self.rect.x, self.rect.y - gamespeed) & isWall(maze, self.rect.x + self.width/2, self.rect.y -gamespeed) &isWall(maze, self.rect.x + self.width, self.rect.y - gamespeed):
+            return False
+        if (direction == "down") & isWall(maze, self.rect.x, self.rect.y + self.height + gamespeed) & isWall(maze, self.rect.x + self.width/2, self.rect.y + self.height + gamespeed)& isWall(maze, self.rect.x + self.width, self.rect.y + self.height + gamespeed):
+            return False
+        if (direction == "left") & isWall(maze, self.rect.x - gamespeed, self.rect.y) & isWall(maze, self.rect.x - gamespeed, self.rect.y + self.height/2) & isWall(maze, self.rect.x - gamespeed, self.rect.y + self.height):
+            return False
+        if (direction == "right") & isWall(maze, self.rect.x + self.width + gamespeed, self.rect.y) & isWall(maze, self.rect.x +self.width + gamespeed, self.rect.y + self.height/2) & isWall(maze, self.rect.x + self.width + gamespeed, self.rect.y + self.height):
+            return False
+
+        return True
+
+     #Fourth discussion
     def updateAnimation (self, totalTime):
-        
+
         # checks if enough time has passed to change the image
         if totalTime - self.last_update > self.delay:
             self.frame += 1
-            
+
             # checks if the new image is greater than the number of images
             # starts image cycle over if true
-            if self.frame >= len(self.all_images): 
+            if self.frame >= len(self.all_images):
                 self.frame = 0
-                
+
             # updates current animation image
             self.image = self.all_images[self.frame]
-            
+
             # changes the last update time
             self.last_update = totalTime
-        
+
         #draws animation changes to the screen
         screen.blit(self.image, self)
+
+#Checks to see if the coordinates are in a wall
+#Parameters are x and y coordinates of the points to be tested
+def isWall(maze, x, y):
+
+    #going to check if x y is in any of the walls
+    #returns true if the point is inside the wall
+
+    for wall in maze:
+
+        if (x > wall.x) & (x < wall.x + wall.width) & (y > wall.y) & (y < wall.y + wall.height):
+            return True
+
+
+    return False
+
+
+
+
 
 class EndMarker(pygame.sprite.Sprite):      
     
@@ -199,29 +196,39 @@ class EndMarker(pygame.sprite.Sprite):
         
     def getCollision(self, theDragon):
         if pygame.sprite.collide_rect(self, theDragon):
+
             global state
             state = 1
             EndScreen.YouWin()
         
         
-class Walls(pygame.sprite.Sprite):
+class Wall(pygame.sprite.Sprite):
+
     def __init__(self, x_wall, y_wall, x_width, y_length):
-        
+
+
         pygame.sprite.Sprite.__init__(self)
+        self.width = x_width
+        self.height = y_length
+        self.x = x_wall
+        self.y = y_wall
         self.image = pygame.Surface([x_width, y_length])
-        self.image.fill((225, 29, 94))
+        self.image.fill((0, 0, 0))
         self.rect = self.image.get_rect()        
         self.rect.x = x_wall
         self.rect.y = y_wall
+
 mazes = []
 # implementation inspired by simpson college CS
+
+
 
 
 def PlayGame(x_Start, y_Start):
 
     global x_Dragon
     global y_Dragon
-    global coll
+    #global coll
     x_Dragon = x_Start
     y_Dragon = y_Start
 
@@ -244,7 +251,7 @@ def PlayGame(x_Start, y_Start):
             ]
             # add each part of wall to a list
     for var in wall_1:
-        wall = Walls(var[0], var[1], var[2], var[3])
+        wall = Wall(var[0], var[1], var[2], var[3])
         wall_list_1.add(wall)
     mazes.append(wall_list_1)
     wall_list_2 = pygame.sprite.Group()
@@ -273,7 +280,7 @@ def PlayGame(x_Start, y_Start):
             ]
             # add each part of wall to a list
     for var in wall_2:
-        wall = Walls(var[0], var[1], var[2], var[3])
+        wall = Wall(var[0], var[1], var[2], var[3])
         wall_list_2.add(wall)
     mazes.append(wall_list_2)
     wall_list_3 = pygame.sprite.Group()
@@ -302,10 +309,17 @@ def PlayGame(x_Start, y_Start):
             ]
             # add each part of wall to a list
     for var in wall_3:
-        wall = Walls(var[0], var[1], var[2], var[3])
+        wall = Wall(var[0], var[1], var[2], var[3])
         wall_list_3.add(wall)
     mazes.append(wall_list_3)
 
+    #just a testing screen
+    wall_list_test = pygame.sprite.Group()
+    wall_test = [[400, 90, 90, 10], [60, 400, 5, 400]]
+    for var in wall_test:
+        wall = Wall(var[0], var[1], var[2], var[3])
+        wall_list_test.add(wall)
+    mazes.append(wall_list_test)
 
     dragon = Player((255,255,255), 36, 32, "Resources/Dragons.png", [x_Dragon, y_Dragon], 0)
     endCake = EndMarker((225,255,255), "Resources/Cake.png",  (194,172))
@@ -321,11 +335,13 @@ def PlayGame(x_Start, y_Start):
 
         #Just a white screen
         screen.fill([255,255,255])
-         # create the dragon image
+         #create the dragon image
         showKeys(dragon, screen)
         screen.blit(endCake.image, endCake)
         dragon.rect.x = x_Dragon
         dragon.rect.y = y_Dragon
+
+        #endCake.getCollision(dragon)
 
         timer = pygame.time.get_ticks()
 
@@ -337,38 +353,6 @@ def PlayGame(x_Start, y_Start):
         badkeycount = 0
 
         keypressed = pygame.key.get_pressed()
-
-    #This should work once we put the wall class in
-        if keypressed[dragon.upkey]:
-            for objects in mazes[room]:
-                dragon.getCollision(objects, "up")
-            dragon.moveUp()                
-            endCake.getCollision(dragon)
-            coll = 0
-
-        if keypressed[dragon.downkey]:
-            for objects in mazes[room]:
-                dragon.getCollision(objects, "down")
-            dragon.moveDown()
-            endCake.getCollision(dragon)
-            coll = 0
-
-        if keypressed[dragon.leftkey]:
-            for objects in mazes[room]:
-                dragon.getCollision(objects, "left")
-            dragon.moveLeft()
-            endCake.getCollision(dragon)
-            coll = 0
-
-        if keypressed[dragon.rightkey]:
-           for objects in mazes[room]:
-               dragon.getCollision(objects, "right")
-           endCake.getCollision(dragon)
-           dragon.moveRight()
-           coll = 0    
-
-            #for objects in mazes[room]:
-             #   dragon.getCollision(objects, "right")
 
 
         #Stops the Player from running off the screen
@@ -385,31 +369,35 @@ def PlayGame(x_Start, y_Start):
             y_Dragon = 0
 
 
+
         for event in pygame.event.get():
             if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
                 state = 1
 
-            if event.type == KEYDOWN and (event.key != dragon.upkey):
+
+            if event.type == KEYDOWN:
+                if event.key != dragon.upkey & event.key != dragon.downkey & event.key != dragon.leftkey & event.key != dragon.rightkey:
                     badkeycount += 1
                     if badkeycount > 20:
-
                         showKeys(dragon, screen)
 
-            if event.type == KEYDOWN and event.key != dragon.downkey:
-                    badkeycount += 1
-                    if badkeycount > 20:
 
-                     showKeys(dragon, screen)
+        if keypressed[dragon.upkey]:
+            if dragon.canMove("up", mazes[room]):
+                y_Dragon -= gamespeed
 
-            if event.type == KEYDOWN and event.key != dragon.leftkey:
-                    badkeycount += 1
-                    if badkeycount > 20:
+        if keypressed[dragon.downkey]:
+            if dragon.canMove("down", mazes[room]):
+                y_Dragon += gamespeed
 
-                     showKeys(dragon, screen)
 
-            if event.type == KEYDOWN and event.key != dragon.rightkey:
-                    badkeycount += 1
+        if keypressed[dragon.leftkey]:
 
-                    if badkeycount > 20:
+            if dragon.canMove("left", mazes[room]):
+                x_Dragon -= gamespeed
 
-                      showKeys(dragon, screen)
+        if keypressed[dragon.rightkey]:
+
+           if dragon.canMove("right", mazes[room]):
+               x_Dragon += gamespeed
+
