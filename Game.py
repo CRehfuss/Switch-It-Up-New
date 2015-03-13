@@ -233,7 +233,7 @@ def PlayGame(x_Start, y_Start):
     # 0.0 the time where the wav begins playing
     bg_music.play(-1, 0.0)
     
-    collision_Sound = pygame.mixer.Sound('Grownling_Lion.wav')
+    collision_Sound = pygame.mixer.Sound('Dragon_roar.wav')
     
     global x_Dragon
     global y_Dragon
@@ -350,13 +350,13 @@ def PlayGame(x_Start, y_Start):
         dragon.rect.x = x_Dragon
         dragon.rect.y = y_Dragon
 
-        #endCake.getCollision(dragon)
+        endCake.getCollision(dragon)
 
         timer = pygame.time.get_ticks()
 
         dragon.updateAnimation(timer)
 
-        mazes[1].draw(screen)
+        mazes[0].draw(screen)
 
         pygame.display.update()
         badkeycount = 0
@@ -396,14 +396,12 @@ def PlayGame(x_Start, y_Start):
                 y_Dragon -= gamespeed
             else:
                 collision_Sound.play()
-                collision_Sound.fadeout(1500)
 
         if keypressed[dragon.downkey]:
             if dragon.canMove("down", mazes[room]):
                 y_Dragon += gamespeed
             else:
                 collision_Sound.play()
-                collision_Sound.fadeout(1500)
 
 
         if keypressed[dragon.leftkey]:
@@ -411,12 +409,9 @@ def PlayGame(x_Start, y_Start):
                 x_Dragon -= gamespeed
             else:
                 collision_Sound.play()
-                collision_Sound.fadeout(1500)
                 
         if keypressed[dragon.rightkey]:
             if dragon.canMove("right", mazes[room]):
                x_Dragon += gamespeed
             else:
-                collision_Sound.play()
-                collision_Sound.fadeout(1500)
-                
+                collision_Sound.play()                
