@@ -17,7 +17,13 @@ class Button(pygame.sprite.Sprite):
 startBtn = Button((55, 275))
 instructBtn = Button((260, 275))
 state = 0
+bg_music = pygame.mixer.music
+bg_music.load('tmp.mp3')
 
+#-1 will loop indefinitely, otherwise number will be numb loops after first play through
+# 0.0 the time where the wav begins playing
+bg_music.play(-1, 0.0)
+    
 while state != 1:
     screen.blit(background, [0,0])
     pygame.display.update()

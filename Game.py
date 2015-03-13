@@ -125,12 +125,16 @@ class Player(pygame.sprite.Sprite):
         #check the four corners of the rect depending on which direction the player wants to move
         #returns FALSE if player cannot move in that direction
         if (direction == "up") & isWall(maze, self.rect.x, self.rect.y - gamespeed) & isWall(maze, self.rect.x + self.width/2, self.rect.y -gamespeed) &isWall(maze, self.rect.x + self.width, self.rect.y - gamespeed):
+ #           collision_Sound.play()
             return False
         if (direction == "down") & isWall(maze, self.rect.x, self.rect.y + self.height + gamespeed) & isWall(maze, self.rect.x + self.width/2, self.rect.y + self.height + gamespeed)& isWall(maze, self.rect.x + self.width, self.rect.y + self.height + gamespeed):
+ #           collision_Sound.play()
             return False
         if (direction == "left") & isWall(maze, self.rect.x - gamespeed, self.rect.y) & isWall(maze, self.rect.x - gamespeed, self.rect.y + self.height/2) & isWall(maze, self.rect.x - gamespeed, self.rect.y + self.height):
+ #           collision_Sound.play()
             return False
         if (direction == "right") & isWall(maze, self.rect.x + self.width + gamespeed, self.rect.y) & isWall(maze, self.rect.x +self.width + gamespeed, self.rect.y + self.height/2) & isWall(maze, self.rect.x + self.width + gamespeed, self.rect.y + self.height):
+ #           collision_Sound.play()
             return False
 
         return True
@@ -225,7 +229,16 @@ mazes = []
 
 
 def PlayGame(x_Start, y_Start):
-
+    #Will play the music
+    bg_music = pygame.mixer.music
+    bg_music.load('tmp.mp3')
+    print "should play music"
+    #-1 will loop indefinitely, otherwise number will be numb loops after first play through
+    # 0.0 the time where the wav begins playing
+    bg_music.play(-1, 0.0)
+    
+ #   collision_Sound = pygame.mixer.Sound('Dragon_roar.wav')
+    
     global x_Dragon
     global y_Dragon
     #global coll
@@ -321,7 +334,7 @@ def PlayGame(x_Start, y_Start):
         wall_list_test.add(wall)
     mazes.append(wall_list_test)
 
-    dragon = Player((255,255,255), 36, 32, "Resources/Dragons.png", [x_Dragon, y_Dragon], 0)
+    dragon = Player((255,255,255), 36, 32, "Resources/Dragons.png", [x_Dragon, y_Dragon], 1)
     endCake = EndMarker((225,255,255), "Resources/Cake.png",  (194,172))
     screen.blit(dragon.image, dragon)
     screen.blit(endCake.image, endCake)
@@ -347,7 +360,7 @@ def PlayGame(x_Start, y_Start):
 
         dragon.updateAnimation(timer)
 
-        mazes[room].draw(screen)
+        mazes[1].draw(screen)
 
         pygame.display.update()
         badkeycount = 0
