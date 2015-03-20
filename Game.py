@@ -16,9 +16,12 @@ screenheight = 500
 screen = pygame.display.set_mode([screenwidth,screenheight])
 pygame.display.set_caption("Switch It Up")
 
+livesLeft = 3 # Number of lives starts at 3
+
+
 x_Dragon = 35
 y_Dragon = 370
-gamespeed = 1
+gamespeed = 3
 state = 0
 coll = 0
 
@@ -218,6 +221,19 @@ class Wall(pygame.sprite.Sprite):
         self.rect.x = x_wall
         self.rect.y = y_wall
 
+# Defines class for static images in bottom player info display
+class BottomDisplayImage(pygame.sprite.Sprite):
+
+    def __init__(self, filename, size, location):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load(filename).convert() # Load image
+        self.image.set_colorkey([0, 0, 0]) # Set transparency
+        self.image = pygame.transform.scale(self.image, size) # Resize sprite
+        self.rect = self.image.get_rect(center=(location[0] + (size[0] / 2), location[1] + (size[1] / 2))) # Create rectangle around sprite
+        # Image location
+        self.rect.x = location[0]
+        self.rect.y = location[1]
+
 mazes = []
 # implementation inspired by simpson college CS
 
@@ -339,6 +355,7 @@ def PlayGame(x_Start, y_Start):
     room = 0
     GameOver = 0
     global state
+    global livesLeft
     state = 0
     while state != 1:
 
@@ -350,6 +367,8 @@ def PlayGame(x_Start, y_Start):
         dragon.rect.x = x_Dragon
         dragon.rect.y = y_Dragon
 
+
+
         endCake.getCollision(dragon)
 
         timer = pygame.time.get_ticks()
@@ -357,6 +376,13 @@ def PlayGame(x_Start, y_Start):
         dragon.updateAnimation(timer)
 
         mazes[0].draw(screen)
+
+        # Bottom display
+        for i in range (0, livesLeft): # Displays as many hearts as lives left
+            heart = BottomDisplayImage("Resources/heart.png",(30, 30), (115 + (i * 35), 455))
+            screen.blit(heart.image, heart)
+        livesLeftText = BottomDisplayImage ("Resources/livesLeftText.png", (110, 28), (10, 455))
+        screen.blit(livesLeftText.image, livesLeftText)
 
         pygame.display.update()
         badkeycount = 0

@@ -14,6 +14,7 @@ class Button(pygame.sprite.Sprite):
         self.rect = Rect(location, (180, 110))
 
 
+
 startBtn = Button((55, 275))
 instructBtn = Button((260, 275))
 state = 0
