@@ -11,10 +11,12 @@ from pygame.locals import *
 pygame.init()
 
 screenwidth = 700
-screenheight = 500
+screenheight = 530
 
 screen = pygame.display.set_mode([screenwidth,screenheight])
 pygame.display.set_caption("Switch It Up")
+
+livesLeft = 3 # Number of lives starts at 3
 
 x_Dragon = 35
 y_Dragon = 370
@@ -60,11 +62,13 @@ def showKeys(avatar, screens):
     leftstring = "Resources/keys/" + keystr[2] + ".jpg"
     rightstring = "Resources/keys/" + keystr[3] + ".jpg"
 
+    keyLocations = [[630, 465], [630, 505], [610, 485], [650, 485]] # up, down, left, right
 
-    screens.blit(pygame.image.load(upstring).convert_alpha(), (20, 0))
-    screens.blit(pygame.image.load(downstring).convert_alpha(), (20, 40))
-    screens.blit(pygame.image.load(leftstring).convert_alpha(), (0, 20))
-    screens.blit(pygame.image.load(rightstring).convert_alpha(), (40, 20))
+
+    screens.blit(pygame.image.load(upstring).convert_alpha(), keyLocations[0])
+    screens.blit(pygame.image.load(downstring).convert_alpha(), keyLocations[1])
+    screens.blit(pygame.image.load(leftstring).convert_alpha(), keyLocations[2])
+    screens.blit(pygame.image.load(rightstring).convert_alpha(), keyLocations[3])
 
 
 
@@ -124,13 +128,13 @@ class Player(pygame.sprite.Sprite):
         global gamespeed
         #check the four corners of the rect depending on which direction the player wants to move
         #returns FALSE if player cannot move in that direction
-        if (direction == "up") & isWall(maze, self.rect.x, self.rect.y - gamespeed) & isWall(maze, self.rect.x + self.width/2, self.rect.y -gamespeed) &isWall(maze, self.rect.x + self.width, self.rect.y - gamespeed):
+        if (direction == "up") & (isWall(maze, self.rect.x, self.rect.y - gamespeed) | isWall(maze, self.rect.x + self.width/3, self.rect.y - gamespeed) | isWall(maze, self.rect.x + self.width/2, self.rect.y -gamespeed) | isWall(maze, self.rect.x + (2/3)*self.width, self.rect.y - gamespeed) | isWall(maze, self.rect.x + self.width, self.rect.y - gamespeed)):
             return False
-        if (direction == "down") & isWall(maze, self.rect.x, self.rect.y + self.height + gamespeed) & isWall(maze, self.rect.x + self.width/2, self.rect.y + self.height + gamespeed)& isWall(maze, self.rect.x + self.width, self.rect.y + self.height + gamespeed):
+        if (direction == "down") & (isWall(maze, self.rect.x, self.rect.y + self.height + gamespeed) |isWall(maze, self.rect.x + self.width/3, self.rect.y + self.height + gamespeed) | isWall(maze, self.rect.x + self.width/2, self.rect.y + self.height + gamespeed)| isWall(maze, self.rect.x + (2/3)*self.width, self.rect.y + self.height + gamespeed) | isWall(maze, self.rect.x + self.width, self.rect.y + self.height + gamespeed)):
             return False
-        if (direction == "left") & isWall(maze, self.rect.x - gamespeed, self.rect.y) & isWall(maze, self.rect.x - gamespeed, self.rect.y + self.height/2) & isWall(maze, self.rect.x - gamespeed, self.rect.y + self.height):
+        if (direction == "left") & (isWall(maze, self.rect.x - gamespeed, self.rect.y) |isWall(maze, self.rect.x - gamespeed, self.rect.y + self.height/3) | isWall(maze, self.rect.x - gamespeed, self.rect.y + self.height/2) |isWall(maze, self.rect.x - gamespeed, self.rect.y + (2/3)*self.height)| isWall(maze, self.rect.x - gamespeed, self.rect.y + self.height)):
             return False
-        if (direction == "right") & isWall(maze, self.rect.x + self.width + gamespeed, self.rect.y) & isWall(maze, self.rect.x +self.width + gamespeed, self.rect.y + self.height/2) & isWall(maze, self.rect.x + self.width + gamespeed, self.rect.y + self.height):
+        if (direction == "right") & (isWall(maze, self.rect.x + self.width + gamespeed, self.rect.y) | isWall(maze, self.rect.x +self.width + gamespeed, self.rect.y + self.height/3) | isWall(maze, self.rect.x +self.width + gamespeed, self.rect.y + self.height/2) | isWall(maze, self.rect.x +self.width + gamespeed, self.rect.y + (2/3)*self.height) | isWall(maze, self.rect.x + self.width + gamespeed, self.rect.y + self.height)):
             return False
 
         return True
@@ -172,6 +176,18 @@ def isWall(maze, x, y):
     return False
 
 
+# Defines class for static images in bottom player info display
+class BottomDisplayImage(pygame.sprite.Sprite):
+
+    def __init__(self, filename, size, location):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load(filename).convert() # Load image
+        self.image.set_colorkey([0, 0, 0]) # Set transparency
+        self.image = pygame.transform.scale(self.image, size) # Resize sprite
+        self.rect = self.image.get_rect(center=(location[0] + (size[0] / 2), location[1] + (size[1] / 2))) # Create rectangle around sprite
+        # Image location
+        self.rect.x = location[0]
+        self.rect.y = location[1]
 
 
 
@@ -236,7 +252,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
         bg_music.play(-1, 0.0)
     
     collision_Sound = pygame.mixer.Sound('Dragon_roar.wav')
-
+    
     global x_Dragon
     global y_Dragon
     #global coll
@@ -244,22 +260,25 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
     y_Dragon = y_Start
 
     wall_list_1 = pygame.sprite.Group()
-    wall_1 = [[30, 30, 5, 410], #left
-            [30, 440, 640, 5], #bottom
-            [30, 30, 640, 5], #top
-            [670, 30, 5, 415 ], #right
-            [30, 330, 570, 5],
-            [266, 387, 300, 5],
-            [600, 85, 5, 250],
-            [95, 82, 510,5],
-            [95, 82, 5, 200],
-            [95, 280, 440, 5],
-            [530, 135, 5, 150],
-            [160, 135, 370, 5],
-            [160, 135, 5, 70],
-            [160, 200, 300, 5]
-            # end of maze at 194,172~
-            ]
+    wall_1 = [#[30, 30, 5, 410], #left
+       # [30, 440, 640, 5], #bottom
+      #  [30, 30, 640, 5], #top
+       # [670, 30, 5, 415 ],        #right
+        [0, 330, 605, 10],
+        [266, 387, 300, 10],
+        [595, 85, 10, 255],
+        [95, 82, 510,10],
+        [94, 82, 10, 190],
+        [93, 272, 440, 10],
+        [528, 140, 10, 142],
+        [-10, 450, 710, 10],
+        [160, 140, 375, 10],
+        [160, 140, 10, 65],
+        [160, 200, 300, 10]
+        
+        # start 30,396
+        # end 180, 171
+        ]
             # add each part of wall to a list
     for var in wall_1:
         wall = Wall(var[0], var[1], var[2], var[3])
@@ -331,13 +350,14 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
         wall = Wall(var[0], var[1], var[2], var[3])
         wall_list_test.add(wall)
     mazes.append(wall_list_test)
+
     #Looks at the players choice of dragon and goes and gets that picture
     #And changes width/height accordingly
     if(dragon_choice=="orange"):
-        dragon = Player((255,255,255), 36, 32, "Resources/OrangeDragon.png", [x_Dragon, y_Dragon], 1)
+        dragon = Player((255,255,255), 36, 32, "Resources/OrangeDragon.png", [x_Dragon, y_Dragon], 0)
     elif(dragon_choice=="black"):
-        dragon = Player((255,255,255), 36, 32, "Resources/BlackDragon.png", [x_Dragon, y_Dragon], 1)
-        
+        dragon = Player((255,255,255), 36, 32, "Resources/BlackDragon.png", [x_Dragon, y_Dragon], 0)
+
     endCake = EndMarker((225,255,255), "Resources/Cake.png",  (194,172))
     screen.blit(dragon.image, dragon)
     screen.blit(endCake.image, endCake)
@@ -346,6 +366,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
     room = 3
     GameOver = 0
     global state
+    global livesLeft
     state = 0
     while state != 1:
 
@@ -357,6 +378,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
         dragon.rect.x = x_Dragon
         dragon.rect.y = y_Dragon
 
+
         endCake.getCollision(dragon, dragon_choice, sound_choice)
 
         timer = pygame.time.get_ticks()
@@ -364,6 +386,15 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
         dragon.updateAnimation(timer)
 
         mazes[room].draw(screen)
+
+
+        # Bottom display
+        for i in range (0, livesLeft): # Displays as many hearts as lives left
+            heart = BottomDisplayImage("Resources/heart.png",(30, 30), (115 + (i * 35), 475))
+            screen.blit(heart.image, heart)
+        livesLeftText = BottomDisplayImage ("Resources/livesLeftText.png", (110, 28), (10, 475))
+        screen.blit(livesLeftText.image, livesLeftText)
+
 
         pygame.display.update()
         badkeycount = 0
@@ -412,17 +443,18 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
                 if(sound_choice==1):
                     collision_Sound.play()
 
-
         if keypressed[dragon.leftkey]:
             if dragon.canMove("left", mazes[room]):
                 x_Dragon -= gamespeed
             if((dragon.canMove("left", mazes[room]))==False):
                 if(sound_choice==1):
                     collision_Sound.play()
-                
+
+
         if keypressed[dragon.rightkey]:
-            if dragon.canMove("right", mazes[room]):
+           if dragon.canMove("right", mazes[room]):
                x_Dragon += gamespeed
-            if((dragon.canMove("right", mazes[room]))==False):
+           if((dragon.canMove("right", mazes[room]))==False):
                 if(sound_choice==1):
                     collision_Sound.play()                
+

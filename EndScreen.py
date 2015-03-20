@@ -4,7 +4,7 @@ import pygame, random, Game
 from pygame.locals import *
 #from Game import *
 
-screen = pygame.display.set_mode([700, 500])
+screen = pygame.display.set_mode([700, 530])
 background = pygame.image.load("win.jpg").convert()
 
 class Button(pygame.sprite.Sprite):
@@ -32,3 +32,5 @@ def YouWin(dragon_choice, sound_choice):
         for event in pygame.event.get():
             if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
                 state = 1
+
+

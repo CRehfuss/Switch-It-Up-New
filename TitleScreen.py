@@ -4,7 +4,7 @@ import pygame, random, InstructionScreen, Game, key_mapping, SettingsScreen
 from pygame.locals import *
 #from Game import *
 
-screen = pygame.display.set_mode([700, 500])
+screen = pygame.display.set_mode([700, 530])
 background = pygame.image.load("titlescreen.jpg").convert()
 
 class Button(pygame.sprite.Sprite):
@@ -12,6 +12,7 @@ class Button(pygame.sprite.Sprite):
     def __init__(self, location):
         pygame.sprite.Sprite.__init__(self)
         self.rect = Rect(location, (180, 110))
+
 
 
 startBtn = Button((55, 275))
