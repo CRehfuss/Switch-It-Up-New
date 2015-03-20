@@ -128,13 +128,13 @@ class Player(pygame.sprite.Sprite):
         global gamespeed
         #check the four corners of the rect depending on which direction the player wants to move
         #returns FALSE if player cannot move in that direction
-        if (direction == "up") & (isWall(maze, self.rect.x, self.rect.y - gamespeed) | isWall(maze, self.rect.x + self.width/3, self.rect.y - gamespeed) | isWall(maze, self.rect.x + self.width/2, self.rect.y -gamespeed) | isWall(maze, self.rect.x + (2/3)*self.width, self.rect.y - gamespeed) | isWall(maze, self.rect.x + self.width, self.rect.y - gamespeed)):
+        if (direction == "up") & (isWall(maze, self.rect.x, self.rect.y - gamespeed) | isWall(maze, self.rect.x + self.width/4, self.rect.y - gamespeed) | isWall(maze, self.rect.x + self.width/2, self.rect.y -gamespeed) | isWall(maze, self.rect.x + (3/4)*self.width, self.rect.y - gamespeed) | isWall(maze, self.rect.x + self.width, self.rect.y - gamespeed)):
             return False
-        if (direction == "down") & (isWall(maze, self.rect.x, self.rect.y + self.height + gamespeed) |isWall(maze, self.rect.x + self.width/3, self.rect.y + self.height + gamespeed) | isWall(maze, self.rect.x + self.width/2, self.rect.y + self.height + gamespeed)| isWall(maze, self.rect.x + (2/3)*self.width, self.rect.y + self.height + gamespeed) | isWall(maze, self.rect.x + self.width, self.rect.y + self.height + gamespeed)):
+        if (direction == "down") & (isWall(maze, self.rect.x, self.rect.y + self.height + gamespeed) |isWall(maze, self.rect.x + self.width/4, self.rect.y + self.height + gamespeed) | isWall(maze, self.rect.x + self.width/2, self.rect.y + self.height + gamespeed)| isWall(maze, self.rect.x + (3/4)*self.width, self.rect.y + self.height + gamespeed) | isWall(maze, self.rect.x + self.width, self.rect.y + self.height + gamespeed)):
             return False
-        if (direction == "left") & (isWall(maze, self.rect.x - gamespeed, self.rect.y) |isWall(maze, self.rect.x - gamespeed, self.rect.y + self.height/3) | isWall(maze, self.rect.x - gamespeed, self.rect.y + self.height/2) |isWall(maze, self.rect.x - gamespeed, self.rect.y + (2/3)*self.height)| isWall(maze, self.rect.x - gamespeed, self.rect.y + self.height)):
+        if (direction == "left") & (isWall(maze, self.rect.x - gamespeed, self.rect.y) |isWall(maze, self.rect.x - gamespeed, self.rect.y + self.height/4) | isWall(maze, self.rect.x - gamespeed, self.rect.y + self.height/2) |isWall(maze, self.rect.x - gamespeed, self.rect.y + (3/4)*self.height)| isWall(maze, self.rect.x - gamespeed, self.rect.y + self.height)):
             return False
-        if (direction == "right") & (isWall(maze, self.rect.x + self.width + gamespeed, self.rect.y) | isWall(maze, self.rect.x +self.width + gamespeed, self.rect.y + self.height/3) | isWall(maze, self.rect.x +self.width + gamespeed, self.rect.y + self.height/2) | isWall(maze, self.rect.x +self.width + gamespeed, self.rect.y + (2/3)*self.height) | isWall(maze, self.rect.x + self.width + gamespeed, self.rect.y + self.height)):
+        if (direction == "right") & (isWall(maze, self.rect.x + self.width + gamespeed, self.rect.y) | isWall(maze, self.rect.x +self.width + gamespeed, self.rect.y + self.height/4) | isWall(maze, self.rect.x +self.width + gamespeed, self.rect.y + self.height/2) | isWall(maze, self.rect.x +self.width + gamespeed, self.rect.y + (3/4)*self.height) | isWall(maze, self.rect.x + self.width + gamespeed, self.rect.y + self.height)):
             return False
 
         return True
@@ -284,6 +284,11 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
         wall = Wall(var[0], var[1], var[2], var[3])
         wall_list_1.add(wall)
     mazes.append(wall_list_1)
+
+
+
+
+
     wall_list_2 = pygame.sprite.Group()
     wall_2 = [[30, 30, 5, 410], #left
             [30, 440, 640, 5], #bottom
