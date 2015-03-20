@@ -13,7 +13,7 @@ class Button(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.rect = Rect(location, (200, 90))
 
-def YouWin():
+def YouWin(dragon_choice, sound_choice):
 
     replayBtn = Button((115, 285))
     quitBtn = Button((365, 285))
@@ -25,7 +25,7 @@ def YouWin():
         if pygame.mouse.get_pressed()[0] and replayBtn.rect.collidepoint(pygame.mouse.get_pos()):
             print "play again button"
             state = 1
-            Game.PlayGame(35, 370)
+            Game.PlayGame(35, 370, dragon_choice, sound_choice)
         if pygame.mouse.get_pressed()[0] and quitBtn.rect.collidepoint(pygame.mouse.get_pos()):
             print "quit button"
             state = 1

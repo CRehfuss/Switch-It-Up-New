@@ -18,7 +18,7 @@ pygame.display.set_caption("Switch It Up")
 
 x_Dragon = 35
 y_Dragon = 370
-gamespeed = 1
+gamespeed = 2
 state = 0
 coll = 0
 
@@ -194,12 +194,12 @@ class EndMarker(pygame.sprite.Sprite):
         self.rect.x = location[0]
         self.rect.y = location[1]
         
-    def getCollision(self, theDragon):
+    def getCollision(self, theDragon, dragon_choice, sound_choice):
         if pygame.sprite.collide_rect(self, theDragon):
 
             global state
             state = 1
-            EndScreen.YouWin()
+            EndScreen.YouWin(dragon_choice, sound_choice)
         
         
 class Wall(pygame.sprite.Sprite):
@@ -224,17 +224,19 @@ mazes = []
 
 
 
-def PlayGame(x_Start, y_Start):
+def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
     #Will play the music
-    bg_music = pygame.mixer.music
-    bg_music.load('background_music.wav')
-    print "should play music"
-    #-1 will loop indefinitely, otherwise number will be numb loops after first play through
-    # 0.0 the time where the wav begins playing
-    bg_music.play(-1, 0.0)
+    if(sound_choice == 1):
+        print "sound choice is 1 should be jamming"
+        bg_music = pygame.mixer.music
+        bg_music.load('background_music.wav')
+        print "should play music"
+        #-1 will loop indefinitely, otherwise number will be numb loops after first play through
+        # 0.0 the time where the wav begins playing
+        bg_music.play(-1, 0.0)
     
     collision_Sound = pygame.mixer.Sound('Dragon_roar.wav')
-    
+
     global x_Dragon
     global y_Dragon
     #global coll
@@ -329,14 +331,19 @@ def PlayGame(x_Start, y_Start):
         wall = Wall(var[0], var[1], var[2], var[3])
         wall_list_test.add(wall)
     mazes.append(wall_list_test)
-
-    dragon = Player((255,255,255), 36, 32, "Resources/Dragons.png", [x_Dragon, y_Dragon], 1)
+    #Looks at the players choice of dragon and goes and gets that picture
+    #And changes width/height accordingly
+    if(dragon_choice=="orange"):
+        dragon = Player((255,255,255), 36, 32, "Resources/OrangeDragon.png", [x_Dragon, y_Dragon], 1)
+    elif(dragon_choice=="black"):
+        dragon = Player((255,255,255), 36, 32, "Resources/BlackDragon.png", [x_Dragon, y_Dragon], 1)
+        
     endCake = EndMarker((225,255,255), "Resources/Cake.png",  (194,172))
     screen.blit(dragon.image, dragon)
     screen.blit(endCake.image, endCake)
 
 
-    room = 0
+    room = 3
     GameOver = 0
     global state
     state = 0
@@ -350,13 +357,13 @@ def PlayGame(x_Start, y_Start):
         dragon.rect.x = x_Dragon
         dragon.rect.y = y_Dragon
 
-        endCake.getCollision(dragon)
+        endCake.getCollision(dragon, dragon_choice, sound_choice)
 
         timer = pygame.time.get_ticks()
 
         dragon.updateAnimation(timer)
 
-        mazes[0].draw(screen)
+        mazes[room].draw(screen)
 
         pygame.display.update()
         badkeycount = 0
@@ -394,24 +401,28 @@ def PlayGame(x_Start, y_Start):
         if keypressed[dragon.upkey]:
             if dragon.canMove("up", mazes[room]):
                 y_Dragon -= gamespeed
-            else:
-                collision_Sound.play()
+            if((dragon.canMove("up", mazes[room]))==False):
+                if(sound_choice==1):
+                    collision_Sound.play()
 
         if keypressed[dragon.downkey]:
             if dragon.canMove("down", mazes[room]):
                 y_Dragon += gamespeed
-            else:
-                collision_Sound.play()
+            if((dragon.canMove("down", mazes[room]))==False):
+                if(sound_choice==1):
+                    collision_Sound.play()
 
 
         if keypressed[dragon.leftkey]:
             if dragon.canMove("left", mazes[room]):
                 x_Dragon -= gamespeed
-            else:
-                collision_Sound.play()
+            if((dragon.canMove("left", mazes[room]))==False):
+                if(sound_choice==1):
+                    collision_Sound.play()
                 
         if keypressed[dragon.rightkey]:
             if dragon.canMove("right", mazes[room]):
                x_Dragon += gamespeed
-            else:
-                collision_Sound.play()                
+            if((dragon.canMove("right", mazes[room]))==False):
+                if(sound_choice==1):
+                    collision_Sound.play()                
