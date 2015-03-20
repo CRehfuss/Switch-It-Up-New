@@ -7,7 +7,7 @@ from pygame.locals import *
 
 def Instructions():
 
-    screen = pygame.display.set_mode([700, 520])
+    screen = pygame.display.set_mode([700, 530])
     background = pygame.image.load("instructionscreen.jpg").convert()
 
     class Button(pygame.sprite.Sprite):
