@@ -210,12 +210,16 @@ class EndMarker(pygame.sprite.Sprite):
         self.rect.x = location[0]
         self.rect.y = location[1]
         
-    def getCollision(self, theDragon, dragon_choice, sound_choice):
+    def getCollision(self, theDragon, dragon_choice, sound_choice, start_coords, end_coords):
         if pygame.sprite.collide_rect(self, theDragon):
 
-            global state
-            state = 1
-            EndScreen.YouWin(dragon_choice, sound_choice)
+            global state, room
+            if room == 2:
+                state = 1
+                EndScreen.YouWin(dragon_choice, sound_choice)
+            else:
+                room += 1
+                PlayGame(start_coords[room-1][0], start_coords[room-1][1], dragon_choice, sound_choice)
         
         
 class Wall(pygame.sprite.Sprite):
@@ -238,7 +242,8 @@ mazes = []
 # implementation inspired by simpson college CS
 
 
-
+global room
+room = 0
 
 def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
     #Will play the music
@@ -285,8 +290,10 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
         wall_list_1.add(wall)
     mazes.append(wall_list_1)
 
-
-
+    start_coords = []
+    start_coords.append((30,396))
+    end_coords = []
+    end_coords.append((180,171))
 
 
     wall_list_2 = pygame.sprite.Group()
@@ -310,7 +317,9 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
             [30, 120, 60, 5],
             [90, 120, 5, 184],
             [90, 300, 60, 5],
+            # start maze at 61, 414
             #end maze at 64,150
+            
 
             ]
             # add each part of wall to a list
@@ -318,6 +327,8 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
         wall = Wall(var[0], var[1], var[2], var[3])
         wall_list_2.add(wall)
     mazes.append(wall_list_2)
+    start_coords.append((61,414))
+    end_coords.append((64,150))
     wall_list_3 = pygame.sprite.Group()
     wall_3 = [[30, 30, 5, 410], #left
             [30, 440, 640, 5], #bottom
@@ -347,7 +358,8 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
         wall = Wall(var[0], var[1], var[2], var[3])
         wall_list_3.add(wall)
     mazes.append(wall_list_3)
-
+    start_coords.append((51,415))
+    end_coords.append((537,341))
     #just a testing screen
     wall_list_test = pygame.sprite.Group()
     wall_test = [[400, 90, 90, 10], [60, 400, 5, 400]]
@@ -363,12 +375,12 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
     elif(dragon_choice=="black"):
         dragon = Player((255,255,255), 36, 32, "Resources/BlackDragon.png", [x_Dragon, y_Dragon], 0)
 
-    endCake = EndMarker((225,255,255), "Resources/Cake.png",  (194,172))
+    endCake = EndMarker((225,255,255), "Resources/Cake.png",  end_coords[room])
     screen.blit(dragon.image, dragon)
     screen.blit(endCake.image, endCake)
 
 
-    room = 3
+
     GameOver = 0
     global state
     global livesLeft
@@ -384,7 +396,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
         dragon.rect.y = y_Dragon
 
 
-        endCake.getCollision(dragon, dragon_choice, sound_choice)
+        endCake.getCollision(dragon, dragon_choice, sound_choice, start_coords, end_coords)
 
         timer = pygame.time.get_ticks()
 
