@@ -26,7 +26,6 @@ click_sound = pygame.mixer.Sound('click.wav')
 while state != 1:
     screen.blit(background, [0,0])
     pygame.display.update()
-    print sound_choice
     if pygame.mouse.get_pressed()[0] and startBtn.rect.collidepoint(pygame.mouse.get_pos()):
         print "start button"
         if (sound_choice ==1):

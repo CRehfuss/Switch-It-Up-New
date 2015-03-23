@@ -55,7 +55,6 @@ def Settings():
         if pygame.mouse.get_pressed()[0] and orangeDragBtn.rect.collidepoint(pygame.mouse.get_pos()):
             dragon_choice = "orange"
             if(sound_choice==1):
-                print "PLAY"
                 click_Sound.play()
                 
         if pygame.mouse.get_pressed()[0] and bandgDragBtn.rect.collidepoint(pygame.mouse.get_pos()):
@@ -66,7 +65,6 @@ def Settings():
         if pygame.mouse.get_pressed()[0] and blkDragBtn.rect.collidepoint(pygame.mouse.get_pos()):
             dragon_choice = "black"
             if(sound_choice==1):
-                print "PLAY"
                 click_Sound.play()
                 
         if pygame.mouse.get_pressed()[0] and onBtn.rect.collidepoint(pygame.mouse.get_pos()):
@@ -79,9 +77,10 @@ def Settings():
             sound_choice = 0
             
         if pygame.mouse.get_pressed()[0] and backBtn.rect.collidepoint(pygame.mouse.get_pos()):
-            state = 1
             if(sound_choice==1):
                 click_Sound.play()
+            state = 1
+
                 
         for event in pygame.event.get():
             if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
