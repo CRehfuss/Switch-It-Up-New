@@ -5,10 +5,11 @@ import pygame, random
 from pygame.locals import *
 #from Game import *
 
-def Instructions():
+def Instructions(sound_choice):
 
     screen = pygame.display.set_mode([700, 530])
     background = pygame.image.load("instructionscreen.jpg").convert()
+    click_sound = pygame.mixer.Sound('click.wav')
 
     class Button(pygame.sprite.Sprite):
 
@@ -24,6 +25,8 @@ def Instructions():
         screen.blit(background, [0,0])
         pygame.display.update()
         if pygame.mouse.get_pressed()[0] and backBtn.rect.collidepoint(pygame.mouse.get_pos()):
+            if(sound_choice == 1):
+                click_sound.play()
             state = 1
         for event in pygame.event.get():
             if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
