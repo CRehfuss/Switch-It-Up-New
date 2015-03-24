@@ -168,6 +168,7 @@ class Hazard(Player):
         collision_Sound = pygame.mixer.Sound('Dragon_roar.wav')
 
         if pygame.sprite.collide_rect(self, dragon):
+            print("hit")
             dragon.lives - 1
             collision_Sound.play()
             if dragon.rect.x > self.width/2:

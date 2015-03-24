@@ -30,9 +30,21 @@
       <file leaf-file-name="Game.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Game.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5821138" vertical-offset="1852" max-vertical-offset="7973">
-              <caret line="132" column="321" selection-start-line="132" selection-start-column="321" selection-end-line="132" selection-end-column="321" />
+            <state vertical-scroll-proportion="0.94947994" vertical-offset="7555" max-vertical-offset="9452">
+              <caret line="484" column="31" selection-start-line="484" selection-start-column="31" selection-end-line="484" selection-end-column="31" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Backup.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Backup.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9469">
+              <caret line="551" column="27" selection-start-line="551" selection-start-column="27" selection-end-line="551" selection-end-column="27" />
+              <folding>
+                <element signature="e#13#50#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -60,7 +72,7 @@
       <file leaf-file-name="EndScreen.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/EndScreen.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="697">
+            <state vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="799">
               <caret line="25" column="12" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
               <folding />
             </state>
@@ -70,7 +82,7 @@
       <file leaf-file-name="InstructionScreen.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/InstructionScreen.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="103" max-vertical-offset="612">
+            <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="663">
               <caret line="16" column="38" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
               <folding />
             </state>
@@ -80,7 +92,7 @@
       <file leaf-file-name="TitleScreen.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TitleScreen.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="782">
+            <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="918">
               <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="59" />
               <folding />
             </state>
@@ -113,6 +125,7 @@
         <option value="$PROJECT_DIR$/show_keys.py" />
         <option value="$PROJECT_DIR$/key_mapping.py" />
         <option value="C:/Python27/Lib/site-packages/pygame/sprite.py" />
+        <option value="$PROJECT_DIR$/Backup.py" />
         <option value="$PROJECT_DIR$/Game.py" />
       </list>
     </option>
@@ -146,7 +159,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -199,6 +211,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -463,27 +476,33 @@
       <option name="project" value="LOCAL" />
       <updated>1426866306349</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Danielle is still tinkering with the wall collisions, this is the work in progress model">
+      <created>1427217587045</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1427217587045</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="916" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1675" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3283767" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.11524164" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1675" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39900866" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -535,21 +554,14 @@
     <MESSAGE value="Stops the player from running off the screen" />
     <MESSAGE value="Movement and collision work pretty well now&#10;&#10;I CAN'T BELIEVE  THIS ACTUALLY WORKED" />
     <MESSAGE value="Beta Collisions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Beta Collisions" />
+    <MESSAGE value="Danielle is still tinkering with the wall collisions, this is the work in progress model" />
+    <option name="LAST_COMMIT_MESSAGE" value="Danielle is still tinkering with the wall collisions, this is the work in progress model" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/EndScreen.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="663">
-          <caret line="25" column="12" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/InstructionScreen.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="612">
@@ -955,10 +967,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Backup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9469">
+          <caret line="551" column="27" selection-start-line="551" selection-start-column="27" selection-end-line="551" selection-end-column="27" />
+          <folding>
+            <element signature="e#13#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Game.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5821138" vertical-offset="1852" max-vertical-offset="7973">
-          <caret line="132" column="321" selection-start-line="132" selection-start-column="321" selection-end-line="132" selection-end-column="321" />
+        <state vertical-scroll-proportion="0.94947994" vertical-offset="7555" max-vertical-offset="9452">
+          <caret line="484" column="31" selection-start-line="484" selection-start-column="31" selection-end-line="484" selection-end-column="31" />
           <folding />
         </state>
       </provider>
