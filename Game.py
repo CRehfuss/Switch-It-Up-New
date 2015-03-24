@@ -448,7 +448,8 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
 
 
             if event.type == KEYDOWN:
-                if event.key != dragon.upkey & event.key != dragon.downkey & event.key != dragon.leftkey & event.key != dragon.rightkey:
+                keyPressed = event.key
+                if keyPressed != dragon.upkey and keyPressed != dragon.downkey and keyPressed != dragon.leftkey and keyPressed != dragon.rightkey:
                     badkeycount += 1
                     print badkeycount
                     if badkeycount > 10:
