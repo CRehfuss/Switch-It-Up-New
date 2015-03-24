@@ -13,35 +13,24 @@ def Settings():
     dragon_choice = "orange"
     sound_choice = 1
     #The button class, simply puts it on the screen
-    class DragonButton(pygame.sprite.Sprite):
 
-            def __init__(self, location):
-                pygame.sprite.Sprite.__init__(self)
-                self.rect = Rect(location, (120, 105))
-    
-    class BackButton(pygame.sprite.Sprite):
+    class Button(pygame.sprite.Sprite):
 
-            def __init__(self, location):
-                pygame.sprite.Sprite.__init__(self)
-                self.rect = Rect(location, (200, 75))
-
-    class SoundButton(pygame.sprite.Sprite):
-
-            def __init__(self, location):
-                pygame.sprite.Sprite.__init__(self)
-                self.rect = Rect(location, (85, 70))
+        def __init__(self, location, size):
+            pygame.sprite.Sprite.__init__(self)
+            self.rect = Rect(location, size)
             
-    redDragBtn = DragonButton((50, 113))
+    redDragBtn = Button((50, 113), (120, 105))
 
-    orangeDragBtn = DragonButton((205,115))
+    orangeDragBtn = Button((205,115), (120, 105))
 
-    bandgDragBtn = DragonButton((355, 116))
+    bandgDragBtn = Button((355, 116), (120, 105))
 
-    blkDragBtn = DragonButton((524,118))
+    blkDragBtn = Button((524,118), (120, 105))
     
-    onBtn = SoundButton((261,315))
-    offBtn = SoundButton((353,313))
-    backBtn = BackButton((486,346))
+    onBtn = Button((261,315), (85, 70))
+    offBtn = Button((353,313), (85, 70))
+    backBtn = Button((490,446), (200, 75))
     state = 0
 
     while state != 1:
