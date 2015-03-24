@@ -249,24 +249,9 @@ class EndMarker(pygame.sprite.Sprite):
                 PlayGame(start_coords[room][0], start_coords[room][1], dragon_choice, sound_choice)
         
 
-class Bonus(pygame.sprite.Sprite):      
+class Bonus(EndMarker):      
     
-    def __init__(self, color, filename, location):
-        # call parent class constructor
-        pygame.sprite.Sprite.__init__(self)
-        
-        # load the image, converting the pixel format for optimization
-        self.image = pygame.image.load(filename).convert()
-        # make 'color' transparent on the image
-        self.image.set_colorkey(color) 
-        # resize image to 20x20 px
-        self.image = pygame.transform.scale(self.image, (20,20))
-        
-        # set the rectangle defined for this image for collision detection
-        self.rect = self.image.get_rect()
-        # position the image
-        self.rect.x = location[0]
-        self.rect.y = location[1]
+
         
     def getCollision(self, theDragon):
         if pygame.sprite.collide_rect(self, theDragon):
