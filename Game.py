@@ -275,51 +275,54 @@ mazes = []
 
 # returns True when the player is DONE colliding with a wall
 # (prevents the wallCollisionCount from constantly increasing if the player holds down a key running into the wall)
-def countCollision(key, count, dragon):
-    return
-'''
+def countCollision(key, count, dragon, endCake): # TODO: fix this
     global x_Dragon
     global y_Dragon
+    global gamespeed
 
     while (True): # wait for KEYUP
         screen.fill([255,255,255])
         mazes[room].draw(screen)
+        screen.blit(endCake.image, endCake)
+        # Bottom display
+        for i in range (0, livesLeft): # Displays as many hearts as lives left
+            heart = BottomDisplayImage("Resources/heart.png",(30, 30), (115 + (i * 35), 475))
+            screen.blit(heart.image, heart)
+        livesLeftText = BottomDisplayImage ("Resources/livesLeftText.png", (110, 28), (10, 475))
+        screen.blit(livesLeftText.image, livesLeftText)
         dragon.rect.x = x_Dragon
         dragon.rect.y = y_Dragon
         timer = pygame.time.get_ticks()
         dragon.updateAnimation(timer)
         pygame.display.update()
 
+        pressed = pygame.key.get_pressed()
+
+        if pressed[dragon.upkey]:
+            if dragon.canMove("up", mazes[room]):
+                y_Dragon -= gamespeed
+            pygame.display.update()
+
+        if pressed[dragon.downkey]:
+            if dragon.canMove("down", mazes[room]):
+                y_Dragon += gamespeed
+            pygame.display.update()
+
+        if pressed[dragon.leftkey]:
+            print "left key"
+            if dragon.canMove("left", mazes[room]):
+                x_Dragon -= gamespeed
+            pygame.display.update()
+
+        if pressed[dragon.rightkey]:
+            print "right key"
+            if dragon.canMove("right", mazes[room]):
+               x_Dragon += gamespeed
+            pygame.display.update()
+
         for event in pygame.event.get():
             if event.type == KEYUP and event.key == key:
                 return count + 1
-
-            pressed = event.key
-
-            if pressed == dragon.upkey:
-                if dragon.canMove("up", mazes[room]):
-                    y_Dragon -= gamespeed
-                pygame.display.update()
-
-            if pressed == dragon.downkey:
-                if dragon.canMove("down", mazes[room]):
-                    y_Dragon += gamespeed
-                pygame.display.update()
-
-            if pressed == dragon.leftkey:
-                print "left key"
-                if dragon.canMove("left", mazes[room]):
-                    x_Dragon -= gamespeed
-                pygame.display.update()
-
-            if pressed == dragon.rightkey:
-                print "right key"
-                if dragon.canMove("right", mazes[room]):
-                   x_Dragon += gamespeed
-                pygame.display.update()
-'''
-
-
 
 
 
@@ -562,11 +565,8 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
             if((dragon.canMove("up", mazes[room])) == False):
                 if(sound_choice==1):
                     collision_Sound.play()
-<<<<<<< Updated upstream
-                #wallCollisionCount = countCollision(dragon.upkey, wallCollisionCount, dragon)
-=======
-  #              wallCollisionCount = countCollision(dragon.upkey, wallCollisionCount, dragon)
->>>>>>> Stashed changes
+                wallCollisionCount = countCollision(dragon.upkey, wallCollisionCount, dragon, endCake)
+
 
         if keypressed[dragon.downkey]:
             if dragon.canMove("down", mazes[room]):
@@ -574,11 +574,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
             if((dragon.canMove("down", mazes[room]))==False):
                 if(sound_choice==1):
                     collision_Sound.play()
-<<<<<<< Updated upstream
-                #wallCollisionCount = countCollision(dragon.downkey, wallCollisionCount, dragon)
-=======
- #               wallCollisionCount = countCollision(dragon.downkey, wallCollisionCount, dragon)
->>>>>>> Stashed changes
+                wallCollisionCount = countCollision(dragon.downkey, wallCollisionCount, dragon, endCake)
 
         if keypressed[dragon.leftkey]:
             if dragon.canMove("left", mazes[room]):
@@ -586,11 +582,8 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
             if((dragon.canMove("left", mazes[room]))==False):
                 if(sound_choice==1):
                     collision_Sound.play()
-<<<<<<< Updated upstream
-                #wallCollisionCount = countCollision(dragon.leftkey, wallCollisionCount, dragon)
-=======
- #               wallCollisionCount = countCollision(dragon.leftkey, wallCollisionCount, dragon)
->>>>>>> Stashed changes
+                wallCollisionCount = countCollision(dragon.leftkey, wallCollisionCount, dragon, endCake)
+
 
 
         if keypressed[dragon.rightkey]:
@@ -599,14 +592,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
            if((dragon.canMove("right", mazes[room]))==False):
                 if(sound_choice==1):
                     collision_Sound.play()
-<<<<<<< Updated upstream
-                #wallCollisionCount = countCollision(dragon.rightkey, wallCollisionCount, dragon)
+                wallCollisionCount = countCollision(dragon.rightkey, wallCollisionCount, dragon, endCake)
 
         if keyHints == False and wallCollisionCount >= 5:
             keyHints = True
-=======
- #               wallCollisionCount = countCollision(dragon.rightkey, wallCollisionCount, dragon)
-
-#        if keyHints == False and wallCollisionCount >= 5:
- #           keyHints = True
->>>>>>> Stashed changes
