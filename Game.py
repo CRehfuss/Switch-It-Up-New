@@ -562,7 +562,11 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
             if((dragon.canMove("up", mazes[room])) == False):
                 if(sound_choice==1):
                     collision_Sound.play()
+<<<<<<< Updated upstream
                 #wallCollisionCount = countCollision(dragon.upkey, wallCollisionCount, dragon)
+=======
+  #              wallCollisionCount = countCollision(dragon.upkey, wallCollisionCount, dragon)
+>>>>>>> Stashed changes
 
         if keypressed[dragon.downkey]:
             if dragon.canMove("down", mazes[room]):
@@ -570,7 +574,11 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
             if((dragon.canMove("down", mazes[room]))==False):
                 if(sound_choice==1):
                     collision_Sound.play()
+<<<<<<< Updated upstream
                 #wallCollisionCount = countCollision(dragon.downkey, wallCollisionCount, dragon)
+=======
+ #               wallCollisionCount = countCollision(dragon.downkey, wallCollisionCount, dragon)
+>>>>>>> Stashed changes
 
         if keypressed[dragon.leftkey]:
             if dragon.canMove("left", mazes[room]):
@@ -578,7 +586,11 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
             if((dragon.canMove("left", mazes[room]))==False):
                 if(sound_choice==1):
                     collision_Sound.play()
+<<<<<<< Updated upstream
                 #wallCollisionCount = countCollision(dragon.leftkey, wallCollisionCount, dragon)
+=======
+ #               wallCollisionCount = countCollision(dragon.leftkey, wallCollisionCount, dragon)
+>>>>>>> Stashed changes
 
 
         if keypressed[dragon.rightkey]:
@@ -587,7 +599,14 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
            if((dragon.canMove("right", mazes[room]))==False):
                 if(sound_choice==1):
                     collision_Sound.play()
+<<<<<<< Updated upstream
                 #wallCollisionCount = countCollision(dragon.rightkey, wallCollisionCount, dragon)
 
         if keyHints == False and wallCollisionCount >= 5:
             keyHints = True
+=======
+ #               wallCollisionCount = countCollision(dragon.rightkey, wallCollisionCount, dragon)
+
+#        if keyHints == False and wallCollisionCount >= 5:
+ #           keyHints = True
+>>>>>>> Stashed changes

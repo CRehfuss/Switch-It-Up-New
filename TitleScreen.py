@@ -33,13 +33,13 @@ while state != 1:
             print "click"
         Game.PlayGame(35, 370, dragon_choice, sound_choice)
         state = 1
-    elif pygame.mouse.get_pressed()[0] and instructBtn.rect.collidepoint(pygame.mouse.get_pos()):
+    if pygame.mouse.get_pressed()[0] and instructBtn.rect.collidepoint(pygame.mouse.get_pos()):
         print "instruction button"
         if(sound_choice ==1):
             click_sound.play()
             print "click"
         InstructionScreen.Instructions(sound_choice)
-    elif pygame.mouse.get_pressed()[0] and settingsBtn.rect.collidepoint(pygame.mouse.get_pos()):
+    if pygame.mouse.get_pressed()[0] and settingsBtn.rect.collidepoint(pygame.mouse.get_pos()):
         print "settings button"
         if(sound_choice==1):
             click_sound.play()
