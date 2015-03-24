@@ -376,6 +376,8 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
         dragon = Player((255,255,255), 36, 32, "Resources/OrangeDragon.png", [x_Dragon, y_Dragon], 0)
     elif(dragon_choice=="black"):
         dragon = Player((255,255,255), 36, 32, "Resources/BlackDragon.png", [x_Dragon, y_Dragon], 0)
+    elif(dragon_choice=="red"):
+         dragon = Player((255,255,255), 36, 32, "Resources/RedDragon.png", [x_Dragon, y_Dragon], 0)
 
     endCake = EndMarker((225,255,255), "Resources/Cake.png",  end_coords[room])
     screen.blit(dragon.image, dragon)
