@@ -44,7 +44,7 @@ def Settings():
                 click_Sound.play()
                 
         if pygame.mouse.get_pressed()[0] and bandgDragBtn.rect.collidepoint(pygame.mouse.get_pos()):
-            dragon_choice = "blueAndGreen"
+            dragon_choice = "greenandblue"
             if(sound_choice==1):
                 click_Sound.play()
                 
