@@ -242,6 +242,8 @@ mazes = []
 # implementation inspired by simpson college CS
 
 
+
+
 global room
 room = 0
 
@@ -384,13 +386,18 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
     GameOver = 0
     global state
     global livesLeft
+    global badkeycount
+    badkeycount = 0
+    global keyHints
+    keyHints = False
     state = 0
     while state != 1:
 
         #Just a white screen
         screen.fill([255,255,255])
          #create the dragon image
-        showKeys(dragon, screen)
+        if (keyHints):
+            showKeys(dragon, screen)
         screen.blit(endCake.image, endCake)
         dragon.rect.x = x_Dragon
         dragon.rect.y = y_Dragon
@@ -414,7 +421,6 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
 
 
         pygame.display.update()
-        badkeycount = 0
 
         keypressed = pygame.key.get_pressed()
 
@@ -442,8 +448,10 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
             if event.type == KEYDOWN:
                 if event.key != dragon.upkey & event.key != dragon.downkey & event.key != dragon.leftkey & event.key != dragon.rightkey:
                     badkeycount += 1
-                    if badkeycount > 20:
-                        showKeys(dragon, screen)
+                    print badkeycount
+                    if badkeycount > 10:
+                        print "show keys"
+                        keyHints = True
 
 
         if keypressed[dragon.upkey]:
@@ -474,4 +482,3 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
            if((dragon.canMove("right", mazes[room]))==False):
                 if(sound_choice==1):
                     collision_Sound.play()                
-

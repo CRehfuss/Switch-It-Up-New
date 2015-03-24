@@ -21,11 +21,8 @@ def Settings():
             self.rect = Rect(location, size)
             
     redDragBtn = Button((50, 113), (120, 105))
-
     orangeDragBtn = Button((205,115), (120, 105))
-
     bandgDragBtn = Button((355, 116), (120, 105))
-
     blkDragBtn = Button((524,118), (120, 105))
     
     onBtn = Button((261,315), (85, 70))
