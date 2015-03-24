@@ -16,6 +16,7 @@ screenheight = 530
 screen = pygame.display.set_mode([screenwidth,screenheight])
 pygame.display.set_caption("Switch It Up")
 
+global livesLeft
 livesLeft = 3 # Number of lives starts at 3
 
 x_Dragon = 35
@@ -237,13 +238,15 @@ class EndMarker(pygame.sprite.Sprite):
     def getCollision(self, theDragon, dragon_choice, sound_choice, start_coords, end_coords):
         if pygame.sprite.collide_rect(self, theDragon):
 
-            global state, room
+            global state, room, livesLeft
+            livesLeft = 3
             if room == 2:
                 state = 1
+                room = 0
                 EndScreen.YouWin(dragon_choice, sound_choice)
             else:
                 room += 1
-                PlayGame(start_coords[room-1][0], start_coords[room-1][1], dragon_choice, sound_choice)
+                PlayGame(start_coords[room][0], start_coords[room][1], dragon_choice, sound_choice)
         
         
 class Wall(pygame.sprite.Sprite):
@@ -315,7 +318,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
         [595, 85, 10, 255],
         [95, 82, 510,10],
         [94, 82, 10, 190],
-        [93, 272, 440, 10],
+        [94, 272, 440, 10],
         [528, 140, 10, 142],
         [-10, 450, 710, 10],
         [160, 140, 375, 10],
@@ -338,31 +341,30 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
 
 
     wall_list_2 = pygame.sprite.Group()
-    wall_2 = [[30, 30, 5, 410], #left
-            [30, 440, 640, 5], #bottom
-            [30, 30, 640, 5], #top
-            [670, 30, 5, 415 ], #right
-            [30, 385, 490, 5],
-            [600, 385, 70, 5],
-            [30, 385, 490, 5],
-            [515, 215, 5, 175],
-            [515, 300, 80, 5],
-            [250, 215, 270, 5],
-            [385, 120, 5, 100],
-            [590, 120, 5, 100],
-            [515, 120, 80, 5],
-            [515, 30, 5, 95],
-            [150, 120, 100, 5],
-            [150, 120, 5, 180],
-            [150, 300, 300, 5],
-            [30, 120, 60, 5],
-            [90, 120, 5, 184],
-            [90, 300, 60, 5],
-            # start maze at 61, 414
-            #end maze at 64,150
-            
+    wall_2 = [#[30, 30, 5, 410], #left
+       # [30, 440, 640, 5], #bottom
+       # [30, 30, 640, 5], #top
+       # [670, 30, 5, 415 ], #right
+        [-10, 450, 710, 10],
+        [-10, 385, 532, 10],
+        [585, 385, 60, 10],
+        [30, 385, 490, 10],
+        [515, 215, 10, 180],
+        [515, 300, 80, 10],
+        [250, 215, 270, 10],
+        [385, 120, 10, 102],
+        [590, 120, 10, 100],
+        [515, 120, 80, 10],
+        [515, -10, 10, 135],
+        [150, 120, 100, 10],
+        [150, 120, 10, 180],
+        #[150, 300, 300, 5],
+        [-10, 120, 100, 10],
+        [90, 120, 10, 184],
+        [90, 296, 333, 10],
+        #end maze at 64,150
 
-            ]
+        ]
             # add each part of wall to a list
     for var in wall_2:
         wall = Wall(var[0], var[1], var[2], var[3])
@@ -371,35 +373,36 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
     start_coords.append((61,414))
     end_coords.append((64,150))
     wall_list_3 = pygame.sprite.Group()
-    wall_3 = [[30, 30, 5, 410], #left
-            [30, 440, 640, 5], #bottom
-            [30, 30, 640, 5], #top
-            [670, 30, 5, 415 ], #right
-            [90, 385, 5, 60],
-            [30, 330, 130, 5],
-            [160, 330, 5, 50],
-            [245, 90, 5, 350],
-            [95, 90, 150, 5],
-            [95, 90, 5, 150],
-            [95, 240, 60, 5],
-            [350, 90, 5, 280],
-            [350, 90, 225, 5],
-            [350, 370, 230, 5],
-            [575, 90, 5, 68],
-            [575, 310, 5, 60],
-            [300, 90, 5, 284],
-            [420, 145, 5, 165],
-            [420, 240, 255, 5],
-            [420, 305, 160, 5],
-            [420, 190, 90, 5],
-            #end at 551,343
-            ]
+    wall_3 = [#[30, 30, 5, 410], #left
+        #[30, 440, 640, 5], #bottom
+        #[30, 30, 640, 5], #top
+       # [670, 30, 5, 415 ], #right
+        [-10, 450, 710, 10],
+        [95, 393, 10, 60],
+        [-10, 330, 170, 10],
+        [160, 330, 10, 54],
+        [233, 90, 10, 365],
+        [95, 90, 145, 10],
+        [95, 90, 10, 150],
+        [95, 240, 73, 10],
+        [350, 90, 10, 280],
+        [350, 90, 225, 10],
+        [350, 370, 230, 10],
+        [575, 90, 10, 68],
+        [575, 305, 10, 75],
+        [293, 90, 10, 284],
+        [420, 145, 10, 165],
+        [420, 240, 300, 10],
+        [420, 305, 160, 10],
+        [420, 190, 90, 10],
+        #end at 551,343
+        ]
             # add each part of wall to a list
     for var in wall_3:
         wall = Wall(var[0], var[1], var[2], var[3])
         wall_list_3.add(wall)
     mazes.append(wall_list_3)
-    start_coords.append((51,415))
+    start_coords.append((41,404))
     end_coords.append((537,341))
     #just a testing screen
     wall_list_test = pygame.sprite.Group()
