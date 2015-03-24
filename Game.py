@@ -559,7 +559,8 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
             if((dragon.canMove("up", mazes[room])) == False):
                 if(sound_choice==1):
                     collision_Sound.play()
-                wallCollisionCount = countCollision(dragon.upkey, wallCollisionCount, dragon, endCake)
+                if keyHints == False:
+                    wallCollisionCount = countCollision(dragon.upkey, wallCollisionCount, dragon, endCake)
 
 
         if keypressed[dragon.downkey]:
@@ -568,7 +569,8 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
             if((dragon.canMove("down", mazes[room]))==False):
                 if(sound_choice==1):
                     collision_Sound.play()
-                wallCollisionCount = countCollision(dragon.downkey, wallCollisionCount, dragon, endCake)
+                if keyHints == False:
+                    wallCollisionCount = countCollision(dragon.downkey, wallCollisionCount, dragon, endCake)
 
         if keypressed[dragon.leftkey]:
             if dragon.canMove("left", mazes[room]):
@@ -576,7 +578,8 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
             if((dragon.canMove("left", mazes[room]))==False):
                 if(sound_choice==1):
                     collision_Sound.play()
-                wallCollisionCount = countCollision(dragon.leftkey, wallCollisionCount, dragon, endCake)
+                if keyHints == False:
+                    wallCollisionCount = countCollision(dragon.leftkey, wallCollisionCount, dragon, endCake)
 
 
 
@@ -586,7 +589,8 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
            if((dragon.canMove("right", mazes[room]))==False):
                 if(sound_choice==1):
                     collision_Sound.play()
-                wallCollisionCount = countCollision(dragon.rightkey, wallCollisionCount, dragon, endCake)
+                if keyHints == False:
+                    wallCollisionCount = countCollision(dragon.rightkey, wallCollisionCount, dragon, endCake)
 
         if keyHints == False and wallCollisionCount >= 5:
             keyHints = True
