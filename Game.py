@@ -301,24 +301,18 @@ def countCollision(key, count, dragon, endCake): # TODO: fix this
         if pressed[dragon.upkey]:
             if dragon.canMove("up", mazes[room]):
                 y_Dragon -= gamespeed
-            pygame.display.update()
 
         if pressed[dragon.downkey]:
             if dragon.canMove("down", mazes[room]):
                 y_Dragon += gamespeed
-            pygame.display.update()
 
         if pressed[dragon.leftkey]:
-            print "left key"
             if dragon.canMove("left", mazes[room]):
                 x_Dragon -= gamespeed
-            pygame.display.update()
 
         if pressed[dragon.rightkey]:
-            print "right key"
             if dragon.canMove("right", mazes[room]):
                x_Dragon += gamespeed
-            pygame.display.update()
 
         for event in pygame.event.get():
             if event.type == KEYUP and event.key == key:
