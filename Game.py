@@ -16,7 +16,6 @@ screenheight = 530
 screen = pygame.display.set_mode([screenwidth,screenheight])
 pygame.display.set_caption("Switch It Up")
 
-global livesLeft
 livesLeft = 3 # Number of lives starts at 3
 
 x_Dragon = 35
@@ -249,7 +248,33 @@ class EndMarker(pygame.sprite.Sprite):
                 room += 1
                 PlayGame(start_coords[room][0], start_coords[room][1], dragon_choice, sound_choice)
         
+
+class Bonus(pygame.sprite.Sprite):      
+    
+    def __init__(self, color, filename, location):
+        # call parent class constructor
+        pygame.sprite.Sprite.__init__(self)
         
+        # load the image, converting the pixel format for optimization
+        self.image = pygame.image.load(filename).convert()
+        # make 'color' transparent on the image
+        self.image.set_colorkey(color) 
+        # resize image to 20x20 px
+        self.image = pygame.transform.scale(self.image, (20,20))
+        
+        # set the rectangle defined for this image for collision detection
+        self.rect = self.image.get_rect()
+        # position the image
+        self.rect.x = location[0]
+        self.rect.y = location[1]
+        
+    def getCollision(self, theDragon):
+        if pygame.sprite.collide_rect(self, theDragon):
+            global livesLeft
+            livesLeft += 1
+            self.rect.x = -100
+            self.rect.y = -100
+
 class Wall(pygame.sprite.Sprite):
 
     def __init__(self, x_wall, y_wall, x_width, y_length):
@@ -322,6 +347,8 @@ def countCollision(key, count, dragon, endCake): # TODO: fix this
 
 global room
 room = 0
+
+
 
 def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
     #Will play the music
@@ -474,9 +501,11 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
     global keyHints
     keyHints = False
     state = 0
+    
+    bonus_pos = []
+    bonus_pos.append((411,363))
 
-
-
+    bonus_heart = Bonus((0,0,0), "Resources/heart.png", bonus_pos[room])
     while state != 1:
 
         #Just a white screen
@@ -486,9 +515,10 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
             showKeys(dragon, screen)
         screen.blit(endCake.image, endCake)
         endCake.getCollision(dragon, dragon_choice, sound_choice, start_coords, end_coords)
+        bonus_heart.getCollision(dragon)
+        screen.blit(bonus_heart.image, bonus_heart)
 
-
-
+        
         dragon.rect.x = x_Dragon
         dragon.rect.y = y_Dragon
 
