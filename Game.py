@@ -272,18 +272,54 @@ mazes = []
 
 
 
-"""
+
 # returns True when the player is DONE colliding with a wall
 # (prevents the wallCollisionCount from constantly increasing if the player holds down a key running into the wall)
 def countCollision(key, count, dragon):
+    return
+'''
+    global x_Dragon
+    global y_Dragon
+
     while (True): # wait for KEYUP
+        screen.fill([255,255,255])
+        mazes[room].draw(screen)
+        dragon.rect.x = x_Dragon
+        dragon.rect.y = y_Dragon
         timer = pygame.time.get_ticks()
         dragon.updateAnimation(timer)
         pygame.display.update()
+
         for event in pygame.event.get():
             if event.type == KEYUP and event.key == key:
                 return count + 1
-"""
+
+            pressed = event.key
+
+            if pressed == dragon.upkey:
+                if dragon.canMove("up", mazes[room]):
+                    y_Dragon -= gamespeed
+                pygame.display.update()
+
+            if pressed == dragon.downkey:
+                if dragon.canMove("down", mazes[room]):
+                    y_Dragon += gamespeed
+                pygame.display.update()
+
+            if pressed == dragon.leftkey:
+                print "left key"
+                if dragon.canMove("left", mazes[room]):
+                    x_Dragon -= gamespeed
+                pygame.display.update()
+
+            if pressed == dragon.rightkey:
+                print "right key"
+                if dragon.canMove("right", mazes[room]):
+                   x_Dragon += gamespeed
+                pygame.display.update()
+'''
+
+
 
 
 
@@ -429,7 +465,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
     screen.blit(endCake.image, endCake)
 
 
-    knight = Hazard([255,255,255], 20, 20, "Resources/explosiongif.png", [750,750], 0)
+    # knight = Hazard([255,255,255], 20, 20, "Resources/explosiongif.png", [750,750], 0) # TODO: uncomment
 
 
     global state
@@ -461,10 +497,11 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
 
 
 
-        screen.blit(knight.image, knight)
-        knight.rect.x = 400
-        knight.rect.y = 400
-        knight.getCollision(dragon)
+        # screen.blit(knight.image, knight)
+        # knight.rect.x = 400
+        # knight.rect.y = 400
+        # knight.getCollision(dragon)
+        # TODO: uncomment this
 
 
 
