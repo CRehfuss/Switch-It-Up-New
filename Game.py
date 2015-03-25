@@ -436,7 +436,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
        # [30, 440, 640, 5], #bottom
        # [30, 30, 640, 5], #top
        # [670, 30, 5, 415 ], #right
-        [-10, 450, 710, 10],
+        [-10, 450, 740, 10],
         [-10, 385, 532, 10],
         [585, 385, 60, 10],
         [30, 385, 490, 10],
@@ -468,7 +468,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
         #[30, 440, 640, 5], #bottom
         #[30, 30, 640, 5], #top
        # [670, 30, 5, 415 ], #right
-        [-10, 450, 710, 10],
+        [-10, 450, 740, 10],
         [95, 393, 10, 60],
         [-10, 330, 170, 10],
         [160, 330, 10, 54],
@@ -534,6 +534,8 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
     
     bonus_pos = []
     bonus_pos.append((411,363))
+    bonus_pos.append((574,62))
+    bonus_pos.append((641,343))
 
     bonus_heart = Bonus((0,0,0), "Resources/heart.png", bonus_pos[room])
     while state != 1:
