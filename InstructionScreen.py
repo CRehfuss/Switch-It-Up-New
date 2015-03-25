@@ -7,18 +7,18 @@ from pygame.locals import *
 
 def Instructions(sound_choice):
 
-    screen = pygame.display.set_mode([700, 530])
-    background = pygame.image.load("instructionscreen.jpg").convert()
+    screen = pygame.display.set_mode([720, 540])
+    background = pygame.image.load("howtoplayNEW.jpg").convert()
     click_sound = pygame.mixer.Sound('click.wav')
 
     class Button(pygame.sprite.Sprite):
 
         def __init__(self, location):
             pygame.sprite.Sprite.__init__(self)
-            self.rect = Rect(location, (195, 95))
+            self.rect = Rect(location, (125, 55))
 
 
-    backBtn = Button((410, 345))
+    backBtn = Button((275, 425))
     state = 0
 
     while state != 1:

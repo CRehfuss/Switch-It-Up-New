@@ -4,7 +4,7 @@ import pygame, random, Game
 from pygame.locals import *
 #from Game import *
 
-screen = pygame.display.set_mode([700, 530])
+screen = pygame.display.set_mode([720, 540])
 background = pygame.image.load("win.jpg").convert()
 
 

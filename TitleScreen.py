@@ -4,20 +4,21 @@ import pygame, random, InstructionScreen, Game, key_mapping, SettingsScreen
 from pygame.locals import *
 #from Game import *
 
-screen = pygame.display.set_mode([700, 530])
-background = pygame.image.load("titlescreen.jpg").convert()
+screen = pygame.display.set_mode([720, 540])
+background = pygame.image.load("titlescreenNEW.jpg").convert()
 
 class Button(pygame.sprite.Sprite):
 
-    def __init__(self, location):
+    def __init__(self, location, size):
         pygame.sprite.Sprite.__init__(self)
-        self.rect = Rect(location, (180, 110))
+        self.rect = Rect(location, size)
 
 
 
-startBtn = Button((55, 275))
-instructBtn = Button((260, 275))
-settingsBtn = Button((455, 275))
+startBtn = Button((255, 195), (200, 80))
+instructBtn = Button((280, 300), (155, 60))
+settingsBtn = Button((95, 300), (155, 60))
+aboutBtn = Button((460, 300), (155, 60))
 state = 0
 
 dragon_choice = "orange"

@@ -8,8 +8,8 @@ from pygame.locals import *
 
 def Settings():
     click_Sound = pygame.mixer.Sound('click.wav')
-    screen = pygame.display.set_mode([700, 530])
-    background = pygame.image.load("SettingsScreen.png").convert()
+    screen = pygame.display.set_mode([720, 540])
+    background = pygame.image.load("settingsNEW.jpg").convert()
     dragon_choice = "orange"
     sound_choice = 1
     #The button class, simply puts it on the screen
@@ -20,14 +20,14 @@ def Settings():
             pygame.sprite.Sprite.__init__(self)
             self.rect = Rect(location, size)
             
-    redDragBtn = Button((50, 113), (120, 105))
-    orangeDragBtn = Button((205,115), (120, 105))
-    bandgDragBtn = Button((355, 116), (120, 105))
-    blkDragBtn = Button((524,118), (120, 105))
+    redDragBtn = Button((90, 170), (115, 110))
+    orangeDragBtn = Button((225, 170), (115, 105))
+    bandgDragBtn = Button((370, 170), (120, 105))
+    blkDragBtn = Button((510, 170), (120, 105))
     
-    onBtn = Button((261,315), (85, 70))
-    offBtn = Button((353,313), (85, 70))
-    backBtn = Button((490,446), (200, 75))
+    onBtn = Button((345, 340), (85, 60))
+    offBtn = Button((255, 340), (75, 60))
+    backBtn = Button((275, 425), (125, 55))
     state = 0
 
     while state != 1:

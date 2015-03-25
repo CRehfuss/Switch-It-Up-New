@@ -10,8 +10,8 @@ from pygame.locals import *
 
 pygame.init()
 
-screenwidth = 700
-screenheight = 530
+screenwidth = 720
+screenheight = 540
 
 screen = pygame.display.set_mode([screenwidth,screenheight])
 pygame.display.set_caption("Switch It Up")
@@ -499,7 +499,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
     screen.blit(endCake.image, endCake)
 
 
-    knight = Hazard([255,255,255], 20, 20, "Resources/explosiongif.png", [750,750], 0)
+   # knight = Hazard([255,255,255], 20, 20, "Resources/explosiongif.png", [750,750], 0) # TODO: uncomment when file is present
 
 
     global state
@@ -535,10 +535,10 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
 
 
 
-        screen.blit(knight.image, knight)
-        knight.rect.x = 400
-        knight.rect.y = 400
-        knight.getCollision(dragon)
+        # screen.blit(knight.image, knight) # TODO: uncomment when explosion is uncommented
+        # knight.rect.x = 400
+        # knight.rect.y = 400
+        # knight.getCollision(dragon)
 
 
         print(x_Dragon)
