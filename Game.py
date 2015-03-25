@@ -312,26 +312,16 @@ mazes = []
 
 # returns True when the player is DONE colliding with a wall
 # (prevents the wallCollisionCount from constantly increasing if the player holds down a key running into the wall)
-def countCollision(key, count, dragon, endCake): # TODO: fix this
+def countCollision(key, count, background, dragon, endCake, bonus_heart, dragon_choice, sound_choice, start_coords, end_coords):
     global x_Dragon
     global y_Dragon
     global gamespeed
 
     while (True): # wait for KEYUP
-        screen.fill([255,255,255])
-        mazes[room].draw(screen)
-        screen.blit(endCake.image, endCake)
-        # Bottom display
-        for i in range (0, livesLeft): # Displays as many hearts as lives left
-            heart = BottomDisplayImage("Resources/heart.png",(30, 30), (115 + (i * 35), 475))
-            screen.blit(heart.image, heart)
-        livesLeftText = BottomDisplayImage ("Resources/livesLeftText.png", (110, 28), (10, 475))
-        screen.blit(livesLeftText.image, livesLeftText)
-        dragon.rect.x = x_Dragon
-        dragon.rect.y = y_Dragon
-        timer = pygame.time.get_ticks()
-        dragon.updateAnimation(timer)
-        pygame.display.update()
+
+        showEverything(background, dragon, endCake, bonus_heart)
+        endCake.getCollision(dragon, dragon_choice, sound_choice, start_coords, end_coords)
+        bonus_heart.getCollision(dragon)
 
         pressed = pygame.key.get_pressed()
 
@@ -355,12 +345,42 @@ def countCollision(key, count, dragon, endCake): # TODO: fix this
             if event.type == KEYUP and event.key == key:
                 return count + 1
 
+def showEverything(background, dragon, endCake, bonus_heart):
+
+    global x_Dragon
+    global y_Dragon
+    global gamespeed
+    global keyHints
+
+    screen.blit(background, [0,0])
+    mazes[room].draw(screen)
+    screen.blit(endCake.image, endCake)
+    screen.blit(bonus_heart.image, bonus_heart)
+    # Bottom display
+    for i in range (0, livesLeft): # Displays as many hearts as lives left
+        heart = BottomDisplayImage("Resources/heart.png",(30, 30), (115 + (i * 35), 475))
+        screen.blit(heart.image, heart)
+    livesLeftText = BottomDisplayImage ("Resources/livesLeftText.png", (110, 28), (10, 475))
+    screen.blit(livesLeftText.image, livesLeftText)
+    if keyHints:
+        showKeys(dragon, screen)
+    dragon.rect.x = x_Dragon
+    dragon.rect.y = y_Dragon
+    timer = pygame.time.get_ticks()
+    dragon.updateAnimation(timer)
+    pygame.display.update()
+
+
 
 
 global room
 room = 0
 
 def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
+
+    # Background
+    background = pygame.image.load("gameNEW.jpg").convert()
+
     #Will play the music
     if(sound_choice == 1):
         #print "sound choice is 1 should be jamming"
@@ -486,13 +506,13 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
     #Looks at the players choice of dragon and goes and gets that picture
     #And changes width/height accordingly
     if(dragon_choice=="orange"):
-        dragon = Player((255,255,255), 36, 32, "Resources/OrangeDragon.png", [x_Dragon, y_Dragon], 0)
+        dragon = Player((255,255,255), 36, 32, "Resources/orangeNEW.png", [x_Dragon, y_Dragon], 0)
     elif(dragon_choice=="black"):
-        dragon = Player((255,255,255), 36, 32, "Resources/BlackDragon.png", [x_Dragon, y_Dragon], 0)
+        dragon = Player((255,255,255), 36, 32, "Resources/blackNEW.png", [x_Dragon, y_Dragon], 0)
     elif(dragon_choice=="red"):
-        dragon = Player((255,255,255), 36, 32, "Resources/RedDragon.png", [x_Dragon, y_Dragon], 0)
+        dragon = Player((255,255,255), 36, 32, "Resources/redNEW.png", [x_Dragon, y_Dragon], 0)
     elif(dragon_choice=="greenandblue"):
-        dragon = Player((255,255,255), 36, 32, "Resources/GreenAndBlueDragon.png", [x_Dragon, y_Dragon], 0)
+        dragon = Player((255,255,255), 36, 32, "Resources/greenNEW.png", [x_Dragon, y_Dragon], 0)
 
     endCake = EndMarker((225,255,255), "Resources/Cake.png",  end_coords[room])
     screen.blit(dragon.image, dragon)
@@ -518,51 +538,24 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
     bonus_heart = Bonus((0,0,0), "Resources/heart.png", bonus_pos[room])
     while state != 1:
 
-        #Just a white screen
-        screen.fill([255,255,255])
-         #create the dragon image
-        if keyHints:
-            showKeys(dragon, screen)
-        screen.blit(endCake.image, endCake)
+        showEverything(background, dragon, endCake, bonus_heart) # TODO: put everything here
+
         endCake.getCollision(dragon, dragon_choice, sound_choice, start_coords, end_coords)
         bonus_heart.getCollision(dragon)
-        screen.blit(bonus_heart.image, bonus_heart)
-
-
 
         dragon.rect.x = x_Dragon
         dragon.rect.y = y_Dragon
-
-
 
         # screen.blit(knight.image, knight) # TODO: uncomment when explosion is uncommented
         # knight.rect.x = 400
         # knight.rect.y = 400
         # knight.getCollision(dragon)
 
-
         print(x_Dragon)
         print(" , ")
         print(y_Dragon)
         print("\n")
 
-
-        timer = pygame.time.get_ticks()
-
-        dragon.updateAnimation(timer)
-
-        mazes[room].draw(screen)
-
-
-        # Bottom display
-        for i in range (0, livesLeft): # Displays as many hearts as lives left
-            heart = BottomDisplayImage("Resources/heart.png",(30, 30), (115 + (i * 35), 475))
-            screen.blit(heart.image, heart)
-        livesLeftText = BottomDisplayImage ("Resources/livesLeftText.png", (110, 28), (10, 475))
-        screen.blit(livesLeftText.image, livesLeftText)
-
-
-        pygame.display.update()
 
         keypressed = pygame.key.get_pressed()
 
@@ -603,7 +596,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
                 if(sound_choice==1):
                     collision_Sound.play()
                 if keyHints == False:
-                    wallCollisionCount = countCollision(dragon.upkey, wallCollisionCount, dragon, endCake)
+                    wallCollisionCount = countCollision(dragon.upkey, wallCollisionCount, background, dragon, endCake, bonus_heart, dragon_choice, sound_choice, start_coords, end_coords)
 
         if keypressed[dragon.downkey]:
             if dragon.canMove("down", mazes[room]):
@@ -612,7 +605,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
                 if(sound_choice==1):
                     collision_Sound.play()
                 if keyHints == False:
-                    wallCollisionCount = countCollision(dragon.downkey, wallCollisionCount, dragon, endCake)
+                    wallCollisionCount = countCollision(dragon.downkey, wallCollisionCount, background, dragon, endCake, bonus_heart, dragon_choice, sound_choice, start_coords, end_coords)
 
         if keypressed[dragon.leftkey]:
             if dragon.canMove("left", mazes[room]):
@@ -621,7 +614,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
                 if(sound_choice==1):
                     collision_Sound.play()
                 if keyHints == False:
-                    wallCollisionCount = countCollision(dragon.leftkey, wallCollisionCount, dragon, endCake)
+                    wallCollisionCount = countCollision(dragon.leftkey, wallCollisionCount, background, dragon, endCake, bonus_heart, dragon_choice, sound_choice, start_coords, end_coords)
 
 
         if keypressed[dragon.rightkey]:
@@ -631,7 +624,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
                 if(sound_choice==1):
                     collision_Sound.play()
                 if keyHints == False:
-                    wallCollisionCount = countCollision(dragon.rightkey, wallCollisionCount, dragon, endCake)
+                    wallCollisionCount = countCollision(dragon.rightkey, wallCollisionCount, background, dragon, endCake, bonus_heart, dragon_choice, sound_choice, start_coords, end_coords)
 
         if keyHints == False and wallCollisionCount >= 5:
             keyHints = True
