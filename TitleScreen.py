@@ -22,7 +22,7 @@ aboutBtn = Button((460, 300), (155, 60))
 state = 0
 
 dragon_choice = "orange"
-sound_choice = 0#TYLER CHANGED THIS TO 0, It's annoying af- Tyler
+sound_choice = 1#TYLER CHANGED THIS TO 0, It's annoying af- Tyler #NO WHY STOP
 click_sound = pygame.mixer.Sound('click.wav')
 while state != 1:
     screen.blit(background, [0,0])
@@ -31,20 +31,17 @@ while state != 1:
         print "start button"
         if (sound_choice == 1):
             click_sound.play()
-            print "click"
         Game.PlayGame(35, 370, dragon_choice, sound_choice)
         state = 1
     if pygame.mouse.get_pressed()[0] and instructBtn.rect.collidepoint(pygame.mouse.get_pos()):
         print "instruction button"
         if(sound_choice == 1):
             click_sound.play()
-            print "click"
         InstructionScreen.Instructions(sound_choice)
     if pygame.mouse.get_pressed()[0] and aboutBtn.rect.collidepoint(pygame.mouse.get_pos()):
         print "about button"
         if(sound_choice == 1):
             click_sound.play()
-            print "click"
         AboutScreen.About(sound_choice)
     if pygame.mouse.get_pressed()[0] and settingsBtn.rect.collidepoint(pygame.mouse.get_pos()):
         print "settings button"
