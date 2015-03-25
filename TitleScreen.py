@@ -21,7 +21,7 @@ settingsBtn = Button((455, 275))
 state = 0
 
 dragon_choice = "orange"
-sound_choice = 1 
+sound_choice = 0#TYLER CHANGED THIS TO 0, It's annoying af- Tyler
 click_sound = pygame.mixer.Sound('click.wav')
 while state != 1:
     screen.blit(background, [0,0])

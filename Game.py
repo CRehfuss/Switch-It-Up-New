@@ -16,7 +16,24 @@ screenheight = 530
 screen = pygame.display.set_mode([screenwidth,screenheight])
 pygame.display.set_caption("Switch It Up")
 
+global livesLeft
 livesLeft = 3 # Number of lives starts at 3
+
+#This is the location of the enemy at the start- corresponds to a location in an array (enemycoords)
+enemypos = 0
+
+#This is the array that holds the coordinates that the enemy will jump to
+enemycoords = []
+level1 = []
+level1.append((664,410))
+level1.append((384,410))
+level1.append((346,0))
+level1.append((0,0))
+
+enemycoords.append(level1)
+#The locations for the enemy in the next two levels will be put below
+
+
 
 x_Dragon = 35
 y_Dragon = 370
@@ -39,7 +56,8 @@ def AnimationImages(width, height, filename): #defining a function have to do it
         
     return images
 
-
+#This function displays the keys which control the avatar in the bottom left hand corner
+#needs the initialized dragon (avatar) and the screen for it to be blitted on
 def showKeys(avatar, screens):
 
 
@@ -120,7 +138,8 @@ class Player(pygame.sprite.Sprite):
 
 
 
-    #tests if 3 points on the box will hit a wall depending on what direction the player wants to move
+    #tests if 4 points on the box will hit a wall depending on what direction the player wants to move
+    # TO DO: add more check for the points
     def canMove(self, direction, maze):
 
         global x_Dragon
@@ -161,24 +180,29 @@ class Player(pygame.sprite.Sprite):
         screen.blit(self.image, self)
 
 
-class Hazard(Player):
-    #this should have Player as its parent class, as of now I don't know how to do that- will work on it
+class Hazard(Player): # TODO: Change this so it doesn't destroy all your lives in one go
+
+
+    #The enemy will now jump around the screen when you hit it, as opposed to just moving the player around it
+    #This gets rid of the need to do collisions for this object
     def getCollision(self, dragon):
 
         collision_Sound = pygame.mixer.Sound('Dragon_roar.wav')
 
+
         if pygame.sprite.collide_rect(self, dragon):
-            print("hit")
-            dragon.lives - 1
-            collision_Sound.play()
-            if dragon.rect.x > self.width/2:
-                x_Dragon  = self.rect.right + gamespeed
-            if dragon.rect.x < self.width/2:
-                x_Dragon = self.rect.left - self.width - gamespeed
-            if dragon.rect.y + dragon.height > self.height/2:
-                y_Dragon = self.rect.top - dragon.height - gamespeed
-            if dragon.rect.y > self.height/2:
-                y_Dragon = self.rect.bottom + gamespeed
+            global livesLeft
+            global enemypos
+            global room
+
+
+            enemypos += 1
+            if enemypos > len(enemycoords[room]) -1:
+                enemypos = 0
+
+            self.rect.x = enemycoords[room][enemypos][0]
+            self.rect.y = enemycoords[room][enemypos][1]
+            livesLeft += -1
 
 
 
@@ -249,16 +273,19 @@ class EndMarker(pygame.sprite.Sprite):
                 PlayGame(start_coords[room][0], start_coords[room][1], dragon_choice, sound_choice)
         
 
-class Bonus(EndMarker):      
-    
 
-        
+
+
+class Bonus(EndMarker):
+
     def getCollision(self, theDragon):
         if pygame.sprite.collide_rect(self, theDragon):
             global livesLeft
             livesLeft += 1
             self.rect.x = -100
             self.rect.y = -100
+
+
 
 class Wall(pygame.sprite.Sprite):
 
@@ -333,15 +360,13 @@ def countCollision(key, count, dragon, endCake): # TODO: fix this
 global room
 room = 0
 
-
-
 def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
     #Will play the music
     if(sound_choice == 1):
-        print "sound choice is 1 should be jamming"
+        #print "sound choice is 1 should be jamming"
         bg_music = pygame.mixer.music
         bg_music.load('background_music.wav')
-        print "should play music"
+        #print "should play music"
         #-1 will loop indefinitely, otherwise number will be numb loops after first play through
         # 0.0 the time where the wav begins playing
         bg_music.play(-1, 0.0)
@@ -474,7 +499,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
     screen.blit(endCake.image, endCake)
 
 
-    # knight = Hazard([255,255,255], 20, 20, "Resources/explosiongif.png", [750,750], 0) # TODO: uncomment
+    knight = Hazard([255,255,255], 20, 20, "Resources/explosiongif.png", [750,750], 0)
 
 
     global state
@@ -503,20 +528,23 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
         bonus_heart.getCollision(dragon)
         screen.blit(bonus_heart.image, bonus_heart)
 
-        
+
+
         dragon.rect.x = x_Dragon
         dragon.rect.y = y_Dragon
 
 
 
-        # screen.blit(knight.image, knight)
-        # knight.rect.x = 400
-        # knight.rect.y = 400
-        # knight.getCollision(dragon)
-        # TODO: uncomment this
+        screen.blit(knight.image, knight)
+        knight.rect.x = 400
+        knight.rect.y = 400
+        knight.getCollision(dragon)
 
 
-
+        print(x_Dragon)
+        print(" , ")
+        print(y_Dragon)
+        print("\n")
 
 
         timer = pygame.time.get_ticks()
@@ -577,7 +605,6 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
                 if keyHints == False:
                     wallCollisionCount = countCollision(dragon.upkey, wallCollisionCount, dragon, endCake)
 
-
         if keypressed[dragon.downkey]:
             if dragon.canMove("down", mazes[room]):
                 y_Dragon += gamespeed
@@ -595,7 +622,6 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
                     collision_Sound.play()
                 if keyHints == False:
                     wallCollisionCount = countCollision(dragon.leftkey, wallCollisionCount, dragon, endCake)
-
 
 
         if keypressed[dragon.rightkey]:
