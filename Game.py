@@ -391,7 +391,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
         [94, 82, 10, 190],
         [94, 272, 440, 10],
         [528, 140, 10, 142],
-        [-10, 450, 710, 10],
+        [-10, 450, 730, 10], # 730 changed from 710 (to account for wider screen)
         [160, 140, 375, 10],
         [160, 140, 10, 65],
         [160, 200, 300, 10]
