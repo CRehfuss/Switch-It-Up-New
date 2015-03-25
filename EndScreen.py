@@ -5,19 +5,19 @@ from pygame.locals import *
 #from Game import *
 
 screen = pygame.display.set_mode([720, 540])
-background = pygame.image.load("win.jpg").convert()
+background = pygame.image.load("winNEW.jpg").convert()
 
 
 class Button(pygame.sprite.Sprite):
 
     def __init__(self, location):
         pygame.sprite.Sprite.__init__(self)
-        self.rect = Rect(location, (200, 90))
+        self.rect = Rect(location, (200, 80))
 
 def YouWin(dragon_choice, sound_choice):
 
-    replayBtn = Button((115, 285))
-    quitBtn = Button((365, 285))
+    replayBtn = Button((135, 240))
+    quitBtn = Button((385, 240))
     state = 0
     click_sound = pygame.mixer.Sound('click.wav')
     while state != 1:
