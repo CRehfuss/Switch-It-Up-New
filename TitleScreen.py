@@ -1,6 +1,6 @@
 __author__ = 'danielleconnolly'
 
-import pygame, random, InstructionScreen, Game, key_mapping, SettingsScreen
+import pygame, random, InstructionScreen, Game, key_mapping, SettingsScreen, AboutScreen
 from pygame.locals import *
 #from Game import *
 
@@ -29,17 +29,23 @@ while state != 1:
     pygame.display.update()
     if pygame.mouse.get_pressed()[0] and startBtn.rect.collidepoint(pygame.mouse.get_pos()):
         print "start button"
-        if (sound_choice ==1):
+        if (sound_choice == 1):
             click_sound.play()
             print "click"
         Game.PlayGame(35, 370, dragon_choice, sound_choice)
         state = 1
     if pygame.mouse.get_pressed()[0] and instructBtn.rect.collidepoint(pygame.mouse.get_pos()):
         print "instruction button"
-        if(sound_choice ==1):
+        if(sound_choice == 1):
             click_sound.play()
             print "click"
         InstructionScreen.Instructions(sound_choice)
+    if pygame.mouse.get_pressed()[0] and aboutBtn.rect.collidepoint(pygame.mouse.get_pos()):
+        print "about button"
+        if(sound_choice == 1):
+            click_sound.play()
+            print "click"
+        AboutScreen.About(sound_choice)
     if pygame.mouse.get_pressed()[0] and settingsBtn.rect.collidepoint(pygame.mouse.get_pos()):
         print "settings button"
         if(sound_choice==1):
