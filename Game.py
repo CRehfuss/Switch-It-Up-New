@@ -4,7 +4,6 @@
 import random, key_mapping, EndScreen
 import pygame
 from pygame.locals import *
-from Alpha_Release.Game import mazes
 
 
 
@@ -41,7 +40,7 @@ level2.append((0,150))
 level2.append((104,260))
 
 level3.append((0,0))
-evel3.append((304,216))
+level3.append((304,216))
 level3.append((684,208))
 level3.append((430, 208))
 level3.append((106,208))
@@ -586,6 +585,35 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
     start_coords.append((473,411))
     end_coords.append((263, 146))
 
+    wall_list_5 = pygame.sprite.Group()
+    wall_5 = [#[30, 30, 5, 410], #left
+        #[30, 440, 640, 5], #bottom
+        #[30, 30, 640, 5], #top
+       # [670, 30, 5, 415 ], #right
+        [-10, 450, 740, 10],
+        [-10, 265, 110, 10],
+        [100, 265, 10, 90],
+        [190, 170, 10, 280],
+        [100, 170, 300, 10],
+        [100, 75, 10, 100],
+        [190, 75, 410, 10],
+        [518, 80, 10, 290],
+        [390, -10, 10, 90],
+        [290, 290, 230, 10],
+        [290, 290, 10, 80],
+        [400, 370, 10, 80],
+        [518, 365, 90, 10],
+        [600, 165, 100, 10],
+        [600, 165, 10, 100],
+        
+        ] #start 49, 314 #end 441,31
+        # add each part of wall to a list
+    for var in wall_5:
+        wall = Wall(var[0], var[1], var[2], var[3])
+        wall_list_5.add(wall)
+    mazes.append(wall_list_5)
+    start_coords.append((49,314))
+    end_coords.append((441,31))
     
     #just a testing screen
     wall_list_test = pygame.sprite.Group()
@@ -629,6 +657,8 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
     bonus_pos.append((574,62))
     bonus_pos.append((641,343))
     bonus_pos.append((359,32))
+    bonus_pos.append((653, 206))
+
 
     bonus_heart = Bonus((0,0,0), "Resources/heart.png", bonus_pos[room])
     while state != 1:
