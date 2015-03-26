@@ -95,7 +95,8 @@ for y in range(0,100):
 
 x_Dragon = 35
 y_Dragon = 370
-gamespeed = 3
+
+gamespeed = 4
 state = 0
 coll = 0
 
