@@ -107,7 +107,7 @@ def showKeys(avatar, screens):
     leftstring = "Resources/keys/" + keystr[2] + ".jpg"
     rightstring = "Resources/keys/" + keystr[3] + ".jpg"
 
-    keyLocations = [[630, 465], [630, 505], [610, 485], [650, 485]] # up, down, left, right
+    keyLocations = [[663, 460], [687, 479], [674, 498], [684, 517]] # up, down, left, right
 
 
     screens.blit(pygame.image.load(upstring).convert_alpha(), keyLocations[0])
@@ -405,12 +405,16 @@ def showEverything(background, dragon, endCake, bonus_heart, knight):
 
 
     # Bottom display
+    bottomRect = BottomDisplayImage("Resources/whiterect.png", (750, 100), (-10, 457))
+    screen.blit(bottomRect.image, bottomRect)
     for i in range (0, livesLeft): # Displays as many hearts as lives left
         heart = BottomDisplayImage("Resources/heart.png",(30, 30), (115 + (i * 35), 475))
         screen.blit(heart.image, heart)
     livesLeftText = BottomDisplayImage ("Resources/livesLeftText.png", (110, 28), (10, 475))
     screen.blit(livesLeftText.image, livesLeftText)
     if keyHints:
+        hintText = BottomDisplayImage("Resources/directiontext.png", (133, 80), (560, 457))
+        screen.blit(hintText.image, hintText)
         showKeys(dragon, screen)
     dragon.rect.x = x_Dragon
     dragon.rect.y = y_Dragon
