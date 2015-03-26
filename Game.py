@@ -4,6 +4,7 @@
 import random, key_mapping, EndScreen
 import pygame
 from pygame.locals import *
+from Alpha_Release.Game import mazes
 
 
 
@@ -262,9 +263,9 @@ class EndMarker(pygame.sprite.Sprite):
     def getCollision(self, theDragon, dragon_choice, sound_choice, start_coords, end_coords):
         if pygame.sprite.collide_rect(self, theDragon):
 
-            global state, room, livesLeft
+            global state, room, livesLeft, mazes
             livesLeft = 3
-            if room == 3:
+            if room == len(mazes):
                 state = 1
                 room = 0
                 EndScreen.YouWin(dragon_choice, sound_choice)
@@ -303,7 +304,6 @@ class Wall(pygame.sprite.Sprite):
         self.rect.x = x_wall
         self.rect.y = y_wall
 
-mazes = []
 # implementation inspired by simpson college CS
 
 
@@ -372,6 +372,8 @@ def showEverything(background, dragon, endCake, bonus_heart):
 
 
 
+global mazes
+mazes = []
 
 global room
 room = 0
@@ -564,7 +566,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
     state = 0
     
     bonus_pos = []
-    bonus_pos.append((411,357))
+    bonus_pos.append((411,363))
     bonus_pos.append((574,62))
     bonus_pos.append((641,343))
     bonus_pos.append((359,32))
