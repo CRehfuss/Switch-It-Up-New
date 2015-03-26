@@ -264,7 +264,7 @@ class EndMarker(pygame.sprite.Sprite):
 
             global state, room, livesLeft
             livesLeft = 3
-            if room == 2:
+            if room == 3:
                 state = 1
                 room = 0
                 EndScreen.YouWin(dragon_choice, sound_choice)
@@ -495,6 +495,37 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
     mazes.append(wall_list_3)
     start_coords.append((41,404))
     end_coords.append((537,341))
+
+
+    wall_list_4 = pygame.sprite.Group()
+    wall_4 = [#[30, 30, 5, 410], #left
+        #[30, 440, 640, 5], #bottom
+        #[30, 30, 640, 5], #top
+       # [670, 30, 5, 415 ], #right
+        [-10, 450, 740, 10],
+        [440, 320, 10, 140],
+        [440, 385, 170, 10],
+        [607, 66, 10, 329],
+        [320, 320, 120, 10],
+        [520, 70, 10, 250],
+        [220, 175, 310, 10],
+        [220, 120, 10, 260],
+        [300, -10, 10, 190],
+        [410, -10, 10, 90],
+        [100, 380, 222, 10],
+        [-10, 130, 113, 10],
+        [100, 130, 10, 105],
+        [-10, 305, 110, 10],
+        ] #end 263, 146 #start 473, 422
+        # add each part of wall to a list
+    for var in wall_4:
+        wall = Wall(var[0], var[1], var[2], var[3])
+        wall_list_4.add(wall)
+    mazes.append(wall_list_4)
+    start_coords.append((473,411))
+    end_coords.append((263, 146))
+
+    
     #just a testing screen
     wall_list_test = pygame.sprite.Group()
     wall_test = [[400, 90, 90, 10], [60, 400, 5, 400]]
@@ -533,9 +564,10 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
     state = 0
     
     bonus_pos = []
-    bonus_pos.append((411,363))
+    bonus_pos.append((411,357))
     bonus_pos.append((574,62))
     bonus_pos.append((641,343))
+    bonus_pos.append((359,32))
 
     bonus_heart = Bonus((0,0,0), "Resources/heart.png", bonus_pos[room])
     while state != 1:
