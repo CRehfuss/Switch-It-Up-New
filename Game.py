@@ -1,8 +1,9 @@
 #Main file
 
 
-import random, key_mapping, EndScreen, LoseScreen
+import random, key_mapping, EndScreen, LoseScreen, BackScreen
 import pygame
+import pygame.mixer
 from pygame.locals import *
 
 
@@ -156,7 +157,7 @@ def showKeys(avatar, screens):
     leftstring = "Resources/keys/" + keystr[2] + ".jpg"
     rightstring = "Resources/keys/" + keystr[3] + ".jpg"
 
-    keyLocations = [[653, 462], [687, 492], [670, 522], [685, 550]] # up, down, left, right
+    keyLocations = [[593, 462], [627, 492], [610, 522], [625, 550]] # up, down, left, right
 
 
     screens.blit(pygame.image.load(upstring).convert_alpha(), keyLocations[0])
@@ -395,7 +396,7 @@ def countCollision(key, count, background, dragon, endCake, bonus_heart, dragon_
 
     while (True): # wait for KEYUP
 
-        showEverything(background, dragon, endCake, bonus_heart, knight)
+        showEverything(background, dragon, endCake, bonus_heart, knight, dragon_choice, sound_choice)
         endCake.getCollision(dragon, dragon_choice, sound_choice, start_coords, end_coords)
         bonus_heart.getCollision(dragon)
         if (checkLost(dragon_choice, sound_choice)):
@@ -439,7 +440,7 @@ def countCollision(key, count, background, dragon, endCake, bonus_heart, dragon_
             y_Dragon = 0
 
 
-def showEverything(background, dragon, endCake, bonus_heart, knight):
+def showEverything(background, dragon, endCake, bonus_heart, knight, dragon_choice, sound_choice):
 
     global x_Dragon
     global y_Dragon
@@ -466,8 +467,10 @@ def showEverything(background, dragon, endCake, bonus_heart, knight):
         screen.blit(heart.image, heart)
     livesLeftText = BottomDisplayImage ("Resources/livesLeftText.png", (110, 28), (10, 475))
     screen.blit(livesLeftText.image, livesLeftText)
+    back = BottomDisplayImage("Resources/backarrow.png", (30, 30), (680, 540))
+    screen.blit(back.image, back)
     if keyHints:
-        hintText = BottomDisplayImage("Resources/directiontext.png", (200, 120), (500, 457))
+        hintText = BottomDisplayImage("Resources/directiontext.png", (200, 120), (440, 457))
         screen.blit(hintText.image, hintText)
         showKeys(dragon, screen)
     dragon.rect.x = x_Dragon
@@ -475,6 +478,10 @@ def showEverything(background, dragon, endCake, bonus_heart, knight):
     timer = pygame.time.get_ticks()
     dragon.updateAnimation(timer)
     pygame.display.update()
+
+    if pygame.mouse.get_pressed()[0] and back.rect.collidepoint(pygame.mouse.get_pos()):
+        BackScreen.Title(dragon_choice, sound_choice)
+        state = 1
 
             #Stops the Player from running off the screen
     if x_Dragon > screenwidth - dragon.width:
@@ -689,7 +696,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
     #Looks at the players choice of dragon and goes and gets that picture
     #And changes width/height accordingly
     if(dragon_choice=="orange"):
-        dragon = Player((255,255,255), 36, 32, "Resources/orangeNEW.png", [x_Dragon, y_Dragon], 0)
+        dragon = Player((255,255,255), 36, 32, "Resources/orangeNEW.png", [x_Dragon, y_Dragon], 3)
     elif(dragon_choice=="black"):
         dragon = Player((255,255,255), 36, 32, "Resources/blackNEW.png", [x_Dragon, y_Dragon], 0)
     elif(dragon_choice=="red"):
@@ -727,7 +734,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
     bonus_heart = Bonus((0,0,0), "Resources/heart.png", bonus_pos[room])
     while state != 1:
 
-        showEverything(background, dragon, endCake, bonus_heart, knight) # TODO: put everything here
+        showEverything(background, dragon, endCake, bonus_heart, knight, dragon_choice, sound_choice)
 
         endCake.getCollision(dragon, dragon_choice, sound_choice, start_coords, end_coords)
         bonus_heart.getCollision(dragon)
