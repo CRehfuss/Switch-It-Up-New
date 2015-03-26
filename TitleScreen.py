@@ -52,7 +52,7 @@ while state != 1:
         print "settings button"
         if(sound_choice==1):
             click_sound.play()
-        dragon_choice, sound_choice = SettingsScreen.Settings()
+        dragon_choice, sound_choice = SettingsScreen.Settings(dragon_choice, sound_choice)
     for event in pygame.event.get():
         if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
             state = 1

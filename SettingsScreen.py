@@ -6,13 +6,12 @@ import pygame, random
 from pygame.locals import *
 #from Game import *
 
-def Settings():
+def Settings(dragon_choice,sound_choice):
     click_Sound = pygame.mixer.Sound('click.wav')
     screen = pygame.display.set_mode([720, 580])
     background = pygame.image.load("settingsNEW.jpg").convert()
     color = pygame.image.load("color.jpg").convert()
-    dragon_choice = "orange"
-    sound_choice = 1
+
     #The button class, simply puts it on the screen
 
     class Button(pygame.sprite.Sprite):
