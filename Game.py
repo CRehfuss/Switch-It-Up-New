@@ -4,6 +4,7 @@
 import random, key_mapping, EndScreen
 import pygame
 from pygame.locals import *
+from Alpha_Release.Game import mazes
 
 
 
@@ -114,33 +115,33 @@ def showKeys(avatar, screens):
 
 #The Implementation of Player class should follow
 class Player(pygame.sprite.Sprite):
-
+    
     def __init__(self, color, width, height, filename, location, difficulty):
         # call parent class constructor
         pygame.sprite.Sprite.__init__(self)
         self.width = width
         self.height = height
-
+        
         # load the image, converting the pixel format for optimization
         self.all_images = AnimationImages(width,height,filename)
-
+        
         # delay is time between animation frames
-        # last_update saves the time the animation was last updated
+        # last_update saves the time the animation was last updated     
         self.delay = 100
         self.last_update = 0
-
+        
          # frame is the array location in images
         self.frame = 0
         self.location = location
-
+        
         # sets the animations current image
         self.image = self.all_images[self.frame]
-        self.image.set_colorkey(color)
-        self.rect = self.image.get_rect()
+        self.image.set_colorkey(color) 
+        self.rect = self.image.get_rect()       
 
         # position the image
         #self.Reset(self)
-
+       
         self.rect.x = 0
         self.rect.y = 0
 
@@ -149,10 +150,10 @@ class Player(pygame.sprite.Sprite):
 
 
         self.upkey, self.downkey, self.leftkey, self.rightkey = key_mapping.getKeys(difficulty)
-
+        
         # sets the lives to three
         self.lives = 3
-
+    
     def getNumLives(self):
         return self.lives
 
@@ -283,8 +284,10 @@ class EndMarker(pygame.sprite.Sprite):
         if pygame.sprite.collide_rect(self, theDragon):
             enemypos  = 0
             global state, room, livesLeft
+
+            global state, room, livesLeft, mazes
             livesLeft = 3
-            if room == 2:
+            if room == len(mazes):
                 state = 1
                 room = 0
                 EndScreen.YouWin(dragon_choice, sound_choice)
@@ -292,8 +295,6 @@ class EndMarker(pygame.sprite.Sprite):
                 enemypos = 0
                 room += 1
                 PlayGame(start_coords[room][0], start_coords[room][1], dragon_choice, sound_choice)
-
-
 
 
 
@@ -321,11 +322,10 @@ class Wall(pygame.sprite.Sprite):
         self.y = y_wall
         self.image = pygame.Surface([x_width, y_length])
         self.image.fill((0, 0, 0))
-        self.rect = self.image.get_rect()
+        self.rect = self.image.get_rect()        
         self.rect.x = x_wall
         self.rect.y = y_wall
 
-mazes = []
 # implementation inspired by simpson college CS
 
 
@@ -421,6 +421,7 @@ def showEverything(background, dragon, endCake, bonus_heart, knight):
     if x_Dragon < 0:
             x_Dragon = 0
 
+
     if y_Dragon > screenheight - dragon.height:
             y_Dragon = screenheight - dragon.height
 
@@ -431,6 +432,8 @@ def showEverything(background, dragon, endCake, bonus_heart, knight):
 
 
 
+global mazes
+mazes = []
 global room
 room = 0
 
@@ -448,9 +451,9 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
         #-1 will loop indefinitely, otherwise number will be numb loops after first play through
         # 0.0 the time where the wav begins playing
         bg_music.play(-1, 0.0)
-
+    
     collision_Sound = pygame.mixer.Sound('Dragon_roar.wav')
-
+    
     global x_Dragon
     global y_Dragon
     #global coll
@@ -473,7 +476,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
         [160, 140, 375, 10],
         [160, 140, 10, 65],
         [160, 200, 300, 10]
-
+        
         # start 30,396
         # end 180, 171
         ]
@@ -553,6 +556,37 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
     mazes.append(wall_list_3)
     start_coords.append((41,404))
     end_coords.append((537,341))
+
+
+    wall_list_4 = pygame.sprite.Group()
+    wall_4 = [#[30, 30, 5, 410], #left
+        #[30, 440, 640, 5], #bottom
+        #[30, 30, 640, 5], #top
+       # [670, 30, 5, 415 ], #right
+        [-10, 450, 740, 10],
+        [440, 320, 10, 140],
+        [440, 385, 170, 10],
+        [607, 66, 10, 329],
+        [320, 320, 120, 10],
+        [520, 70, 10, 250],
+        [220, 175, 310, 10],
+        [220, 120, 10, 260],
+        [300, -10, 10, 190],
+        [410, -10, 10, 90],
+        [100, 380, 222, 10],
+        [-10, 130, 113, 10],
+        [100, 130, 10, 105],
+        [-10, 305, 110, 10],
+        ] #end 263, 146 #start 473, 422
+        # add each part of wall to a list
+    for var in wall_4:
+        wall = Wall(var[0], var[1], var[2], var[3])
+        wall_list_4.add(wall)
+    mazes.append(wall_list_4)
+    start_coords.append((473,411))
+    end_coords.append((263, 146))
+
+    
     #just a testing screen
     wall_list_test = pygame.sprite.Group()
     wall_test = [[400, 90, 90, 10], [60, 400, 5, 400]]
@@ -594,6 +628,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
     bonus_pos.append((411,363))
     bonus_pos.append((574,62))
     bonus_pos.append((641,343))
+    bonus_pos.append((359,32))
 
     bonus_heart = Bonus((0,0,0), "Resources/heart.png", bonus_pos[room])
     while state != 1:
