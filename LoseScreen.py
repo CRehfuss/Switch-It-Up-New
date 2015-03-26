@@ -4,8 +4,9 @@ import pygame, random, Game
 from pygame.locals import *
 #from Game import *
 
-screen = pygame.display.set_mode([720, 540])
+screen = pygame.display.set_mode([720, 580])
 background = pygame.image.load("loseNEW.jpg").convert()
+color = pygame.image.load("color.jpg").convert()
 
 
 class Button(pygame.sprite.Sprite):
@@ -21,6 +22,7 @@ def YouLose(dragon_choice, sound_choice):
     state = 0
     click_sound = pygame.mixer.Sound('click.wav')
     while state != 1:
+        screen.blit(color, [0, 400])
         screen.blit(background, [0,0])
         pygame.display.update()
         if pygame.mouse.get_pressed()[0] and replayBtn.rect.collidepoint(pygame.mouse.get_pos()):

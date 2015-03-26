@@ -11,7 +11,7 @@ from pygame.locals import *
 pygame.init()
 
 screenwidth = 720
-screenheight = 540
+screenheight = 580
 
 screen = pygame.display.set_mode([screenwidth,screenheight])
 pygame.display.set_caption("Switch It Up")
@@ -148,7 +148,7 @@ def showKeys(avatar, screens):
     leftstring = "Resources/keys/" + keystr[2] + ".jpg"
     rightstring = "Resources/keys/" + keystr[3] + ".jpg"
 
-    keyLocations = [[663, 460], [687, 479], [674, 498], [684, 517]] # up, down, left, right
+    keyLocations = [[653, 462], [687, 492], [670, 522], [685, 550]] # up, down, left, right
 
 
     screens.blit(pygame.image.load(upstring).convert_alpha(), keyLocations[0])
@@ -451,7 +451,7 @@ def showEverything(background, dragon, endCake, bonus_heart, knight):
 
 
     # Bottom display
-    bottomRect = BottomDisplayImage("Resources/whiterect.png", (750, 100), (-10, 457))
+    bottomRect = BottomDisplayImage("Resources/whiterect.png", (750, 150), (-10, 457))
     screen.blit(bottomRect.image, bottomRect)
     for i in range (0, livesLeft): # Displays as many hearts as lives left
         heart = BottomDisplayImage("Resources/heart.png",(30, 30), (115 + (i * 35), 475))
@@ -459,7 +459,7 @@ def showEverything(background, dragon, endCake, bonus_heart, knight):
     livesLeftText = BottomDisplayImage ("Resources/livesLeftText.png", (110, 28), (10, 475))
     screen.blit(livesLeftText.image, livesLeftText)
     if keyHints:
-        hintText = BottomDisplayImage("Resources/directiontext.png", (133, 80), (560, 457))
+        hintText = BottomDisplayImage("Resources/directiontext.png", (200, 120), (500, 457))
         screen.blit(hintText.image, hintText)
         showKeys(dragon, screen)
     dragon.rect.x = x_Dragon
@@ -489,7 +489,7 @@ def showEverything(background, dragon, endCake, bonus_heart, knight):
 global mazes
 mazes = []
 global room
-room = 0
+room = 0 # picks the maze
 
 def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
 
@@ -519,17 +519,17 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
        # [30, 440, 640, 5], #bottom
       #  [30, 30, 640, 5], #top
        # [670, 30, 5, 415 ],        #right
-        [0, 330, 605, 10],
-        [266, 387, 300, 10],
-        [595, 85, 10, 255],
-        [95, 82, 510,10],
-        [94, 82, 10, 190],
-        [94, 272, 440, 10],
-        [528, 140, 10, 142],
-        [-10, 450, 730, 10], # 730 changed from 710 (to account for wider screen)
-        [160, 140, 375, 10],
-        [160, 140, 10, 65],
-        [160, 200, 300, 10]
+       [0, 330, 605, 10],
+       [266, 387, 300, 10],
+       [595, 85, 10, 255],
+       [95, 82, 510,10],
+       [94, 82, 10, 190],
+       [94, 272, 440, 10],
+       [528, 140, 10, 142],
+       [-10, 450, 730, 10], # 730 changed from 710 (to account for wider screen)
+       [160, 140, 375, 10],
+       [160, 140, 10, 65],
+       [160, 200, 300, 10]
         
         # start 30,396
         # end 180, 171

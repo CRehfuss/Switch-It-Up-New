@@ -8,8 +8,9 @@ from pygame.locals import *
 
 def Settings():
     click_Sound = pygame.mixer.Sound('click.wav')
-    screen = pygame.display.set_mode([720, 540])
+    screen = pygame.display.set_mode([720, 580])
     background = pygame.image.load("settingsNEW.jpg").convert()
+    color = pygame.image.load("color.jpg").convert()
     dragon_choice = "orange"
     sound_choice = 1
     #The button class, simply puts it on the screen
@@ -31,6 +32,7 @@ def Settings():
     state = 0
 
     while state != 1:
+        screen.blit(color, [0, 400])
         screen.blit(background, [0,0])
         pygame.display.update()
         if pygame.mouse.get_pressed()[0] and redDragBtn.rect.collidepoint(pygame.mouse.get_pos()):
