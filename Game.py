@@ -28,7 +28,11 @@ level1 = []
 level2 = []
 level3 = []
 level4 = []
+emptyLevel = []
+for i in range(0,4):
+    emptyLevel.append((-100,-100))
 
+    
 level1.append((384,410))
 level1.append((664,410))
 level1.append((346,0))
@@ -52,6 +56,8 @@ enemycoords.append(level1)
 enemycoords.append(level2)
 enemycoords.append(level3)
 enemycoords.append(level4)
+for y in range(0,100):
+    enemycoords.append(emptyLevel)
 #The locations for the enemy in the next two levels will be put below
 
 
@@ -282,11 +288,10 @@ class EndMarker(pygame.sprite.Sprite):
     def getCollision(self, theDragon, dragon_choice, sound_choice, start_coords, end_coords):
         if pygame.sprite.collide_rect(self, theDragon):
             enemypos  = 0
-            global state, room, livesLeft
 
             global state, room, livesLeft, mazes
             livesLeft = 3
-            if room == len(mazes):
+            if room == len(mazes)-2:
                 state = 1
                 room = 0
                 EndScreen.YouWin(dragon_choice, sound_choice)
@@ -603,7 +608,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
         [290, 290, 10, 80],
         [400, 370, 10, 80],
         [518, 365, 90, 10],
-        [600, 165, 100, 10],
+        [600, 165, 1000, 10],
         [600, 165, 10, 100],
         
         ] #start 49, 314 #end 441,31
