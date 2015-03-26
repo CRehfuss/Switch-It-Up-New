@@ -135,12 +135,20 @@ def showKeys(avatar, screens):
 
         if(key == K_UP):
             keystr.append("up")
-        if(key == K_DOWN):
+        elif(key == K_DOWN):
             keystr.append("down")
-        if(key == K_LEFT):
+        elif(key == K_LEFT):
             keystr.append("left")
-        if(key == K_RIGHT):
+        elif(key == K_RIGHT):
             keystr.append("right")
+        elif (key == K_w):
+            keystr.append("w")
+        elif (key == K_a):
+            keystr.append("a")
+        elif (key == K_s):
+            keystr.append("s")
+        elif (key == K_d):
+            keystr.append("d")
 
 
     upstring = "Resources/keys/" + keystr[0] + ".jpg"
@@ -151,7 +159,7 @@ def showKeys(avatar, screens):
     keyLocations = [[653, 462], [687, 492], [670, 522], [685, 550]] # up, down, left, right
 
 
-    screens.blit(pygame.image.load("Resources/keys/wkey.png").convert_alpha(), keyLocations[0]) # changed from upstring
+    screens.blit(pygame.image.load(upstring).convert_alpha(), keyLocations[0])
     screens.blit(pygame.image.load(downstring).convert_alpha(), keyLocations[1])
     screens.blit(pygame.image.load(leftstring).convert_alpha(), keyLocations[2])
     screens.blit(pygame.image.load(rightstring).convert_alpha(), keyLocations[3])
