@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4269e78a-b749-4aa2-957c-7029dbe15023" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/fire.png" afterPath="$PROJECT_DIR$/Resources/fire.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Game.py" afterPath="$PROJECT_DIR$/Game.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Switch-It-Up-New.iws" />
@@ -31,8 +29,8 @@
       <file leaf-file-name="Game.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Game.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3502" max-vertical-offset="14195">
-              <caret line="230" column="35" selection-start-line="0" selection-start-column="0" selection-end-line="829" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="3570" max-vertical-offset="14280">
+              <caret line="234" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="834" selection-end-column="0" />
               <folding>
                 <element signature="e#13#62#0" expanded="true" />
               </folding>
@@ -43,7 +41,7 @@
       <file leaf-file-name="Backup.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Backup.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="22.84375" vertical-offset="1360" max-vertical-offset="14195">
+            <state vertical-scroll-proportion="0.9080882" vertical-offset="13293" max-vertical-offset="14195">
               <caret line="811" column="61" selection-start-line="811" selection-start-column="61" selection-end-line="811" selection-end-column="61" />
               <folding>
                 <element signature="e#13#62#0" expanded="true" />
@@ -96,10 +94,10 @@
       <file leaf-file-name="TitleScreen.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TitleScreen.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="419" max-vertical-offset="1037">
-              <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="436" max-vertical-offset="1054">
+              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
               <folding>
-                <marker date="1427386389584" expanded="true" signature="33:108" placeholder="import ..." />
+                <marker date="1427390300066" expanded="true" signature="33:108" placeholder="import ..." />
               </folding>
             </state>
           </provider>
@@ -692,7 +690,13 @@
       <option name="project" value="LOCAL" />
       <updated>1427339287685</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Fixed Hazard Picture, we don't run through walls any more, no more hazard errors">
+      <created>1427390263667</created>
+      <option name="number" value="00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1427390263667</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -708,7 +712,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3283767" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27509293" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.02125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.295" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39900866" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -770,10 +774,19 @@
     <MESSAGE value="Hazards Working, needs image&#10;&#10;" />
     <MESSAGE value="Merged with hazards" />
     <MESSAGE value="Added more hazards so the game won't crash- not all in the right place" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added more hazards so the game won't crash- not all in the right place" />
+    <MESSAGE value="Fixed Hazard Picture, we don't run through walls any more, no more hazard errors" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Hazard Picture, we don't run through walls any more, no more hazard errors" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/Backup.py</url>
+          <line>97</line>
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -804,7 +817,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="206" max-vertical-offset="663">
           <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding>
-            <marker date="1427386389584" expanded="true" signature="33:108" placeholder="import ..." />
+            <marker date="1427390300066" expanded="true" signature="33:108" placeholder="import ..." />
           </folding>
         </state>
       </provider>
@@ -856,7 +869,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="206" max-vertical-offset="663">
           <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding>
-            <marker date="1427386389584" expanded="true" signature="33:108" placeholder="import ..." />
+            <marker date="1427390300066" expanded="true" signature="33:108" placeholder="import ..." />
           </folding>
         </state>
       </provider>
@@ -908,7 +921,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="663">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding>
-            <marker date="1427386389584" expanded="true" signature="33:108" placeholder="import ..." />
+            <marker date="1427390300066" expanded="true" signature="33:108" placeholder="import ..." />
           </folding>
         </state>
       </provider>
@@ -953,7 +966,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="663">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding>
-            <marker date="1427386389584" expanded="true" signature="33:108" placeholder="import ..." />
+            <marker date="1427390300066" expanded="true" signature="33:108" placeholder="import ..." />
           </folding>
         </state>
       </provider>
@@ -998,7 +1011,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="131" max-vertical-offset="646">
           <caret line="18" column="9" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
           <folding>
-            <marker date="1427386389584" expanded="true" signature="33:108" placeholder="import ..." />
+            <marker date="1427390300066" expanded="true" signature="33:108" placeholder="import ..." />
           </folding>
         </state>
       </provider>
@@ -1159,10 +1172,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TitleScreen.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="419" max-vertical-offset="1037">
-          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="436" max-vertical-offset="1054">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
           <folding>
-            <marker date="1427386389584" expanded="true" signature="33:108" placeholder="import ..." />
+            <marker date="1427390300066" expanded="true" signature="33:108" placeholder="import ..." />
           </folding>
         </state>
       </provider>
@@ -1189,8 +1202,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Game.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3502" max-vertical-offset="14195">
-          <caret line="230" column="35" selection-start-line="0" selection-start-column="0" selection-end-line="829" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="3570" max-vertical-offset="14280">
+          <caret line="234" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="834" selection-end-column="0" />
           <folding>
             <element signature="e#13#62#0" expanded="true" />
           </folding>
@@ -1199,7 +1212,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Backup.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="22.84375" vertical-offset="1360" max-vertical-offset="14195">
+        <state vertical-scroll-proportion="0.9080882" vertical-offset="13293" max-vertical-offset="14195">
           <caret line="811" column="61" selection-start-line="811" selection-start-column="61" selection-end-line="811" selection-end-column="61" />
           <folding>
             <element signature="e#13#62#0" expanded="true" />
