@@ -95,7 +95,7 @@ for y in range(0,100):
 
 x_Dragon = 35
 y_Dragon = 370
-gamespeed = 2
+gamespeed = 3
 state = 0
 coll = 0
 
@@ -517,6 +517,8 @@ room = 0 # picks the maze
 def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
 
     # Background
+    global livesLeft 
+    livesLeft=3
     background = pygame.image.load("gameNEW.jpg").convert()
 
     #Will play the music
