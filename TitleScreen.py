@@ -1,8 +1,8 @@
 __author__ = 'danielleconnolly'
 
-import pygame, random, InstructionScreen, Game, key_mapping, SettingsScreen, AboutScreen
+import pygame, random, InstructionScreen, key_mapping, SettingsScreen, AboutScreen, Game
 from pygame.locals import *
-#from Game import *
+
 
 screen = pygame.display.set_mode([720, 580])
 background = pygame.image.load("titlescreenNEW.jpg").convert()
@@ -15,6 +15,8 @@ class Button(pygame.sprite.Sprite):
         self.rect = Rect(location, size)
 
 
+
+pygame.mixer.init(44100, -16, 2, 2048)
 
 startBtn = Button((255, 195), (200, 80))
 instructBtn = Button((280, 300), (155, 60))
@@ -54,3 +56,4 @@ while state != 1:
     for event in pygame.event.get():
         if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
             state = 1
+
