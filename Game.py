@@ -151,7 +151,7 @@ def showKeys(avatar, screens):
     keyLocations = [[653, 462], [687, 492], [670, 522], [685, 550]] # up, down, left, right
 
 
-    screens.blit(pygame.image.load(upstring).convert_alpha(), keyLocations[0])
+    screens.blit(pygame.image.load("Resources/keys/wkey.png").convert_alpha(), keyLocations[0]) # changed from upstring
     screens.blit(pygame.image.load(downstring).convert_alpha(), keyLocations[1])
     screens.blit(pygame.image.load(leftstring).convert_alpha(), keyLocations[2])
     screens.blit(pygame.image.load(rightstring).convert_alpha(), keyLocations[3])
