@@ -28,6 +28,10 @@ level1 = []
 level2 = []
 level3 = []
 level4 = []
+level5 = []
+level6 = []
+level7 = []
+level8 = []
 emptyLevel = []
 for i in range(0,4):
     emptyLevel.append((-100,-100))
@@ -49,13 +53,40 @@ level3.append((684,208))
 level3.append((430, 208))
 level3.append((106,208))
 
+level4.append((384,417))
+level4.append((684,0))
+level4.append((230,186))
+level4.append((110,148))
 
-level4.append((0,0))
+level5.append((0,418))
+level5.append((0,0))
+level5.append((674,362))
+level5.append((684,0))
+
+level6.append((0,418))
+level6.append((0,0))
+level6.append((674,362))
+level6.append((684,0))
+
+level7.append((0,418))
+level7.append((0,0))
+level7.append((674,362))
+level7.append((684,0))
+
+level8.append((0,418))
+level8.append((0,0))
+level8.append((674,362))
+level8.append((684,0))
 
 enemycoords.append(level1)
 enemycoords.append(level2)
 enemycoords.append(level3)
 enemycoords.append(level4)
+enemycoords.append(level5)
+enemycoords.append(level6)
+enemycoords.append(level7)
+enemycoords.append(level8)
+
 for y in range(0,100):
     enemycoords.append(emptyLevel)
 #The locations for the enemy in the next two levels will be put below
