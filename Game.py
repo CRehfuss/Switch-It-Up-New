@@ -350,7 +350,7 @@ class EndMarker(pygame.sprite.Sprite):
             livesLeft = 3
             enemypos  = 0
 
-            if room == len(mazes)-2:
+            if room == 4:
                 state = 1
                 room = 0
                 EndScreen.YouWin(dragon_choice, sound_choice)
@@ -367,9 +367,13 @@ class Bonus(EndMarker):
     def getCollision(self, theDragon):
         if pygame.sprite.collide_rect(self, theDragon):
             global livesLeft
-            livesLeft += 1
             self.rect.x = -100
             self.rect.y = -100
+            if livesLeft == 5:
+                return
+            
+            livesLeft += 1
+            
 
 
 
