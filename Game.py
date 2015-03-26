@@ -1,7 +1,7 @@
 #Main file
 
 
-import random, key_mapping, EndScreen
+import random, key_mapping, EndScreen, LoseScreen
 import pygame
 from pygame.locals import *
 
@@ -82,6 +82,16 @@ def AnimationImages(width, height, filename): #defining a function have to do it
         images.append(fullImage.subsurface((i*width, 0, width ,height)))
 
     return images
+
+# Check to see if the player lost the game
+# Returns bool
+def checkLost(dragon_choice, sound_choice):
+    global livesLeft
+    if (livesLeft <= 0):
+        print "game over"
+        LoseScreen.YouLose(dragon_choice, sound_choice)
+        return True
+    return False
 
 #This function displays the keys which control the avatar in the bottom left hand corner
 #needs the initialized dragon (avatar) and the screen for it to be blitted on
@@ -342,12 +352,16 @@ def countCollision(key, count, background, dragon, endCake, bonus_heart, dragon_
     global x_Dragon
     global y_Dragon
     global gamespeed
+    global state
 
     while (True): # wait for KEYUP
 
         showEverything(background, dragon, endCake, bonus_heart, knight)
         endCake.getCollision(dragon, dragon_choice, sound_choice, start_coords, end_coords)
         bonus_heart.getCollision(dragon)
+        if (checkLost(dragon_choice, sound_choice)):
+            state = 1
+            return
 
         pressed = pygame.key.get_pressed()
 
@@ -392,13 +406,14 @@ def showEverything(background, dragon, endCake, bonus_heart, knight):
     global y_Dragon
     global gamespeed
     global keyHints
+    global state
 
     screen.blit(background, [0,0])
     mazes[room].draw(screen)
     screen.blit(endCake.image, endCake)
     screen.blit(bonus_heart.image, bonus_heart)
 
-    screen.blit(knight.image, knight) # TODO: uncomment when explosion is uncommented
+    screen.blit(knight.image, knight)
     knight.rect.x = enemycoords[room][enemypos][0]
     knight.rect.y = enemycoords[room][enemypos][1]
     knight.getCollision(dragon)
@@ -648,7 +663,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
     screen.blit(endCake.image, endCake)
 
 
-    knight = Hazard([255,255,255], 20, 20, "Resources/fire.png", [enemycoords[room][enemypos][0],enemycoords[room][enemypos][1]], 0) # TODO: uncomment when file is present
+    knight = Hazard([255,255,255], 20, 20, "Resources/fire.png", [enemycoords[room][enemypos][0],enemycoords[room][enemypos][1]], 0)
 
 
     global state
@@ -659,6 +674,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
     wallCollisionCount = 0
     global keyHints
     keyHints = False
+    global state
     state = 0
 
     bonus_pos = []
@@ -680,10 +696,12 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
         dragon.rect.x = x_Dragon
         dragon.rect.y = y_Dragon
 
-        screen.blit(knight.image, knight) # TODO: uncomment when explosion is uncommented
+        screen.blit(knight.image, knight)
         knight.rect.x = enemycoords[room][enemypos][0]
         knight.rect.y = enemycoords[room][enemypos][1]
         knight.getCollision(dragon)
+        if (checkLost(dragon_choice, sound_choice)):
+            state = 1
 
         print(x_Dragon)
         print(" , ")
