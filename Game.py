@@ -51,7 +51,6 @@ level3.append((0,0))
 level3.append((304,216))
 level3.append((684,208))
 level3.append((430, 208))
-level3.append((106,208))
 
 level4.append((384,417))
 level4.append((684,0))
@@ -223,13 +222,13 @@ class Player(pygame.sprite.Sprite):
         global gamespeed
         #check the four corners of the rect depending on which direction the player wants to move
         #returns FALSE if player cannot move in that direction
-        if (direction == "up") & (isWall(maze, self.rect.x, self.rect.y - gamespeed) | isWall(maze, self.rect.x + self.width/4, self.rect.y - gamespeed) | isWall(maze, self.rect.x + self.width/2, self.rect.y -gamespeed) | isWall(maze, self.rect.x + (3/4)*self.width, self.rect.y - gamespeed) | isWall(maze, self.rect.x + self.width, self.rect.y - gamespeed)):
+        if (direction == "up") & (isWall(maze, self.rect.x, self.rect.y - gamespeed) | (isWall(maze, self.rect.x + self.width/8, self.rect.y - gamespeed) | isWall(maze, self.rect.x + self.width/4, self.rect.y - gamespeed)|isWall(maze, self.rect.x + 3*self.width/8, self.rect.y - gamespeed) | isWall(maze, self.rect.x + self.width/2, self.rect.y -gamespeed) | isWall(maze, self.rect.x + self.width/4, self.rect.y - gamespeed)|isWall(maze, self.rect.x + 3*self.width/8, self.rect.y - gamespeed) | isWall(maze, self.rect.x + self.width/2, self.rect.y -gamespeed) | isWall(maze, self.rect.x + (5/8)*self.width, self.rect.y - gamespeed) |isWall(maze, self.rect.x + (3/4)*self.width, self.rect.y - gamespeed)|isWall(maze, self.rect.x + (7/8)*self.width, self.rect.y - gamespeed) | isWall(maze, self.rect.x + self.width, self.rect.y - gamespeed))):
             return False
-        if (direction == "down") & (isWall(maze, self.rect.x, self.rect.y + self.height + gamespeed) |isWall(maze, self.rect.x + self.width/4, self.rect.y + self.height + gamespeed) | isWall(maze, self.rect.x + self.width/2, self.rect.y + self.height + gamespeed)| isWall(maze, self.rect.x + (3/4)*self.width, self.rect.y + self.height + gamespeed) | isWall(maze, self.rect.x + self.width, self.rect.y + self.height + gamespeed)):
+        if (direction == "down") & (isWall(maze, self.rect.x, self.rect.y + self.height + gamespeed) |isWall(maze, self.rect.x + self.width/8, self.rect.y + self.height + gamespeed) | isWall(maze, self.rect.x + self.width/4, self.rect.y + self.height + gamespeed) |isWall(maze, self.rect.x + 3*self.width/8, self.rect.y + self.height + gamespeed)| isWall(maze, self.rect.x + self.width/2, self.rect.y + self.height + gamespeed)| isWall(maze, self.rect.x + 5*self.width/8, self.rect.y + self.height + gamespeed)|isWall(maze, self.rect.x + (3/4)*self.width, self.rect.y + self.height + gamespeed) |isWall(maze, self.rect.x + 7*self.width/8, self.rect.y + self.height + gamespeed)| isWall(maze, self.rect.x + self.width, self.rect.y + self.height + gamespeed)):
             return False
-        if (direction == "left") & (isWall(maze, self.rect.x - gamespeed, self.rect.y) |isWall(maze, self.rect.x - gamespeed, self.rect.y + self.height/4) | isWall(maze, self.rect.x - gamespeed, self.rect.y + self.height/2) |isWall(maze, self.rect.x - gamespeed, self.rect.y + (3/4)*self.height)| isWall(maze, self.rect.x - gamespeed, self.rect.y + self.height)):
+        if (direction == "left") & (isWall(maze, self.rect.x - gamespeed, self.rect.y) |isWall(maze, self.rect.x - gamespeed, self.rect.y + self.height/8)|isWall(maze, self.rect.x - gamespeed, self.rect.y + self.height/4) | isWall(maze, self.rect.x - gamespeed, self.rect.y + 3*self.height/8)|isWall(maze, self.rect.x - gamespeed, self.rect.y + self.height/2) |isWall(maze, self.rect.x - gamespeed, self.rect.y + 5*self.height/8)|isWall(maze, self.rect.x - gamespeed, self.rect.y + (3/4)*self.height)| isWall(maze, self.rect.x - gamespeed, self.rect.y + 7*self.height/8)|isWall(maze, self.rect.x - gamespeed, self.rect.y + self.height)):
             return False
-        if (direction == "right") & (isWall(maze, self.rect.x + self.width + gamespeed, self.rect.y) | isWall(maze, self.rect.x +self.width + gamespeed, self.rect.y + self.height/4) | isWall(maze, self.rect.x +self.width + gamespeed, self.rect.y + self.height/2) | isWall(maze, self.rect.x +self.width + gamespeed, self.rect.y + (3/4)*self.height) | isWall(maze, self.rect.x + self.width + gamespeed, self.rect.y + self.height)):
+        if (direction == "right") & (isWall(maze, self.rect.x + self.width + gamespeed, self.rect.y) |isWall(maze, self.rect.x + self.width + gamespeed, self.rect.y + self.height/8)| isWall(maze, self.rect.x +self.width + gamespeed, self.rect.y + self.height/4) |isWall(maze, self.rect.x +self.width + gamespeed, self.rect.y + 3*self.height/8)| isWall(maze, self.rect.x +self.width + gamespeed, self.rect.y + self.height/2) | isWall(maze, self.rect.x +self.width + gamespeed, self.rect.y + 5*self.height/8)| isWall(maze, self.rect.x +self.width + gamespeed, self.rect.y + (3/4)*self.height) | isWall(maze, self.rect.x +self.width + gamespeed, self.rect.y + 7*self.height/8)|isWall(maze, self.rect.x + self.width + gamespeed, self.rect.y + self.height)):
             return False
 
         return True
@@ -257,6 +256,14 @@ class Player(pygame.sprite.Sprite):
 
 
 class Hazard(Player):
+
+
+    def changeImage(self,filename):
+        self.image = pygame.image.load(filename).convert() # Load image
+        self.image.set_colorkey([0, 0, 0])
+        self.image = pygame.transform.scale(self.image, (40,40)) # Resize sprite
+
+
 
 
     #The enemy will now jump around the screen when you hit it, as opposed to just moving the player around it
@@ -336,10 +343,11 @@ class EndMarker(pygame.sprite.Sprite):
 
     def getCollision(self, theDragon, dragon_choice, sound_choice, start_coords, end_coords):
         if pygame.sprite.collide_rect(self, theDragon):
+
+            global state, room, livesLeft, mazes, enemypos
+            livesLeft = 3
             enemypos  = 0
 
-            global state, room, livesLeft, mazes
-            livesLeft = 3
             if room == len(mazes)-2:
                 state = 1
                 room = 0
@@ -703,7 +711,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
 
 
     knight = Hazard([255,255,255], 20, 20, "Resources/fire.png", [enemycoords[room][enemypos][0],enemycoords[room][enemypos][1]], 0)
-
+    knight.changeImage("Resources/fire.png")
 
     global state
     global livesLeft

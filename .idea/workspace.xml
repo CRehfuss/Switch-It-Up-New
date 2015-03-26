@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4269e78a-b749-4aa2-957c-7029dbe15023" name="Default" comment="A">
+    <list default="true" id="4269e78a-b749-4aa2-957c-7029dbe15023" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Resources/fire.png" afterPath="$PROJECT_DIR$/Resources/fire.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Game.py" afterPath="$PROJECT_DIR$/Game.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -27,25 +28,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Game.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Game.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Game.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.34979424" vertical-offset="272" max-vertical-offset="13617">
-              <caret line="26" column="11" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="3502" max-vertical-offset="14195">
+              <caret line="230" column="35" selection-start-line="0" selection-start-column="0" selection-end-line="829" selection-end-column="0" />
               <folding>
-                <element signature="e#13#50#0" expanded="true" />
+                <element signature="e#13#62#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Backup.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Backup.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Backup.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="12886" max-vertical-offset="13498">
-              <caret line="788" column="0" selection-start-line="788" selection-start-column="0" selection-end-line="788" selection-end-column="0" />
+            <state vertical-scroll-proportion="22.84375" vertical-offset="1360" max-vertical-offset="14195">
+              <caret line="811" column="61" selection-start-line="811" selection-start-column="61" selection-end-line="811" selection-end-column="61" />
               <folding>
-                <element signature="e#13#50#0" expanded="true" />
+                <element signature="e#13#62#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -85,8 +86,8 @@
       <file leaf-file-name="InstructionScreen.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/InstructionScreen.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="133" max-vertical-offset="663">
-              <caret line="16" column="38" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="167" max-vertical-offset="697">
+              <caret line="18" column="38" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -95,10 +96,10 @@
       <file leaf-file-name="TitleScreen.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TitleScreen.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="385" max-vertical-offset="1003">
-              <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="419" max-vertical-offset="1037">
+              <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
               <folding>
-                <marker date="1427338239847" expanded="true" signature="33:108" placeholder="import ..." />
+                <marker date="1427386389584" expanded="true" signature="33:108" placeholder="import ..." />
               </folding>
             </state>
           </provider>
@@ -134,8 +135,8 @@
         <option value="$PROJECT_DIR$/key_mapping.py" />
         <option value="C:/Python27/Lib/site-packages/pygame/sprite.py" />
         <option value="$PROJECT_DIR$/TitleScreen.py" />
-        <option value="$PROJECT_DIR$/Backup.py" />
         <option value="$PROJECT_DIR$/Game.py" />
+        <option value="$PROJECT_DIR$/Backup.py" />
       </list>
     </option>
   </component>
@@ -302,7 +303,16 @@
             <option name="mySupportsDeletion" value="false" />
             <option name="myCanBeAbsent" value="false" />
             <option name="myId" value="UPDATED" />
+            <PATH vcs="Git" revision="">$PROJECT_DIR$/AboutScreen.py</PATH>
+            <PATH vcs="Git" revision="">$PROJECT_DIR$/EndScreen.py</PATH>
             <PATH vcs="Git" revision="">$PROJECT_DIR$/Game.py</PATH>
+            <PATH vcs="Git" revision="">$PROJECT_DIR$/InstructionScreen.py</PATH>
+            <PATH vcs="Git" revision="">$PROJECT_DIR$/LoseScreen.py</PATH>
+            <PATH vcs="Git" revision="">$PROJECT_DIR$/Resources/keys/down.jpg</PATH>
+            <PATH vcs="Git" revision="">$PROJECT_DIR$/Resources/keys/left.jpg</PATH>
+            <PATH vcs="Git" revision="">$PROJECT_DIR$/Resources/keys/right.jpg</PATH>
+            <PATH vcs="Git" revision="">$PROJECT_DIR$/Resources/keys/up.jpg</PATH>
+            <PATH vcs="Git" revision="">$PROJECT_DIR$/SettingsScreen.py</PATH>
             <PATH vcs="Git" revision="">$PROJECT_DIR$/TitleScreen.py</PATH>
           </FILE-GROUP>
           <FILE-GROUP>
@@ -311,8 +321,11 @@
             <option name="mySupportsDeletion" value="false" />
             <option name="myCanBeAbsent" value="false" />
             <option name="myId" value="CREATED" />
-            <PATH vcs="Git" revision="">$PROJECT_DIR$/Resources/directiontext.png</PATH>
-            <PATH vcs="Git" revision="">$PROJECT_DIR$/Resources/whiterect.png</PATH>
+            <PATH vcs="Git" revision="">$PROJECT_DIR$/Resources/keys/a.jpg</PATH>
+            <PATH vcs="Git" revision="">$PROJECT_DIR$/Resources/keys/d.jpg</PATH>
+            <PATH vcs="Git" revision="">$PROJECT_DIR$/Resources/keys/s.jpg</PATH>
+            <PATH vcs="Git" revision="">$PROJECT_DIR$/Resources/keys/w.jpg</PATH>
+            <PATH vcs="Git" revision="">$PROJECT_DIR$/color.jpg</PATH>
           </FILE-GROUP>
           <FILE-GROUP>
             <option name="myUpdateName" value="Deleted" />
@@ -673,7 +686,13 @@
       <option name="project" value="LOCAL" />
       <updated>1427333006383</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Added more hazards so the game won't crash- not all in the right place">
+      <created>1427339287685</created>
+      <option name="number" value="00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1427339287685</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -689,7 +708,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3283767" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27509293" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.159375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.02125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39900866" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -750,7 +769,8 @@
     <MESSAGE value="Stable, not yet working, version of hazards" />
     <MESSAGE value="Hazards Working, needs image&#10;&#10;" />
     <MESSAGE value="Merged with hazards" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merged with hazards" />
+    <MESSAGE value="Added more hazards so the game won't crash- not all in the right place" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added more hazards so the game won't crash- not all in the right place" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -784,7 +804,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="206" max-vertical-offset="663">
           <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding>
-            <marker date="1427338239847" expanded="true" signature="33:108" placeholder="import ..." />
+            <marker date="1427386389584" expanded="true" signature="33:108" placeholder="import ..." />
           </folding>
         </state>
       </provider>
@@ -804,7 +824,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7480">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#13#50#0" expanded="true" />
+            <element signature="e#13#62#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -836,7 +856,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="206" max-vertical-offset="663">
           <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding>
-            <marker date="1427338239847" expanded="true" signature="33:108" placeholder="import ..." />
+            <marker date="1427386389584" expanded="true" signature="33:108" placeholder="import ..." />
           </folding>
         </state>
       </provider>
@@ -863,7 +883,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="3772" max-vertical-offset="7769">
           <caret line="394" column="47" selection-start-line="394" selection-start-column="47" selection-end-line="394" selection-end-column="47" />
           <folding>
-            <element signature="e#13#50#0" expanded="true" />
+            <element signature="e#13#62#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -888,7 +908,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="663">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding>
-            <marker date="1427338239847" expanded="true" signature="33:108" placeholder="import ..." />
+            <marker date="1427386389584" expanded="true" signature="33:108" placeholder="import ..." />
           </folding>
         </state>
       </provider>
@@ -908,7 +928,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7446">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#13#50#0" expanded="true" />
+            <element signature="e#13#62#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -933,7 +953,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="663">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding>
-            <marker date="1427338239847" expanded="true" signature="33:108" placeholder="import ..." />
+            <marker date="1427386389584" expanded="true" signature="33:108" placeholder="import ..." />
           </folding>
         </state>
       </provider>
@@ -953,7 +973,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7242">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#13#50#0" expanded="true" />
+            <element signature="e#13#62#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -978,7 +998,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="131" max-vertical-offset="646">
           <caret line="18" column="9" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
           <folding>
-            <marker date="1427338239847" expanded="true" signature="33:108" placeholder="import ..." />
+            <marker date="1427386389584" expanded="true" signature="33:108" placeholder="import ..." />
           </folding>
         </state>
       </provider>
@@ -998,7 +1018,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7106">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#13#50#0" expanded="true" />
+            <element signature="e#13#62#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1018,7 +1038,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="1241" max-vertical-offset="3604">
           <caret line="75" column="8" selection-start-line="75" selection-start-column="8" selection-end-line="75" selection-end-column="8" />
           <folding>
-            <element signature="e#13#50#0" expanded="true" />
+            <element signature="e#13#62#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1038,7 +1058,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3621">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#13#50#0" expanded="true" />
+            <element signature="e#13#62#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1058,7 +1078,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="3043">
           <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
           <folding>
-            <element signature="e#13#50#0" expanded="true" />
+            <element signature="e#13#62#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1126,8 +1146,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/InstructionScreen.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="612">
-          <caret line="16" column="38" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="167" max-vertical-offset="697">
+          <caret line="18" column="38" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
           <folding />
         </state>
       </provider>
@@ -1139,10 +1159,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TitleScreen.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="385" max-vertical-offset="935">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="419" max-vertical-offset="1037">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
           <folding>
-            <marker date="1427338239847" expanded="true" signature="33:108" placeholder="import ..." />
+            <marker date="1427386389584" expanded="true" signature="33:108" placeholder="import ..." />
           </folding>
         </state>
       </provider>
@@ -1167,22 +1187,22 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Backup.py">
+    <entry file="file://$PROJECT_DIR$/Game.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="12886" max-vertical-offset="13498">
-          <caret line="788" column="0" selection-start-line="788" selection-start-column="0" selection-end-line="788" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="3502" max-vertical-offset="14195">
+          <caret line="230" column="35" selection-start-line="0" selection-start-column="0" selection-end-line="829" selection-end-column="0" />
           <folding>
-            <element signature="e#13#50#0" expanded="true" />
+            <element signature="e#13#62#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Game.py">
+    <entry file="file://$PROJECT_DIR$/Backup.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34979424" vertical-offset="272" max-vertical-offset="13617">
-          <caret line="26" column="11" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
+        <state vertical-scroll-proportion="22.84375" vertical-offset="1360" max-vertical-offset="14195">
+          <caret line="811" column="61" selection-start-line="811" selection-start-column="61" selection-end-line="811" selection-end-column="61" />
           <folding>
-            <element signature="e#13#50#0" expanded="true" />
+            <element signature="e#13#62#0" expanded="true" />
           </folding>
         </state>
       </provider>
