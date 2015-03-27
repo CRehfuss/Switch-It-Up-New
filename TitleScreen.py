@@ -33,23 +33,23 @@ while state != 1:
     screen.blit(background, [0,0])
     pygame.display.update()
     if pygame.mouse.get_pressed()[0] and startBtn.rect.collidepoint(pygame.mouse.get_pos()):
-        print "start button"
+        #print "start button"
         if (sound_choice == 1):
             click_sound.play()
         Game.PlayGame(35, 370, dragon_choice, sound_choice)
         state = 1
     if pygame.mouse.get_pressed()[0] and instructBtn.rect.collidepoint(pygame.mouse.get_pos()):
-        print "instruction button"
+        #print "instruction button"
         if(sound_choice == 1):
             click_sound.play()
         InstructionScreen.Instructions(sound_choice)
     if pygame.mouse.get_pressed()[0] and aboutBtn.rect.collidepoint(pygame.mouse.get_pos()):
-        print "about button"
+        #print "about button"
         if(sound_choice == 1):
             click_sound.play()
         AboutScreen.About(sound_choice)
     if pygame.mouse.get_pressed()[0] and settingsBtn.rect.collidepoint(pygame.mouse.get_pos()):
-        print "settings button"
+        #print "settings button"
         if(sound_choice==1):
             click_sound.play()
         dragon_choice, sound_choice = SettingsScreen.Settings(dragon_choice, sound_choice)

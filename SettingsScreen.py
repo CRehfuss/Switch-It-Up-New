@@ -7,7 +7,7 @@ from pygame.locals import *
 #from Game import *
 
 def Settings(dragon_choice,sound_choice):
-    print "settings called"
+    #print "settings called"
     click_Sound = pygame.mixer.Sound('click.wav')
     screen = pygame.display.set_mode([720, 580])
     background = pygame.image.load("settingsNEW.jpg").convert()
@@ -32,7 +32,7 @@ def Settings(dragon_choice,sound_choice):
     state = 0
 
     while state != 1:
-        print "settings page"
+        #print "settings page"
         screen.blit(color, [0, 400])
         screen.blit(background, [0,0])
         pygame.display.update()
@@ -57,12 +57,12 @@ def Settings(dragon_choice,sound_choice):
                 click_Sound.play()
                 
         if pygame.mouse.get_pressed()[0] and onBtn.rect.collidepoint(pygame.mouse.get_pos()):
-            print "sound on"
+            #print "sound on"
             sound_choice = 1
             click_Sound.play()
             
         if pygame.mouse.get_pressed()[0] and offBtn.rect.collidepoint(pygame.mouse.get_pos()):
-            print "sound off"
+            #print "sound off"
             sound_choice = 0
             
         if pygame.mouse.get_pressed()[0] and backBtn.rect.collidepoint(pygame.mouse.get_pos()):

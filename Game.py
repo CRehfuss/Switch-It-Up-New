@@ -120,7 +120,7 @@ def AnimationImages(width, height, filename): #defining a function have to do it
 def checkLost(dragon_choice, sound_choice):
     global livesLeft
     if (livesLeft <= 0):
-        print "game over"
+        #print "game over"
         LoseScreen.YouLose(dragon_choice, sound_choice)
         return True
     return False
@@ -767,10 +767,10 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
         if (checkLost(dragon_choice, sound_choice)):
             state = 1
 
-        print(x_Dragon)
-        print(" , ")
-        print(y_Dragon)
-        print("\n")
+        #print(x_Dragon)
+        #print(" , ")
+        #print(y_Dragon)
+        #print("\n")
 
 
         keypressed = pygame.key.get_pressed()
@@ -800,7 +800,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
                 checkKey = event.key
                 if checkKey != dragon.upkey and checkKey != dragon.downkey and checkKey != dragon.leftkey and checkKey != dragon.rightkey:
                     badkeycount += 1
-                    print badkeycount
+                    #print badkeycount
                     if badkeycount >= 10:
                         keyHints = True
 
