@@ -19,7 +19,10 @@ pygame.display.set_caption("Switch It Up")
 
 global livesLeft
 livesLeft = 3 # Number of lives starts at 3
-
+global mazes
+mazes = []
+global room
+room = 0 # picks the maze
 #This is the location of the enemy at the start- corresponds to a location in an array (enemycoords)
 enemypos = 0
 
@@ -347,10 +350,10 @@ class EndMarker(pygame.sprite.Sprite):
         if pygame.sprite.collide_rect(self, theDragon):
 
             global state, room, livesLeft, mazes, enemypos
-            livesLeft = 3
             enemypos  = 0
 
             if room == 4:
+                livesLeft = 3
                 state = 1
                 room = 0
                 EndScreen.YouWin(dragon_choice, sound_choice)
@@ -460,7 +463,8 @@ def showEverything(background, dragon, endCake, bonus_heart, knight, dragon_choi
     global gamespeed
     global keyHints
     global state
-
+    global room
+    global livesLeft
     screen.blit(background, [0,0])
     mazes[room].draw(screen)
     screen.blit(endCake.image, endCake)
@@ -493,6 +497,8 @@ def showEverything(background, dragon, endCake, bonus_heart, knight, dragon_choi
     pygame.display.update()
 
     if pygame.mouse.get_pressed()[0] and back.rect.collidepoint(pygame.mouse.get_pos()):
+        room = 0
+        livesLeft = 3
         BackScreen.Title(dragon_choice, sound_choice)
         state = 1
 
@@ -514,16 +520,12 @@ def showEverything(background, dragon, endCake, bonus_heart, knight, dragon_choi
 
 
 
-global mazes
-mazes = []
-global room
-room = 0 # picks the maze
+
 
 def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
 
     # Background
     global livesLeft 
-    livesLeft=3
     background = pygame.image.load("gameNEW.jpg").convert()
 
     #Will play the music
