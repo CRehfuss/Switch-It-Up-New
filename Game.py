@@ -259,6 +259,11 @@ class Player(pygame.sprite.Sprite):
         #draws animation changes to the screen
         screen.blit(self.image, self)
 
+class chesney(Player):
+
+    def canMove(self, direction, maze):
+        return True
+
 
 class Hazard(Player):
 
@@ -360,7 +365,10 @@ class EndMarker(pygame.sprite.Sprite):
             else:
                 enemypos = 0
                 room += 1
-                PlayGame(start_coords[room][0], start_coords[room][1], dragon_choice, sound_choice)
+                if room == 4:
+                    finalLevel(start_coords[room][0], start_coords[room][1], dragon_choice, sound_choice)
+                else:
+                    PlayGame(start_coords[room][0], start_coords[room][1], dragon_choice, sound_choice)
 
 
 
@@ -721,7 +729,8 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
     elif(dragon_choice=="red"):
         dragon = Player((255,255,255), 36, 32, "Resources/redNEW.png", [x_Dragon, y_Dragon], room)
     elif(dragon_choice=="greenandblue"):
-        dragon = Player((255,255,255), 36, 32, "Resources/greenNEW.png", [x_Dragon, y_Dragon], room)
+        #dragon = Player((255,255,255), 36, 32, "Resources/greenNEW.png", [x_Dragon, y_Dragon], room)
+        dragon = chesney((255,255,255), 36, 32, "Resources/greenNEW.png", [x_Dragon, y_Dragon], room)
 
     endCake = EndMarker((225,255,255), "Resources/Cake.png",  end_coords[room])
     screen.blit(dragon.image, dragon)
@@ -731,6 +740,59 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
     knight = Hazard([255,255,255], 20, 20, "Resources/fire.png", [enemycoords[room][enemypos][0],enemycoords[room][enemypos][1]], 0)
     knight.changeImage("Resources/fire.png")
 
+
+
+    def finalLevel(x_Start, y_Start, dragon_choice, sound_choice):
+        import sys
+        clock = pygame.time.Clock()
+        starttime = pygame.time.tick()
+
+        if(pygame.time.tick() - starttime) >= 30000:
+            if difficulty + 1 > 5:
+                difficulty = 0
+
+            if(dragon_choice=="orange"):
+                dragon = Player((255,255,255), 36, 32, "Resources/orangeNEW.png", [x_Dragon, y_Dragon], difficulty)
+            elif(dragon_choice=="black"):
+              dragon = Player((255,255,255), 36, 32, "Resources/blackNEW.png", [x_Dragon, y_Dragon], difficulty)
+            elif(dragon_choice=="red"):
+                dragon = Player((255,255,255), 36, 32, "Resources/redNEW.png", [x_Dragon, y_Dragon], difficulty)
+            elif(dragon_choice=="greenandblue"):
+                dragon = Player((255,255,255), 36, 32, "Resources/greenNEW.png", [x_Dragon, y_Dragon], difficulty)
+            difficulty += 1
+
+
+        '''
+        wall_list_5 = pygame.sprite.Group()
+        wall_5 = [#[30, 30, 5, 410], #left
+        #[30, 440, 640, 5], #bottom
+        #[30, 30, 640, 5], #top
+       # [670, 30, 5, 415 ], #right
+        [-10, 450, 740, 10],
+        [-10, 265, 110, 10],
+        [100, 265, 10, 90],
+        [190, 170, 10, 280],
+        [100, 170, 300, 10],
+        [100, 75, 10, 100],
+        [190, 75, 410, 10],
+        [518, 80, 10, 290],
+        [390, -10, 10, 90],
+        [290, 290, 230, 10],
+        [290, 290, 10, 80],
+        [400, 370, 10, 80],
+        [518, 365, 90, 10],
+        [600, 165, 1000, 10],
+        [600, 165, 10, 100],
+
+        ] #start 49, 314 #end 441,31
+        # add each part of wall to a list
+        for var in wall_5:
+            wall = Wall(var[0], var[1], var[2], var[3])
+            wall_list_5.add(wall)
+        mazes.append(wall_list_5)
+        start_coords.append((49,314))
+        end_coords.append((441,31))
+        '''
 
     global state
     global livesLeft
@@ -753,6 +815,8 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
 
     bonus_heart = Bonus((0,0,0), "Resources/heart.png", bonus_pos[room])
     while state != 1:
+
+        pygame.display.set_caption('Level: %d' %(room + 1))
 
         showEverything(background, dragon, endCake, bonus_heart, knight, dragon_choice, sound_choice)
 
