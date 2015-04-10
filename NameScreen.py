@@ -31,10 +31,11 @@ def Name(sound_choice, dragon_choice):
         textbox.update(events)
         textbox.draw(screen)
         pygame.display.update()
-        if pygame.mouse.get_pressed()[0] and playBtn.rect.collidepoint(pygame.mouse.get_pos()):
+        if pygame.mouse.get_pressed()[0] and playBtn.rect.collidepoint(pygame.mouse.get_pos()) and len(textbox.value) > 0:
+                                                                                            # Player must enter a name
             if(sound_choice == 1):
                 click_sound.play()
-            Game.PlayGame(35, 370, dragon_choice, sound_choice) # Go to the actual game
+            Game.PlayGame(35, 370, dragon_choice, sound_choice, textbox.value) # Go to the actual game
             state = 1
         for event in events:
             if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):

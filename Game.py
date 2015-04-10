@@ -353,7 +353,7 @@ class EndMarker(pygame.sprite.Sprite):
         self.rect.x = location[0]
         self.rect.y = location[1]
 
-    def getCollision(self, theDragon, dragon_choice, sound_choice, start_coords, end_coords):
+    def getCollision(self, theDragon, dragon_choice, sound_choice, start_coords, end_coords, name):
         if pygame.sprite.collide_rect(self, theDragon):
 
             global state, room, livesLeft, mazes, enemypos
@@ -368,9 +368,9 @@ class EndMarker(pygame.sprite.Sprite):
                 enemypos = 0
                 room += 1
                 if room == 4:
-                    finalLevel(start_coords[room][0], start_coords[room][1], dragon_choice, sound_choice)
+                    finalLevel(start_coords[room][0], start_coords[room][1], dragon_choice, sound_choice, name)
                 else:
-                    PlayGame(start_coords[room][0], start_coords[room][1], dragon_choice, sound_choice)
+                    PlayGame(start_coords[room][0], start_coords[room][1], dragon_choice, sound_choice, name)
 
 
 
@@ -418,7 +418,7 @@ class Wall(pygame.sprite.Sprite):
 
 # returns True when the player is DONE colliding with a wall
 # (prevents the wallCollisionCount from constantly increasing if the player holds down a key running into the wall)
-def countCollision(key, count, background, dragon, endCake, bonus_heart, dragon_choice, sound_choice, start_coords, end_coords, knight):
+def countCollision(key, count, background, dragon, endCake, bonus_heart, dragon_choice, sound_choice, start_coords, end_coords, knight, name):
     global x_Dragon
     global y_Dragon
     global gamespeed
@@ -426,7 +426,7 @@ def countCollision(key, count, background, dragon, endCake, bonus_heart, dragon_
     while (True): # wait for KEYUP
 
         showEverything(background, dragon, endCake, bonus_heart, knight, dragon_choice, sound_choice)
-        endCake.getCollision(dragon, dragon_choice, sound_choice, start_coords, end_coords)
+        endCake.getCollision(dragon, dragon_choice, sound_choice, start_coords, end_coords, name)
         bonus_heart.getCollision(dragon,sound_choice)
 
         if (checkLost(dragon_choice, sound_choice)):
@@ -536,7 +536,7 @@ def showEverything(background, dragon, endCake, bonus_heart, knight, dragon_choi
 
 
 
-def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
+def PlayGame(x_Start, y_Start, dragon_choice, sound_choice, name):
 
     # Background
     global livesLeft 
@@ -727,16 +727,25 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
     #Looks at the players choice of dragon and goes and gets that picture
     #And changes width/height accordingly
     if(dragon_choice=="orange"):
-
-        dragon = Player((255,255,255), 36, 32, "Resources/orangeNEW.png", [x_Dragon, y_Dragon], room)
-
+        if (name == "Chesney" or name == "chesney"):
+            dragon = chesney((255,255,255), 36, 32, "Resources/orangeNEW.png", [x_Dragon, y_Dragon], room)
+        else:
+            dragon = Player((255,255,255), 36, 32, "Resources/orangeNEW.png", [x_Dragon, y_Dragon], room)
     elif(dragon_choice=="black"):
-        dragon = Player((255,255,255), 36, 32, "Resources/blackNEW.png", [x_Dragon, y_Dragon], room)
+        if (name == "Chesney" or name == "chesney"):
+            dragon = chesney((255,255,255), 36, 32, "Resources/blackNEW.png", [x_Dragon, y_Dragon], room)
+        else:
+            dragon = Player((255,255,255), 36, 32, "Resources/blackNEW.png", [x_Dragon, y_Dragon], room)
     elif(dragon_choice=="red"):
-        dragon = Player((255,255,255), 36, 32, "Resources/redNEW.png", [x_Dragon, y_Dragon], room)
+        if (name == "Chesney" or name == "chesney"):
+            dragon = chesney((255,255,255), 36, 32, "Resources/redNEW.png", [x_Dragon, y_Dragon], room)
+        else:
+            dragon = Player((255,255,255), 36, 32, "Resources/redNEW.png", [x_Dragon, y_Dragon], room)
     elif(dragon_choice=="greenandblue"):
-        #dragon = Player((255,255,255), 36, 32, "Resources/greenNEW.png", [x_Dragon, y_Dragon], room)
-        dragon = chesney((255,255,255), 36, 32, "Resources/greenNEW.png", [x_Dragon, y_Dragon], room)
+        if (name == "Chesney" or name == "chesney"):
+            dragon = chesney((255,255,255), 36, 32, "Resources/greenNEW.png", [x_Dragon, y_Dragon], room)
+        else:
+            dragon = Player((255,255,255), 36, 32, "Resources/greenNEW.png", [x_Dragon, y_Dragon], room)
 
     endCake = EndMarker((225,255,255), "Resources/Cake.png",  end_coords[room])
     screen.blit(dragon.image, dragon)
@@ -826,7 +835,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
 
         showEverything(background, dragon, endCake, bonus_heart, knight, dragon_choice, sound_choice)
 
-        endCake.getCollision(dragon, dragon_choice, sound_choice, start_coords, end_coords)
+        endCake.getCollision(dragon, dragon_choice, sound_choice, start_coords, end_coords, name)
         bonus_heart.getCollision(dragon, sound_choice)
 
         dragon.rect.x = x_Dragon
@@ -884,7 +893,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
                 if(sound_choice==1):
                     collision_Sound.play()
                 if keyHints == False:
-                    wallCollisionCount = countCollision(dragon.upkey, wallCollisionCount, background, dragon, endCake, bonus_heart, dragon_choice, sound_choice, start_coords, end_coords, knight)
+                    wallCollisionCount = countCollision(dragon.upkey, wallCollisionCount, background, dragon, endCake, bonus_heart, dragon_choice, sound_choice, start_coords, end_coords, knight, name)
 
 
         if keypressed[dragon.downkey]:
@@ -894,7 +903,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
                 if(sound_choice==1):
                     collision_Sound.play()
                 if keyHints == False:
-                    wallCollisionCount = countCollision(dragon.downkey, wallCollisionCount, background, dragon, endCake, bonus_heart, dragon_choice, sound_choice, start_coords, end_coords, knight)
+                    wallCollisionCount = countCollision(dragon.downkey, wallCollisionCount, background, dragon, endCake, bonus_heart, dragon_choice, sound_choice, start_coords, end_coords, knight, name)
 
 
         if keypressed[dragon.leftkey]:
@@ -904,7 +913,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
                 if(sound_choice==1):
                     collision_Sound.play()
                 if keyHints == False:
-                    wallCollisionCount = countCollision(dragon.leftkey, wallCollisionCount, background, dragon, endCake, bonus_heart, dragon_choice, sound_choice, start_coords, end_coords, knight)
+                    wallCollisionCount = countCollision(dragon.leftkey, wallCollisionCount, background, dragon, endCake, bonus_heart, dragon_choice, sound_choice, start_coords, end_coords, knight, name)
 
 
 
@@ -915,7 +924,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
                 if(sound_choice==1):
                     collision_Sound.play()
                 if keyHints == False:
-                    wallCollisionCount = countCollision(dragon.rightkey, wallCollisionCount, background, dragon, endCake, bonus_heart, dragon_choice, sound_choice, start_coords, end_coords, knight)
+                    wallCollisionCount = countCollision(dragon.rightkey, wallCollisionCount, background, dragon, endCake, bonus_heart, dragon_choice, sound_choice, start_coords, end_coords, knight, name)
 
         if keyHints == False and wallCollisionCount >= 5:
             keyHints = True
