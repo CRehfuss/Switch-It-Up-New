@@ -22,7 +22,7 @@ def Name(sound_choice, dragon_choice):
     state = 0
 
     # Text input courtesy of EzText http://pygame.org/project-EzText-920-.html
-    textbox = eztext.Input(maxlength=45, color=(0,0,0), x=100, y=150)
+    textbox = eztext.Input(maxlength=25, color=(0,0,0), x=100, y=150, font=pygame.font.Font('Fonts/Antic-Regular.ttf', 32))
 
     while state != 1:
         screen.blit(color, [0, 400])
