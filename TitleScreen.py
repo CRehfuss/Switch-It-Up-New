@@ -44,11 +44,10 @@ while state != 1:
         if(sound_choice == 1):
             click_sound.play()
         InstructionScreen.Instructions(sound_choice)
-    if pygame.mouse.get_pressed()[0] and aboutBtn.rect.collidepoint(pygame.mouse.get_pos()):
-        #print "about button"
-        if(sound_choice == 1):
-            click_sound.play()
-        AboutScreen.About(sound_choice)
+    # if pygame.MOUSEBUTTONDOWN and aboutBtn.rect.collidepoint(pygame.mouse.get_pos()):
+    #     if(sound_choice == 1):
+    #         click_sound.play()
+    #     AboutScreen.About(sound_choice)
     if pygame.mouse.get_pressed()[0] and settingsBtn.rect.collidepoint(pygame.mouse.get_pos()):
         #print "settings button"
         if(sound_choice==1):
@@ -57,4 +56,8 @@ while state != 1:
     for event in pygame.event.get():
         if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
             state = 1
+        if event.type == pygame.MOUSEBUTTONDOWN and aboutBtn.rect.collidepoint(pygame.mouse.get_pos()):
+            if(sound_choice == 1):
+                click_sound.play()
+            AboutScreen.About(sound_choice)
 
