@@ -23,7 +23,7 @@ global mazes, key_coords
 mazes = []
 key_coords = []
 global room
-room = 2 # picks the maze
+room = 0 # picks the maze
 global has_key
 has_key = False
 #This is the location of the enemy at the start- corresponds to a location in an array (enemycoords)
@@ -395,10 +395,11 @@ class Bonus(EndMarker):
             livesLeft += 1
             
 class Key(Bonus):
-    global has_key
+    global has_key, mazes, wall_list_3_key
     def getCollision(self, theDragon):
             if pygame.sprite.collide_rect(self, theDragon):
                 has_key = True
+                mazes[2] = wall_list_3_key
                 self.rect.x = -100
                 self.rect.y = -100
         
@@ -489,8 +490,15 @@ def showEverything(background, dragon, endCake, bonus_heart, knight, dragon_choi
     global state
     global room
     global livesLeft
+    global has_key
+    global wall_list_3_key
+    global mazes
     screen.blit(background, [0,0])
-    mazes[room].draw(screen)
+    if (has_key == True):
+        mazes[room] = wall_list_3_key
+        mazes[room].draw(screen)
+    else:
+        mazes[room].draw(screen)
     screen.blit(endCake.image, endCake)
     screen.blit(bonus_heart.image, bonus_heart)
 
@@ -500,7 +508,7 @@ def showEverything(background, dragon, endCake, bonus_heart, knight, dragon_choi
     knight.getCollision(dragon, sound_choice)
 
     screen.blit(key_item.image, key_item)
-
+    key_item.getCollision(dragon)
     # Bottom display
     bottomRect = BottomDisplayImage("Resources/whiterect.png", (750, 150), (-10, 457))
     screen.blit(bottomRect.image, bottomRect)
@@ -670,8 +678,8 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice, name):
     mazes.append(wall_list_3)
     start_coords.append((41,404))
     end_coords.append((537,341))
-    key_coords.append((-100,-100))
-    
+    key_coords.append((625,416))
+    global wall_list_3_key
     wall_list_3_key = pygame.sprite.Group()
     wall_3_key = [#[30, 30, 5, 410], #left
         #[30, 440, 640, 5], #bottom
@@ -699,7 +707,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice, name):
     for var in wall_3_key:
         wall = Wall(var[0], var[1], var[2], var[3])
         wall_list_3_key.add(wall)
-    
+    #mazes.append(wall_list_3_key)
     wall_list_4 = pygame.sprite.Group()
     wall_4 = [#[30, 30, 5, 410], #left
         #[30, 440, 640, 5], #bottom
@@ -758,7 +766,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice, name):
     mazes.append(wall_list_5)
     start_coords.append((49,314))
     end_coords.append((441,31))
-    key_coords.append((625,416))
+    key_coords.append((0,0))
 
     #just a testing screen
     wall_list_test = pygame.sprite.Group()
@@ -874,7 +882,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice, name):
     bonus_pos.append((641,343))
     bonus_pos.append((359,32))
     bonus_pos.append((653, 206))
-
+    global has_key
 
     bonus_heart = Bonus((0,0,0), "Resources/heart.png", bonus_pos[room])
     while state != 1:
@@ -885,7 +893,8 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice, name):
 
         endCake.getCollision(dragon, dragon_choice, sound_choice, start_coords, end_coords, name)
         bonus_heart.getCollision(dragon, sound_choice)
-
+        screen.blit(key_item.image,key_item)
+        key_item.getCollision(dragon)
         dragon.rect.x = x_Dragon
         dragon.rect.y = y_Dragon
 
@@ -894,8 +903,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice, name):
         knight.rect.y = enemycoords[room][enemypos][1]
         knight.getCollision(dragon, sound_choice)
         
-        if (has_key == True):
-            mazes[room] = wall_list_3_key
+     
             
         if (checkLost(dragon_choice, sound_choice)):
             state = 1
