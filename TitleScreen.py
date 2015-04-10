@@ -32,27 +32,6 @@ while state != 1:
     screen.blit(color, [0,400])
     screen.blit(background, [0,0])
     pygame.display.update()
-    if pygame.mouse.get_pressed()[0] and startBtn.rect.collidepoint(pygame.mouse.get_pos()):
-        #print "start button"
-        if (sound_choice == 1):
-            click_sound.play()
-        #Game.PlayGame(35, 370, dragon_choice, sound_choice)
-        NameScreen.Name(sound_choice, dragon_choice)
-        state = 1
-    if pygame.mouse.get_pressed()[0] and instructBtn.rect.collidepoint(pygame.mouse.get_pos()):
-        #print "instruction button"
-        if(sound_choice == 1):
-            click_sound.play()
-        InstructionScreen.Instructions(sound_choice)
-    # if pygame.MOUSEBUTTONDOWN and aboutBtn.rect.collidepoint(pygame.mouse.get_pos()):
-    #     if(sound_choice == 1):
-    #         click_sound.play()
-    #     AboutScreen.About(sound_choice)
-    if pygame.mouse.get_pressed()[0] and settingsBtn.rect.collidepoint(pygame.mouse.get_pos()):
-        #print "settings button"
-        if(sound_choice==1):
-            click_sound.play()
-        dragon_choice, sound_choice = SettingsScreen.Settings(dragon_choice, sound_choice)
     for event in pygame.event.get():
         if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
             state = 1
@@ -60,4 +39,16 @@ while state != 1:
             if(sound_choice == 1):
                 click_sound.play()
             AboutScreen.About(sound_choice)
-
+        elif event.type == pygame.MOUSEBUTTONDOWN and settingsBtn.rect.collidepoint(pygame.mouse.get_pos()):
+            if(sound_choice==1):
+                click_sound.play()
+            dragon_choice, sound_choice = SettingsScreen.Settings(dragon_choice, sound_choice)
+        elif event.type == MOUSEBUTTONDOWN and instructBtn.rect.collidepoint(pygame.mouse.get_pos()):
+            if(sound_choice == 1):
+                click_sound.play()
+            InstructionScreen.Instructions(sound_choice)
+        elif event.type == MOUSEBUTTONDOWN and startBtn.rect.collidepoint(pygame.mouse.get_pos()):
+            if (sound_choice == 1):
+                click_sound.play()
+            NameScreen.Name(sound_choice, dragon_choice)
+            state = 1
