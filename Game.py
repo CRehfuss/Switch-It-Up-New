@@ -853,6 +853,8 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice, name):
         #print(y_Dragon)
         #print("\n")
 
+        # this is a comment
+
 
         keypressed = pygame.key.get_pressed()
 
