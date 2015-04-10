@@ -25,7 +25,7 @@ aboutBtn = Button((460, 300), (155, 60))
 state = 0
 
 dragon_choice = "orange"
-sound_choice = 0#TYLER CHANGED THIS TO 0, It's annoying af- Tyler #NO WHY STOP
+sound_choice = 1#TYLER CHANGED THIS TO 0, It's annoying af- Tyler #NO WHY STOP
 pygame.mixer.init(44100, -16, 2, 2048)
 click_sound = pygame.mixer.Sound('click.wav')
 while state != 1:

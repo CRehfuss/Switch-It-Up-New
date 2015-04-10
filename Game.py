@@ -278,16 +278,17 @@ class Hazard(Player):
 
     #The enemy will now jump around the screen when you hit it, as opposed to just moving the player around it
     #This gets rid of the need to do collisions for this object
-    def getCollision(self, dragon):
+    #Also return true to check the sound
+    def getCollision(self, dragon, sound_choice):
 
         collision_Sound = pygame.mixer.Sound('Dragon_roar.wav')
-
+        lose_sound = pygame.mixer.Sound('lose.wav')
 
         if pygame.sprite.collide_rect(self, dragon):
             global livesLeft
             global enemypos
             global room
-
+            
 
             enemypos += 1
             if enemypos > len(enemycoords[room]) -1:
@@ -295,9 +296,10 @@ class Hazard(Player):
 
 
             livesLeft += -1
-
-
-
+            if(sound_choice==1):
+                lose_sound.play();
+            return 1
+        return 0
 
 
 
@@ -375,11 +377,15 @@ class EndMarker(pygame.sprite.Sprite):
 
 class Bonus(EndMarker):
 
-    def getCollision(self, theDragon):
+    def getCollision(self, theDragon,sound_choice):
+        heart_Sound = pygame.mixer.Sound('ding.wav')
         if pygame.sprite.collide_rect(self, theDragon):
             global livesLeft
             self.rect.x = -100
             self.rect.y = -100
+            if(sound_choice == 1):
+                print "Collide"
+                heart_Sound.play()
             if livesLeft == 5:
                 return
             
@@ -417,12 +423,12 @@ def countCollision(key, count, background, dragon, endCake, bonus_heart, dragon_
     global y_Dragon
     global gamespeed
     global state
-
     while (True): # wait for KEYUP
 
         showEverything(background, dragon, endCake, bonus_heart, knight, dragon_choice, sound_choice)
         endCake.getCollision(dragon, dragon_choice, sound_choice, start_coords, end_coords)
-        bonus_heart.getCollision(dragon)
+        bonus_heart.getCollision(dragon,sound_choice)
+
         if (checkLost(dragon_choice, sound_choice)):
             state = 1
             return
@@ -481,7 +487,7 @@ def showEverything(background, dragon, endCake, bonus_heart, knight, dragon_choi
     screen.blit(knight.image, knight)
     knight.rect.x = enemycoords[room][enemypos][0]
     knight.rect.y = enemycoords[room][enemypos][1]
-    knight.getCollision(dragon)
+    knight.getCollision(dragon, sound_choice)
 
 
     # Bottom display
@@ -547,7 +553,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
         bg_music.play(-1, 0.0)
     
     collision_Sound = pygame.mixer.Sound('Dragon_roar.wav')
-    
+
     global x_Dragon
     global y_Dragon
     #global coll
@@ -746,7 +752,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
         import sys
         clock = pygame.time.Clock()
         starttime = pygame.time.tick()
-
+        heart_Sound = pygame.mixer.Sound('ding.wav')
         if(pygame.time.tick() - starttime) >= 30000:
             if difficulty + 1 > 5:
                 difficulty = 0
@@ -821,7 +827,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
         showEverything(background, dragon, endCake, bonus_heart, knight, dragon_choice, sound_choice)
 
         endCake.getCollision(dragon, dragon_choice, sound_choice, start_coords, end_coords)
-        bonus_heart.getCollision(dragon)
+        bonus_heart.getCollision(dragon, sound_choice)
 
         dragon.rect.x = x_Dragon
         dragon.rect.y = y_Dragon
@@ -829,7 +835,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice):
         screen.blit(knight.image, knight)
         knight.rect.x = enemycoords[room][enemypos][0]
         knight.rect.y = enemycoords[room][enemypos][1]
-        knight.getCollision(dragon)
+        knight.getCollision(dragon, sound_choice)
         if (checkLost(dragon_choice, sound_choice)):
             state = 1
 
