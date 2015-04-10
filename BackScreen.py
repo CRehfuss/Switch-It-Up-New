@@ -1,6 +1,6 @@
 __author__ = 'danielleconnolly'
 
-import pygame, random, InstructionScreen, key_mapping, SettingsScreen, AboutScreen, Game
+import pygame, random, InstructionScreen, key_mapping, SettingsScreen, AboutScreen, Game, NameScreen
 from pygame.locals import *
 
 
@@ -35,7 +35,8 @@ def Title(dragon_choice, sound_choice):
             #print "start button"
             if (sound_choice == 1):
                 click_sound.play()
-            Game.PlayGame(35, 370, dragon_choice, sound_choice)
+            #Game.PlayGame(35, 370, dragon_choice, sound_choice)
+            NameScreen.Name(sound_choice, dragon_choice)
             state = 1
         if pygame.mouse.get_pressed()[0] and instructBtn.rect.collidepoint(pygame.mouse.get_pos()):
             #print "instruction button"
