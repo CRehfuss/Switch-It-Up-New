@@ -466,11 +466,11 @@ def countCollision(key, count, background, dragon, endCake, bonus_heart, dragon_
                x_Dragon += gamespeed
 
         for event in pygame.event.get():
-            # TODO: add quitting option
-            if event.type == KEYUP and event.key == key:
+            if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
+                state = 1
+            elif event.type == KEYUP and event.key == key:
                 return count + 1
             elif event.type == MOUSEBUTTONDOWN and back.rect.collidepoint(pygame.mouse.get_pos()):
-                # FIXME: back button not in scope
                 room = 0
                 livesLeft = 3
                 BackScreen.Title(dragon_choice, sound_choice)
