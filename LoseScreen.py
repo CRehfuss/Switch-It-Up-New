@@ -25,20 +25,19 @@ def YouLose(dragon_choice, sound_choice):
         screen.blit(color, [0, 400])
         screen.blit(background, [0,0])
         pygame.display.update()
-        if pygame.mouse.get_pressed()[0] and replayBtn.rect.collidepoint(pygame.mouse.get_pos()):
-            print "play again button"
-            state = 1
-            if(sound_choice==1):
-                click_sound.play()
-                
-            Game.PlayGame(35, 370, dragon_choice, sound_choice)
-        if pygame.mouse.get_pressed()[0] and quitBtn.rect.collidepoint(pygame.mouse.get_pos()):
-            print "quit button"
-            state = 1
-            if(sound_choice==1):
-                click_sound.play()
         for event in pygame.event.get():
             if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
                 state = 1
+            elif event.type == MOUSEBUTTONDOWN and replayBtn.rect.collidepoint(pygame.mouse.get_pos()):
+                print "play again button"
+                state = 1
+                if(sound_choice==1):
+                    click_sound.play()
+                Game.PlayGame(35, 370, dragon_choice, sound_choice)
+            elif event.type == MOUSEBUTTONDOWN and quitBtn.rect.collidepoint(pygame.mouse.get_pos()):
+                print "quit button"
+                state = 1
+                if(sound_choice==1):
+                    click_sound.play()
 
 

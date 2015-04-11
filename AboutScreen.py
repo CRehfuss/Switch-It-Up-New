@@ -25,11 +25,11 @@ def About(sound_choice):
         screen.blit(color, [0, 400])
         screen.blit(background, [0,0])
         pygame.display.update()
-        if pygame.mouse.get_pressed()[0] and backBtn.rect.collidepoint(pygame.mouse.get_pos()):
-            if(sound_choice == 1):
-                click_sound.play()
-            state = 1
         for event in pygame.event.get():
             if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
+                state = 1
+            elif event.type == MOUSEBUTTONDOWN and backBtn.rect.collidepoint(pygame.mouse.get_pos()):
+                if(sound_choice == 1):
+                    click_sound.play()
                 state = 1
 
