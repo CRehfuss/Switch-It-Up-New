@@ -434,6 +434,9 @@ def countCollision(key, count, background, dragon, endCake, bonus_heart, dragon_
     global y_Dragon
     global gamespeed
     global state
+    global livesLeft
+    global room
+    global back
     while (True): # wait for KEYUP
 
         showEverything(background, dragon, endCake, bonus_heart, knight, dragon_choice, sound_choice, key_item)
@@ -463,8 +466,15 @@ def countCollision(key, count, background, dragon, endCake, bonus_heart, dragon_
                x_Dragon += gamespeed
 
         for event in pygame.event.get():
+            # TODO: add quitting option
             if event.type == KEYUP and event.key == key:
                 return count + 1
+            elif event.type == MOUSEBUTTONDOWN and back.rect.collidepoint(pygame.mouse.get_pos()):
+                # FIXME: back button not in scope
+                room = 0
+                livesLeft = 3
+                BackScreen.Title(dragon_choice, sound_choice)
+                state = 1
 
 
         #Stops the Player from running off the screen
@@ -493,6 +503,7 @@ def showEverything(background, dragon, endCake, bonus_heart, knight, dragon_choi
     global has_key
     global wall_list_3_key
     global mazes
+    global back
     screen.blit(background, [0,0])
     if (has_key == True):
         mazes[room] = wall_list_3_key
@@ -529,11 +540,11 @@ def showEverything(background, dragon, endCake, bonus_heart, knight, dragon_choi
     dragon.updateAnimation(timer)
     pygame.display.update()
 
-    if pygame.mouse.get_pressed()[0] and back.rect.collidepoint(pygame.mouse.get_pos()):
-        room = 0
-        livesLeft = 3
-        BackScreen.Title(dragon_choice, sound_choice)
-        state = 1
+    # if pygame.mouse.get_pressed()[0] and back.rect.collidepoint(pygame.mouse.get_pos()):
+    #     room = 0
+    #     livesLeft = 3
+    #     BackScreen.Title(dragon_choice, sound_choice)
+    #     state = 1
 
             #Stops the Player from running off the screen
     if x_Dragon > screenwidth - dragon.width:
@@ -575,6 +586,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice, name):
 
     global x_Dragon
     global y_Dragon
+    global room
     #global coll
     x_Dragon = x_Start
     y_Dragon = y_Start
@@ -913,9 +925,6 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice, name):
         #print(y_Dragon)
         #print("\n")
 
-        # this is a comment
-
-
         keypressed = pygame.key.get_pressed()
 
 
@@ -939,13 +948,19 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice, name):
                 state = 1
 
 
-            if event.type == KEYDOWN and keyHints == False:
+            elif event.type == KEYDOWN and keyHints == False:
                 checkKey = event.key
                 if checkKey != dragon.upkey and checkKey != dragon.downkey and checkKey != dragon.leftkey and checkKey != dragon.rightkey:
                     badkeycount += 1
                     #print badkeycount
                     if badkeycount >= 10:
                         keyHints = True
+
+            elif event.type == MOUSEBUTTONDOWN and back.rect.collidepoint(pygame.mouse.get_pos()):
+                room = 0
+                livesLeft = 3
+                BackScreen.Title(dragon_choice, sound_choice)
+                state = 1
 
 
         if keypressed[dragon.upkey]:
