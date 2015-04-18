@@ -263,9 +263,23 @@ class Player(pygame.sprite.Sprite):
         #draws animation changes to the screen
         screen.blit(self.image, self)
 
-class chesney(Player):
+class Chesney(Player):
 
     def canMove(self, direction, maze):
+        global x_Dragon
+        global y_Dragon
+        global gamespeed
+        global screenheight, screenwidth
+        # Returns False if the player is trying to move off the screen or into the HUD
+        # Otherwise allows free movement
+        if (direction == "up") and (y_Dragon - gamespeed < 0):
+            return False
+        elif (direction == "down") and (y_Dragon + gamespeed > screenheight - 160):
+            return False
+        elif (direction == "left") and (x_Dragon - gamespeed < 0):
+            return False
+        elif (direction == "right") and (x_Dragon + gamespeed > screenwidth):
+            return False
         return True
 
 
@@ -800,22 +814,22 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice, name):
     #And changes width/height accordingly
     if(dragon_choice=="orange"):
         if (name == "Chesney" or name == "chesney"):
-            dragon = chesney((255,255,255), 36, 32, "Resources/orangeNEW.png", [x_Dragon, y_Dragon], room)
+            dragon = Chesney((255,255,255), 36, 32, "Resources/orangeNEW.png", [x_Dragon, y_Dragon], room)
         else:
             dragon = Player((255,255,255), 36, 32, "Resources/orangeNEW.png", [x_Dragon, y_Dragon], room)
     elif(dragon_choice=="black"):
         if (name == "Chesney" or name == "chesney"):
-            dragon = chesney((255,255,255), 36, 32, "Resources/blackNEW.png", [x_Dragon, y_Dragon], room)
+            dragon = Chesney((255,255,255), 36, 32, "Resources/blackNEW.png", [x_Dragon, y_Dragon], room)
         else:
             dragon = Player((255,255,255), 36, 32, "Resources/blackNEW.png", [x_Dragon, y_Dragon], room)
     elif(dragon_choice=="red"):
         if (name == "Chesney" or name == "chesney"):
-            dragon = chesney((255,255,255), 36, 32, "Resources/redNEW.png", [x_Dragon, y_Dragon], room)
+            dragon = Chesney((255,255,255), 36, 32, "Resources/redNEW.png", [x_Dragon, y_Dragon], room)
         else:
             dragon = Player((255,255,255), 36, 32, "Resources/redNEW.png", [x_Dragon, y_Dragon], room)
     elif(dragon_choice=="greenandblue"):
         if (name == "Chesney" or name == "chesney"):
-            dragon = chesney((255,255,255), 36, 32, "Resources/greenNEW.png", [x_Dragon, y_Dragon], room)
+            dragon = Chesney((255,255,255), 36, 32, "Resources/greenNEW.png", [x_Dragon, y_Dragon], room)
         else:
             dragon = Player((255,255,255), 36, 32, "Resources/greenNEW.png", [x_Dragon, y_Dragon], room)
 
