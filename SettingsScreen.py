@@ -25,7 +25,8 @@ def Settings(dragon_choice,sound_choice):
         def __init__(self, color, filename):
             pygame.sprite.Sprite.__init__(self)
             self.image = pygame.image.load(filename).convert_alpha()
-            self.image.set_colorkey(color) 
+            self.image.set_colorkey(color)
+            self.image = pygame.transform.scale(self.image, (130,120)) # Resize sprite
 
             
     redDragBtn = Button((90, 170), (115, 110))
@@ -61,7 +62,7 @@ def Settings(dragon_choice,sound_choice):
                 
             if (redHL== 0 and redDragBtn.rect.collidepoint(pygame.mouse.get_pos())):
                 objectsonscreen.append(redHighLight)
-                screen.blit(redHighLight.image, [90,170])
+                screen.blit(redHighLight.image, [80,165]) # RED
                 pygame.display.update()
                 redHL = 1
                 print "OVER RED"
@@ -78,7 +79,7 @@ def Settings(dragon_choice,sound_choice):
                     
             if (orangeHL == 0 and orangeDragBtn.rect.collidepoint(pygame.mouse.get_pos())):
                 objectsonscreen.append(orangeHighLight)
-                screen.blit(orangeHighLight.image, [225, 170])
+                screen.blit(orangeHighLight.image, [220, 165]) # ORANGE
                 pygame.display.update()
                 orangeHL = 1
             if (orangeHL == 1 and orangeDragBtn.rect.collidepoint(pygame.mouse.get_pos())==False):
@@ -94,7 +95,7 @@ def Settings(dragon_choice,sound_choice):
             
             if (bandgHL == 0 and bandgDragBtn.rect.collidepoint(pygame.mouse.get_pos())):
                 objectsonscreen.append(bandgHighLight)
-                screen.blit(bandgHighLight.image, [370, 170])
+                screen.blit(bandgHighLight.image, [365, 165]) # BLUE/GREEN
                 pygame.display.update()
                 bandgHL = 1
             if (bandgHL == 1 and bandgDragBtn.rect.collidepoint(pygame.mouse.get_pos())==False):
@@ -110,7 +111,7 @@ def Settings(dragon_choice,sound_choice):
                     
             if (blkHL == 0 and blkDragBtn.rect.collidepoint(pygame.mouse.get_pos())):
                 objectsonscreen.append(blkHighLight)
-                screen.blit(blkHighLight.image, [510,170])
+                screen.blit(blkHighLight.image, [505,165]) # BLACK
                 pygame.display.update()
                 blkHL = 1
             if (blkHL == 1 and blkDragBtn.rect.collidepoint(pygame.mouse.get_pos())==False):
