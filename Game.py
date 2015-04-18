@@ -263,6 +263,8 @@ class Player(pygame.sprite.Sprite):
         #draws animation changes to the screen
         screen.blit(self.image, self)
 
+
+# Chesney can fly through walls
 class Chesney(Player):
 
     def canMove(self, direction, maze):
@@ -281,6 +283,34 @@ class Chesney(Player):
         elif (direction == "right") and (x_Dragon + gamespeed > screenwidth):
             return False
         return True
+
+# Konami receives an extra life
+class Konami(Player):
+
+    # Override parent class constructor
+    def __init__(self, color, width, height, filename, location, difficulty):
+        # Calls the parent class constructor
+        super(Konami, self).__init__(color, width, height, filename, location, difficulty)
+
+        # sets the lives to four
+        self.lives = 4
+        global livesLeft
+        livesLeft += 1
+
+
+# Promode starts with 0 extra lives
+class Promode(Player):
+
+    # Override parent class constructor
+    def __init__(self, color, width, height, filename, location, difficulty):
+        # Calls the parent class constructor
+        super(Promode, self).__init__(color, width, height, filename, location, difficulty)
+
+        # sets the lives to one
+        self.lives = 0
+        global livesLeft
+        livesLeft = 1
+
 
 
 class Hazard(Player):
@@ -516,7 +546,7 @@ def showEverything(background, dragon, endCake, bonus_heart, knight, dragon_choi
     global keyHints
     global state
     global room
-    global livesLeft
+    #global livesLeft
     global has_key
     global wall_list_3_key
     global key_coords
@@ -815,6 +845,13 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice, name):
     if(dragon_choice=="orange"):
         if (name == "Chesney" or name == "chesney"):
             dragon = Chesney((255,255,255), 36, 32, "Resources/orangeNEW.png", [x_Dragon, y_Dragon], room)
+        elif (name == "Konami" or name == "konami"):
+            print "Konami code used"
+            dragon = Konami((255,255,255), 36, 32, "Resources/orangeNEW.png", [x_Dragon, y_Dragon], room)
+            print dragon.getNumLives()
+        elif (name == "ProMode" or name == "Promode" or name == "promode"):
+            print "ProMode code used"
+            dragon = Promode((255,255,255), 36, 32, "Resources/orangeNEW.png", [x_Dragon, y_Dragon], room)
         else:
             dragon = Player((255,255,255), 36, 32, "Resources/orangeNEW.png", [x_Dragon, y_Dragon], room)
     elif(dragon_choice=="black"):
