@@ -19,11 +19,12 @@ pygame.display.set_caption("Switch It Up")
 
 global livesLeft
 livesLeft = 3 # Number of lives starts at 3
-global mazes, key_coords
+global mazes, key_coords, mazes_key
 mazes = []
+mazes_key = []
 key_coords = []
 global room
-room = 0 # picks the maze
+room = 2 # picks the maze
 global has_key
 has_key = False
 #This is the location of the enemy at the start- corresponds to a location in an array (enemycoords)
@@ -395,11 +396,11 @@ class Bonus(EndMarker):
             livesLeft += 1
             
 class Key(Bonus):
-    global has_key, mazes, wall_list_3_key
+    global has_key, mazes, mazes_key, room
     def getCollision(self, theDragon):
             if pygame.sprite.collide_rect(self, theDragon):
                 has_key = True
-                mazes[2] = wall_list_3_key
+                mazes[room] = mazes_key[room]
                 self.rect.x = -100
                 self.rect.y = -100
         
@@ -442,6 +443,7 @@ def countCollision(key, count, background, dragon, endCake, bonus_heart, dragon_
         showEverything(background, dragon, endCake, bonus_heart, knight, dragon_choice, sound_choice, key_item)
         endCake.getCollision(dragon, dragon_choice, sound_choice, start_coords, end_coords, name)
         bonus_heart.getCollision(dragon,sound_choice)
+        key_item.getCollision(dragon)
 
         if (checkLost(dragon_choice, sound_choice)):
             state = 1
@@ -502,11 +504,12 @@ def showEverything(background, dragon, endCake, bonus_heart, knight, dragon_choi
     global livesLeft
     global has_key
     global wall_list_3_key
-    global mazes
+    global key_coords
+    global mazes, mazes_key
     global back
     screen.blit(background, [0,0])
     if (has_key == True):
-        mazes[room] = wall_list_3_key
+        mazes[room] = mazes_key[room]
         mazes[room].draw(screen)
     else:
         mazes[room].draw(screen)
@@ -616,7 +619,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice, name):
         wall = Wall(var[0], var[1], var[2], var[3])
         wall_list_1.add(wall)
     mazes.append(wall_list_1)
-    
+    mazes_key.append(wall_list_1)
     start_coords = []
     start_coords.append((30,396))
     end_coords = []
@@ -656,6 +659,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice, name):
     start_coords.append((61,414))
     end_coords.append((64,150))
     key_coords.append((-100,-100))
+    mazes_key.append(wall_list_2)
 
     wall_list_3 = pygame.sprite.Group()
     wall_3 = [#[30, 30, 5, 410], #left
@@ -720,6 +724,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice, name):
         wall = Wall(var[0], var[1], var[2], var[3])
         wall_list_3_key.add(wall)
     #mazes.append(wall_list_3_key)
+
     wall_list_4 = pygame.sprite.Group()
     wall_4 = [#[30, 30, 5, 410], #left
         #[30, 440, 640, 5], #bottom
@@ -748,7 +753,8 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice, name):
     start_coords.append((473,411))
     end_coords.append((263, 146))
     key_coords.append((-100,-100))
-    
+    mazes_key.append(wall_list_4)
+
     wall_list_5 = pygame.sprite.Group()
     wall_5 = [#[30, 30, 5, 410], #left
         #[30, 440, 640, 5], #bottom
@@ -779,6 +785,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice, name):
     start_coords.append((49,314))
     end_coords.append((441,31))
     key_coords.append((0,0))
+    mazes_key.append(wall_list_5)
 
     #just a testing screen
     wall_list_test = pygame.sprite.Group()
@@ -812,7 +819,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice, name):
             dragon = Player((255,255,255), 36, 32, "Resources/greenNEW.png", [x_Dragon, y_Dragon], room)
 
     endCake = EndMarker((225,255,255), "Resources/Cake.png",  end_coords[room])
-    key_item = Key((225,255,255), "Resources/Cake.png",  key_coords[room])
+    key_item = Key((225,255,255), "Resources/keys.jpg",  key_coords[room])
 
     screen.blit(dragon.image, dragon)
     screen.blit(endCake.image, endCake)
