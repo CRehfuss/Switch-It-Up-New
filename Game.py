@@ -134,7 +134,7 @@ def checkLost(dragon_choice, sound_choice):
 
 #This function displays the keys which control the avatar in the bottom left hand corner
 #needs the initialized dragon (avatar) and the screen for it to be blitted on
-def showKeys(avatar, screens):
+def showKeys(avatar, screens, config):
 
 
     keylist = avatar.upkey, avatar.downkey, avatar.leftkey, avatar.rightkey
@@ -164,8 +164,11 @@ def showKeys(avatar, screens):
     leftstring = "Resources/keys/" + keystr[2] + ".jpg"
     rightstring = "Resources/keys/" + keystr[3] + ".jpg"
 
-    keyLocations = [[593, 462], [627, 492], [610, 522], [625, 550]] # up, down, left, right
-
+    if (config == "direction"):
+        keyLocations = [[593, 462], [627, 492], [610, 522], [625, 550]] # up, down, left, right
+    elif (config == "hint"):
+        keyLocations = [[445, 522], [565, 522], [485, 522], [525, 522]] # up, left, right, down
+                                                                        # Displayed in the order: up, left, right, down
 
     screens.blit(pygame.image.load(upstring).convert_alpha(), keyLocations[0])
     screens.blit(pygame.image.load(downstring).convert_alpha(), keyLocations[1])
@@ -579,9 +582,14 @@ def showEverything(background, dragon, endCake, bonus_heart, knight, dragon_choi
     back = BottomDisplayImage("Resources/backarrow.png", (30, 30), (680, 540))
     screen.blit(back.image, back)
     if keyHints:
-        hintText = BottomDisplayImage("Resources/directiontext.png", (200, 120), (440, 457))
+        directionText = BottomDisplayImage("Resources/directiontext.png", (200, 120), (440, 457))
+        screen.blit(directionText.image, directionText)
+        showKeys(dragon, screen, "direction")
+    else:
+        hintText = BottomDisplayImage("Resources/hinttext.png", (200, 120), (440, 457))
         screen.blit(hintText.image, hintText)
-        showKeys(dragon, screen)
+        showKeys(dragon, screen, "hint")
+
     dragon.rect.x = x_Dragon
     dragon.rect.y = y_Dragon
     timer = pygame.time.get_ticks()
