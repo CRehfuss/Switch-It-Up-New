@@ -776,7 +776,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice, name):
     for var in wall_3_key:
         wall = Wall(var[0], var[1], var[2], var[3])
         wall_list_3_key.add(wall)
-    #mazes.append(wall_list_3_key)
+    mazes_key.append(wall_list_3_key)
 
     wall_list_4 = pygame.sprite.Group()
     wall_4 = [#[30, 30, 5, 410], #left
