@@ -24,7 +24,7 @@ mazes = []
 mazes_key = []
 key_coords = []
 global room
-room = 2 # picks the maze
+room = 0 # picks the maze
 global has_key
 has_key = False
 #This is the location of the enemy at the start- corresponds to a location in an array (enemycoords)
@@ -397,6 +397,7 @@ class Bonus(EndMarker):
             
 class Key(Bonus):
     global has_key, mazes, mazes_key, room
+
     def getCollision(self, theDragon):
             if pygame.sprite.collide_rect(self, theDragon):
                 has_key = True
@@ -819,7 +820,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice, name):
             dragon = Player((255,255,255), 36, 32, "Resources/greenNEW.png", [x_Dragon, y_Dragon], room)
 
     endCake = EndMarker((225,255,255), "Resources/Cake.png",  end_coords[room])
-    key_item = Key((225,255,255), "Resources/keys.jpg",  key_coords[room])
+    key_item = Key((225,255,255), "Resources/keys.png",  key_coords[room])
 
     screen.blit(dragon.image, dragon)
     screen.blit(endCake.image, endCake)
@@ -832,7 +833,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice, name):
 
 
 
-    def finalLevel(x_Start, y_Start, dragon_choice, sound_choice):
+    def finalLevel(x_Start, y_Start, dragon_choice, sound_choice): # Is this supposed to be defined in the PlayGame fxn?
         import sys
         clock = pygame.time.Clock()
         starttime = pygame.time.tick()
@@ -904,6 +905,13 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice, name):
     global has_key
 
     bonus_heart = Bonus((0,0,0), "Resources/heart.png", bonus_pos[room])
+
+    ''''''''''''''''''''''''''''''''''''''''''''''''''
+    #
+    #           WHILE LOOP STARTS
+    #
+    ''''''''''''''''''''''''''''''''''''''''''''''''''
+
     while state != 1:
 
         pygame.display.set_caption('Level: %d' %(room + 1))
