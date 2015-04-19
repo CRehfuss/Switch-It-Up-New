@@ -25,7 +25,7 @@ mazes = []
 mazes_key = []
 key_coords = []
 global room
-room = 4 # picks the maze # TODO: change this back to 0
+room = 2 # picks the maze # TODO: change this back to 0
 global has_key
 has_key = False
 global justLost 
@@ -58,7 +58,6 @@ level2.append((282,10))
 level2.append((0,150))
 level2.append((104,260))
 
-level3.append((0,0))
 level3.append((304,216))
 level3.append((684,208))
 level3.append((430, 208))
