@@ -380,7 +380,6 @@ class Hazard(Player):
 
 
 
-
     #The enemy will now jump around the screen when you hit it, as opposed to just moving the player around it
     #This gets rid of the need to do collisions for this object
     #Also return true to check the sound
@@ -440,24 +439,68 @@ class BottomDisplayImage(pygame.sprite.Sprite):
 
 
 class EndMarker(pygame.sprite.Sprite):
-
-    def __init__(self, color, filename, location):
+    #Type will be 0 unless it's a heart then it's type 1
+    def __init__(self, color, filename, location, type):
         # call parent class constructor
-        pygame.sprite.Sprite.__init__(self)
+        if(type == 1):
+            pygame.sprite.Sprite.__init__(self)
+            
+            # load the image, converting the pixel format for optimization
+            self.all_images = AnimationImages(36,32,filename)
+            
+            # delay is time between animation frames
+            # last_update saves the time the animation was last updated     
+            self.delay = 100
+            self.last_update = 0
+            
+             # frame is the array location in images
+            self.frame = 0
+            self.location = location
+            
+            # sets the animations current image
+            self.image = self.all_images[self.frame]
+            self.image.set_colorkey(color) 
+            self.rect = self.image.get_rect()
+            self.rect.x = location[0]
+            self.rect.y = location[1]
+        else:
+            pygame.sprite.Sprite.__init__(self)
+    
+            # load the image, converting the pixel format for optimization
+            self.image = pygame.image.load(filename).convert_alpha()
+            # make 'color' transparent on the image
+            self.image.set_colorkey(color)
+            # resize image to 20x20 px
+            self.image = pygame.transform.scale(self.image, (20,20))
+            
+    
+            # set the rectangle defined for this image for collision detection
+            self.rect = self.image.get_rect()
+            # position the image
+            self.rect.x = location[0]
+            self.rect.y = location[1]
 
-        # load the image, converting the pixel format for optimization
-        self.image = pygame.image.load(filename).convert_alpha()
-        # make 'color' transparent on the image
-        self.image.set_colorkey(color)
-        # resize image to 20x20 px
-        self.image = pygame.transform.scale(self.image, (20,20))
+    #This is only used if it's a heart (type==1)
+    def updateAnimation (self, totalTime):
 
-        # set the rectangle defined for this image for collision detection
-        self.rect = self.image.get_rect()
-        # position the image
-        self.rect.x = location[0]
-        self.rect.y = location[1]
+        # checks if enough time has passed to change the image
+        if totalTime - self.last_update > self.delay:
+            self.frame += 1
 
+            # checks if the new image is greater than the number of images
+            # starts image cycle over if true
+            if self.frame >= len(self.all_images):
+                self.frame = 0
+
+            # updates current animation image
+            self.image = self.all_images[self.frame]
+
+            # changes the last update time
+            self.last_update = totalTime
+
+        #draws animation changes to the screen
+        screen.blit(self.image, self)    
+        
     def getCollision(self, theDragon, dragon_choice, sound_choice, start_coords, end_coords, name):
         if pygame.sprite.collide_rect(self, theDragon):
 
@@ -657,6 +700,8 @@ def showEverything(background, dragon, endCake, bonus_heart, knight, dragon_choi
     dragon.rect.y = y_Dragon
     timer = pygame.time.get_ticks()
     dragon.updateAnimation(timer)
+    knight.updateAnimation(timer)
+    bonus_heart.updateAnimation(timer)
     pygame.display.update()
 
     # if pygame.mouse.get_pressed()[0] and back.rect.collidepoint(pygame.mouse.get_pos()):
@@ -1139,8 +1184,8 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice, name):
         else:
             dragon = Player((255,255,255), 36, 32, "Resources/greenNEW.png", [x_Dragon, y_Dragon], room)
 
-    endCake = EndMarker((225,255,255), "Resources/Cake.png",  end_coords[room])
-    key_item = Key((225,255,255), "Resources/keys.png",  key_coords[room])
+    endCake = EndMarker((225,255,255), "Resources/Cake.png",  end_coords[room], 0)
+    key_item = Key((225,255,255), "Resources/keys.png",  key_coords[room], 0)
 
     screen.blit(dragon.image, dragon)
     screen.blit(endCake.image, endCake)
@@ -1148,8 +1193,8 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice, name):
 
 
 
-    knight = Hazard([255,255,255], 20, 20, "Resources/fire.png", [enemycoords[room][enemypos][0],enemycoords[room][enemypos][1]], 0)
-    knight.changeImage("Resources/fire.png")
+    knight = Hazard([255,255,255], 36, 32, "Resources/fires.png", [enemycoords[room][enemypos][0],enemycoords[room][enemypos][1]], 0)
+    knight.changeImage("Resources/fires.png")
 
 
 
@@ -1174,7 +1219,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice, name):
     bonus_pos.append((653, 206))
     global has_key
 
-    bonus_heart = Bonus((0,0,0), "Resources/heart.png", bonus_pos[room])
+    bonus_heart = Bonus((0,0,0), "Resources/hearts.png", bonus_pos[room], 1)
 
     ''''''''''''''''''''''''''''''''''''''''''''''''''
     #
