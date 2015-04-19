@@ -33,7 +33,7 @@ def YouLose(dragon_choice, sound_choice, name):
                 state = 1
                 if(sound_choice==1):
                     click_sound.play()
-                Game.PlayGame(35, 370, dragon_choice, sound_choice,name)
+                Game.PlayGame(35, 370, dragon_choice, sound_choice, name)
             elif event.type == MOUSEBUTTONDOWN and quitBtn.rect.collidepoint(pygame.mouse.get_pos()):
                 print "quit button"
                 state = 1

@@ -27,6 +27,8 @@ global room
 room = 0 # picks the maze
 global has_key
 has_key = False
+global justLost 
+justLost = False
 #This is the location of the enemy at the start- corresponds to a location in an array (enemycoords)
 enemypos = 0
 
@@ -127,9 +129,17 @@ def AnimationImages(width, height, filename): #defining a function have to do it
 def checkLost(dragon_choice, sound_choice,name):
 
     global livesLeft
+    global justLost
     if (livesLeft <= 0):
-        print "game over"
+        print "Lives left: "
+        print livesLeft
+        if (justLost == True):
+            livesLeft = 3
+            justLost = False
+            return False
+        justLost = True
         LoseScreen.YouLose(dragon_choice, sound_choice, name)
+        livesLeft = 3
         return True
     return False
 
@@ -739,7 +749,7 @@ def finalLevel(x_Start, y_Start, dragon_choice, sound_choice, name):
 
 
 
-        if (checkLost(dragon_choice, sound_choice)):
+        if (checkLost(dragon_choice, sound_choice, name)):
             state = 1
 
         #print(x_Dragon)
