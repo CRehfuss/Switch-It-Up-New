@@ -58,6 +58,7 @@ level2.append((282,10))
 level2.append((0,150))
 level2.append((104,260))
 
+#level3.append((0,0)) # FOR SOME REASON THIS STARTS YOU WITH ONE LESS LIFE ON LEVEL 3
 level3.append((304,216))
 level3.append((684,208))
 level3.append((430, 208))
