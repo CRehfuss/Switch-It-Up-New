@@ -129,9 +129,10 @@ def AnimationImages(width, height, filename): #defining a function have to do it
 # Returns bool
 def checkLost(dragon_choice, sound_choice,name):
 
-    global livesLeft
+    global livesLeft, room
     global justLost
     if (livesLeft <= 0):
+        room = 0
         print "Lives left: "
         print livesLeft
         if (justLost == True):
@@ -1096,7 +1097,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice, name):
         wall = Wall(var[0], var[1], var[2], var[3])
         wall_list_4.add(wall)
     mazes.append(wall_list_4)
-    start_coords.append((473,411))
+    start_coords.append((41,388))
     end_coords.append((263, 146))
     key_coords.append((480,422))
     wall_list_key_4 = pygame.sprite.Group()
