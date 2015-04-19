@@ -28,7 +28,9 @@ def Settings(dragon_choice,sound_choice):
             self.image.set_colorkey(color)
             self.image = pygame.transform.scale(self.image, (130,120)) # Resize sprite
 
-            
+    #Sets all the background stuff. 
+    #"color"HL is when that dragon is highlighted 1 is it's on
+    #"color"On is when that dragon is selected        
     redDragBtn = Button((90, 170), (115, 110))
     redHighLight = HighlightButton((255,255,255), 'hoverbox.png')
     redChosen = HighlightButton((255,255,255), 'chosenbox.png')
@@ -58,6 +60,7 @@ def Settings(dragon_choice,sound_choice):
     screen.blit(background, [0,0])
     pygame.display.update()
 
+    #These set what the chosen box is originally on when you first go into the screen
     if(dragon_choice=="red"):
         screen.blit(redChosen.image, [80,165]) # RED
         pygame.display.update()

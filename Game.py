@@ -124,11 +124,12 @@ def AnimationImages(width, height, filename): #defining a function have to do it
 
 # Check to see if the player lost the game
 # Returns bool
-def checkLost(dragon_choice, sound_choice):
+def checkLost(dragon_choice, sound_choice,name):
+
     global livesLeft
     if (livesLeft <= 0):
-        #print "game over"
-        LoseScreen.YouLose(dragon_choice, sound_choice)
+        print "game over"
+        LoseScreen.YouLose(dragon_choice, sound_choice, name)
         return True
     return False
 
@@ -512,7 +513,7 @@ def countCollision(key, count, background, dragon, endCake, bonus_heart, dragon_
         bonus_heart.getCollision(dragon,sound_choice)
         key_item.getCollision(dragon)
 
-        if (checkLost(dragon_choice, sound_choice)):
+        if (checkLost(dragon_choice, sound_choice, name)):
             state = 1
             return
 
@@ -1139,7 +1140,7 @@ def PlayGame(x_Start, y_Start, dragon_choice, sound_choice, name):
         
      
             
-        if (checkLost(dragon_choice, sound_choice)):
+        if (checkLost(dragon_choice, sound_choice, name)):
             state = 1
 
         #print(x_Dragon)

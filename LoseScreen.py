@@ -15,7 +15,7 @@ class Button(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.rect = Rect(location, (200, 80))
 
-def YouLose(dragon_choice, sound_choice):
+def YouLose(dragon_choice, sound_choice, name):
 
     replayBtn = Button((135, 240))
     quitBtn = Button((385, 240))
@@ -33,7 +33,7 @@ def YouLose(dragon_choice, sound_choice):
                 state = 1
                 if(sound_choice==1):
                     click_sound.play()
-                Game.PlayGame(35, 370, dragon_choice, sound_choice)
+                Game.PlayGame(35, 370, dragon_choice, sound_choice,name)
             elif event.type == MOUSEBUTTONDOWN and quitBtn.rect.collidepoint(pygame.mouse.get_pos()):
                 print "quit button"
                 state = 1
