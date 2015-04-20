@@ -25,7 +25,7 @@ mazes = []
 mazes_key = []
 key_coords = []
 global room
-room = 2 # picks the maze # TODO: change this back to 0
+room = 0
 global has_key
 has_key = False
 global justLost 
@@ -447,7 +447,7 @@ class EndMarker(pygame.sprite.Sprite):
             pygame.sprite.Sprite.__init__(self)
             
             # load the image, converting the pixel format for optimization
-            self.all_images = AnimationImages(36,32,filename)
+            self.all_images = AnimationImages(28.25,25,filename)
             
             # delay is time between animation frames
             # last_update saves the time the animation was last updated     
