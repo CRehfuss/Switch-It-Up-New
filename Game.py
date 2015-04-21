@@ -309,9 +309,10 @@ class Konami(Player):
         super(Konami, self).__init__(color, width, height, filename, location, difficulty)
 
         # sets the lives to four
-        self.lives = 4
-        global livesLeft
-        livesLeft += 1
+        if (room == 0):
+            self.lives = 4
+            global livesLeft
+            livesLeft += 1
 
 
 # Promode starts with 0 extra lives
